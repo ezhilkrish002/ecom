@@ -42,6 +42,7 @@ export default function Cart() {
 
     useEffect(() => {
         if (products.length > 0) {
+            console.log("Hello World    ");
             createCartArray();
         }
     }, [cartItems, products]);
@@ -98,6 +99,7 @@ export default function Cart() {
         </div>
     ) : (
         <div className="min-h-[80vh] mx-6 flex items-center justify-center text-slate-400">
+            {console.log(cartArray)}
             <h1 className="text-2xl sm:text-4xl font-semibold">Your cart is empty</h1>
         </div>
     )
