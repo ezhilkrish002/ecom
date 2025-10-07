@@ -2,31 +2,28 @@
 
 import { Search, ShoppingCart, Menu, X, UserCircle, Heart } from "lucide-react";
 import Link from "next/link";
-import WVlogo from "../assets/YUCHII LOGO.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Login from "../app/(public)/login/page";
-import SignUp from "./Signup";
-import SignOut from "./Signout";
+import WVlogo from "../assets/YUCHII LOGO.png";
 
 const Navbar = () => {
   const router = useRouter();
-
   const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
-  const [mounted, setMounted] = useState(false); // Prevent hydration mismatch
+  const [mounted, setMounted] = useState(false);
 
   const cartCount = useSelector((state) => state.cart.total);
   const { total: wishlistCount } = useSelector((state) => state.wishlist);
+  const { email } = useSelector((state) => state.auth); // Check auth state
 
   // Handle search submit
   const handleSearch = (e) => {
     e.preventDefault();
     router.push(`/shop?search=${search}`);
-    setShowSearch(false); // Close search after submit
+    setShowSearch(false);
   };
 
   // Toggle mobile menu
@@ -67,8 +64,8 @@ const Navbar = () => {
           <div className="hidden sm:flex items-center gap-6 text-slate-600 absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">Home</Link>
             <Link href="/shop">Shop</Link>
-            <Link href="/">About</Link>
-            <Link href="/">Contact</Link>
+            <Link href="/about">About</Link>
+            <Link href="/contact">Contact</Link>
           </div>
 
           {/* Right Icons (Desktop) */}
@@ -102,8 +99,15 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Profile Icon (instead of Login) */}
-            <Link href="/profile" className="p-2 hover:bg-slate-200 rounded-full transition">
+
+            {/* Auth Link (Login or Sign Out) */}
+            <Link
+              href={email ? "/signout" : "/login"}
+              className="p-2 hover:bg-slate-200 rounded-full transition"
+            >
+
+           
+
               <UserCircle size={20} />
             </Link>
           </div>
@@ -139,8 +143,12 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Profile Icon */}
-            <Link href="/profile" className="p-2 hover:bg-slate-200 rounded-full transition">
+            {/* Auth Link (Login or Sign Out) */}
+            <Link
+              href={email ? "/signout" : "/login"}
+              className="p-2 hover:bg-slate-200 rounded-full transition"
+            >
+
               <UserCircle size={20} />
             </Link>
 
@@ -200,8 +208,14 @@ const Navbar = () => {
               <div className="flex flex-col items-start gap-8 text-slate-600 text-lg px-6 py-6">
                 <Link href="/" onClick={toggleMenu}>Home</Link>
                 <Link href="/shop" onClick={toggleMenu}>Shop</Link>
-                <Link href="/" onClick={toggleMenu}>About</Link>
-                <Link href="/" onClick={toggleMenu}>Contact</Link>
+
+                <Link href="/about" onClick={toggleMenu}>About</Link>
+                <Link href="/contact" onClick={toggleMenu}>Contact</Link>
+                <Link href={email ? "/signout" : "/login"} onClick={toggleMenu}>
+                  {email ? "Sign Out" : "Sign In"}
+                </Link>
+
+
               </div>
             </div>
           </div>
