@@ -1,3 +1,4 @@
+'use client'
 import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
 import Link from 'next/link';
 import WVlogo from "../assets/YUCHII LOGO.png";
