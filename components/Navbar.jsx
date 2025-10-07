@@ -7,17 +7,20 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import Login from "../app/(public)/login/page";
+import SignUp from "./Signup";
+import SignOut from "./Signout";
 
 const Navbar = () => {
   const router = useRouter();
 
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const [mounted, setMounted] = useState(false); // Prevent hydration mismatch
 
-  const cartCount = useSelector(state => state.cart.total);
-  const { total: wishlistCount } = useSelector(state => state.wishlist);
+  const cartCount = useSelector((state) => state.cart.total);
+  const { total: wishlistCount } = useSelector((state) => state.wishlist);
 
   // Handle search submit
   const handleSearch = (e) => {
@@ -42,12 +45,12 @@ const Navbar = () => {
   useEffect(() => {
     setMounted(true);
     if (menuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     }
     return () => {
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = "auto";
     };
   }, [menuOpen]);
 
@@ -55,7 +58,6 @@ const Navbar = () => {
     <nav className="relative bg-white shadow-sm">
       <div className="mx-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto py-2.5 transition-all">
-
           {/* Logo */}
           <Link href="/" className="relative text-4xl font-semibold text-slate-700">
             <Image src={WVlogo} alt="WV logo" className="w-28 h-auto" />
@@ -148,7 +150,11 @@ const Navbar = () => {
               onClick={toggleMenu}
               aria-label="Toggle menu"
             >
-              {menuOpen ? <X size={24} className="text-slate-700" /> : <Menu size={24} className="text-slate-700" />}
+              {menuOpen ? (
+                <X size={24} className="text-slate-700" />
+              ) : (
+                <Menu size={24} className="text-slate-700" />
+              )}
             </button>
           </div>
         </div>
