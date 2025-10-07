@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { loginRequest, loginSuccess, loginFailure, clearError } from '../lib/features/login/authSlice';
+import { loginRequest, loginSuccess, loginFailure, clearError } from '../../../lib/features/login/authSlice';
 
 const Login = ({ onClose, onOpenSignUp }) => {
   const dispatch = useDispatch();
