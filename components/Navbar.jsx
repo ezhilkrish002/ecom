@@ -1,6 +1,6 @@
 import { Search, ShoppingCart, Menu, X, User } from 'lucide-react';
 import Link from 'next/link';
-import WVlogo from '../assets/WV-logo.png';
+import WVlogo from "../assets/YUCHII LOGO.png";
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect } from 'react';
