@@ -1,4 +1,4 @@
-import gs_logo from "./WV-logo.png"
+import gs_logo from "./YUCHII LOGO.png"
 import happy_store from "./happy_store.webp"
 import upload_area from "./upload_area.svg"
 import hero_model_img from "./hero_model_img.png"

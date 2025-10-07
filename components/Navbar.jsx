@@ -1,7 +1,7 @@
 'use client'
 import { Search, ShoppingCart, Menu, X, User } from "lucide-react";
 import Link from "next/link";
-import WVlogo from "../assets/WV-logo.png";
+import WVlogo from "../assets/YUCHII LOGO.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -49,8 +49,13 @@ const Navbar = () => {
                 <div className="flex items-center justify-between max-w-7xl mx-auto py-4 transition-all">
                     {/* 🟩 Logo */}
                     <Link href="/" className="relative text-4xl font-semibold text-slate-700">
-                        <Image src={WVlogo} alt="WV logo" className="w-28 h-auto" />
+                        <Image
+                            src={WVlogo}
+                            alt="WV logo"
+                            className="w-16 h-8 sm:w-24 sm:h-12 md:w-28 md:h-14 lg:w-32 lg:h-16 transition-all duration-300"
+                        />
                     </Link>
+
 
                     {/* Desktop Menu */}
                     <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-slate-600">
@@ -60,13 +65,13 @@ const Navbar = () => {
                         <Link href="/">Contact</Link>
 
                         {/* Search Bar (Desktop Only) */}
-                         <div className="relative hidden xl:flex items-center text-sm text-slate-600">
-                             <button
+                        <div className="relative hidden sm:flex items-center text-sm text-slate-600">
+                            <button
                                 type="button"
                                 onClick={() => setIsSearchOpen(!isSearchOpen)}
                                 className="p-2 hover:bg-slate-200 rounded-full transition"
                             >
-                                <Search size={18} />
+                                <Search size={16} />
                             </button>
 
                             {isSearchOpen && (
@@ -119,9 +124,8 @@ const Navbar = () => {
 
             {/* Mobile Search Bar */}
             <div
-                className={`sm:hidden bg-white w-full flex justify-center transition-all duration-300 ease-in-out ${
-                    isSearchOpen ? 'max-h-16 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
-                }`}
+                className={`sm:hidden bg-white w-full flex justify-center transition-all duration-300 ease-in-out ${isSearchOpen ? 'max-h-16 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'
+                    }`}
             >
                 <form onSubmit={handleSearch} className="flex items-center w-full max-w-md text-sm gap-2 bg-slate-100 px-4 py-3 rounded-lg">
                     <Search size={18} className="text-slate-600" />
@@ -138,17 +142,16 @@ const Navbar = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`sm:hidden fixed top-0 right-0 h-full w-64 bg-white/95 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out ${
-                    isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`}
+                className={`sm:hidden fixed top-0 right-0 h-full w-64 bg-white/95 backdrop-blur-sm z-50 transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+                    }`}
             >
                 <div className="flex flex-col">
                     {/* Header */}
                     <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
-                       {/* 🟩 Logo */}
-                    <Link href="/" className="relative text-4xl font-semibold text-slate-700">
-                        <Image src={WVlogo} alt="WV logo" className="w-28 h-auto" />
-                    </Link>
+                        {/* 🟩 Logo */}
+                        <Link href="/" className="relative text-4xl font-semibold text-slate-700">
+                            <Image src={WVlogo} alt="WV logo" className="w-18 h-10" />
+                        </Link>
                         <button onClick={toggleMenu} className="text-slate-600">
                             <X size={24} />
                         </button>
@@ -332,8 +335,8 @@ export default Navbar;
 //             {/* 🟥 Mobile Dropdown Menu */}
 //             {/* Mobile Dropdown Menu */}
 //             {menuOpen && (
-//                 <div className="fixed top-[80px] right-0 h-full w-1/2 bg-white shadow-lg z-50 rounded-b-2xl 
-//                   flex flex-col gap-3 text-slate-700 px-6 py-4 
+//                 <div className="fixed top-[80px] right-0 h-full w-1/2 bg-white shadow-lg z-50 rounded-b-2xl
+//                   flex flex-col gap-3 text-slate-700 px-6 py-4
 //                   transition-all duration-300 ease-in-out animate-slideDown">
 
 //                     <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
