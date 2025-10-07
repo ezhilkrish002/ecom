@@ -99,11 +99,15 @@ const Navbar = () => {
               )}
             </Link>
 
+
             {/* Auth Link (Login or Sign Out) */}
             <Link
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
+
+           
+
               <UserCircle size={20} />
             </Link>
           </div>
@@ -144,6 +148,7 @@ const Navbar = () => {
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
+
               <UserCircle size={20} />
             </Link>
 
@@ -203,11 +208,14 @@ const Navbar = () => {
               <div className="flex flex-col items-start gap-8 text-slate-600 text-lg px-6 py-6">
                 <Link href="/" onClick={toggleMenu}>Home</Link>
                 <Link href="/shop" onClick={toggleMenu}>Shop</Link>
+
                 <Link href="/about" onClick={toggleMenu}>About</Link>
                 <Link href="/contact" onClick={toggleMenu}>Contact</Link>
                 <Link href={email ? "/signout" : "/login"} onClick={toggleMenu}>
                   {email ? "Sign Out" : "Sign In"}
                 </Link>
+
+
               </div>
             </div>
           </div>
