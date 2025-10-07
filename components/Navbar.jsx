@@ -1,4 +1,4 @@
-'use client';
+'use client'
 
 import { Search, ShoppingCart, Menu, X, UserCircle, Heart } from "lucide-react";
 import Link from "next/link";
@@ -102,7 +102,7 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Profile Icon */}
+            {/* Profile Icon (instead of Login) */}
             <Link href="/profile" className="p-2 hover:bg-slate-200 rounded-full transition">
               <UserCircle size={20} />
             </Link>
