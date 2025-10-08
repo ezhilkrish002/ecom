@@ -82,8 +82,10 @@ const Navbar = () => {
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
               <Search size={18} />
-            </button>
 
+              
+            </button>
+{/* button add */}
             {/* Wishlist */}
             <Link href="/wishlist" className="relative flex items-center">
               <Heart size={18} />
