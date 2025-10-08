@@ -23,7 +23,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     router.push(`/shop?search=${search}`);
-    setShowSearch(false); // close search after submit
+    setShowSearch(false);
   };
 
   // Toggle mobile menu
@@ -55,7 +55,6 @@ const Navbar = () => {
     <nav className="relative bg-white shadow-sm">
       <div className="mx-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto py-2.5 transition-all">
-
           {/* Logo */}
           <Link href="/" className="relative text-4xl font-semibold text-slate-700">
             <Image
@@ -63,6 +62,7 @@ const Navbar = () => {
               alt="WV logo"
               className="w-20 h-10 sm:w-28 sm:h-auto"
             />
+
           </Link>
 
           {/* Center Menu (Desktop) */}
@@ -85,30 +85,34 @@ const Navbar = () => {
             </button>
 
             {/* Wishlist */}
-            <Link href="/wishlist" className="relative flex items-center gap-2 text-slate-600">
+            <Link href="/wishlist" className="relative flex items-center">
               <Heart size={18} />
               {mounted && wishlistCount > 0 && (
-                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
             </Link>
 
             {/* Cart */}
-            <Link href="/cart" className="relative flex items-center gap-2 text-slate-600">
+            <Link href="/cart" className="relative flex items-center">
               <ShoppingCart size={18} />
               {mounted && cartCount > 0 && (
-                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
             </Link>
+
 
             {/* Auth Link (Login or Sign Out) */}
             <Link
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
+
+
+
               <UserCircle size={20} />
             </Link>
           </div>
@@ -144,11 +148,12 @@ const Navbar = () => {
               )}
             </Link>
 
-            {/* Auth Link */}
+            {/* Auth Link (Login or Sign Out) */}
             <Link
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
+
               <UserCircle size={20} />
             </Link>
 
@@ -208,11 +213,14 @@ const Navbar = () => {
               <div className="flex flex-col items-start gap-8 text-slate-600 text-lg px-6 py-6">
                 <Link href="/" onClick={toggleMenu}>Home</Link>
                 <Link href="/shop" onClick={toggleMenu}>Shop</Link>
+
                 <Link href="/about" onClick={toggleMenu}>About</Link>
                 <Link href="/contact" onClick={toggleMenu}>Contact</Link>
                 <Link href={email ? "/signout" : "/login"} onClick={toggleMenu}>
                   {email ? "Sign Out" : "Sign In"}
                 </Link>
+
+
               </div>
             </div>
           </div>
