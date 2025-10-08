@@ -1,22 +1,29 @@
-'use client'
+'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { signupRequest, signupSuccess, signupFailure } from '../../../lib/features/login/authSlice';
+import { Eye, EyeOff } from 'lucide-react';
+import {
+  signupRequest,
+  signupSuccess,
+  signupFailure,
+} from '../../../lib/features/login/authSlice';
 
 const SignUp = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const { isLoading, error, users } = useSelector((state) => state.auth);
 
+  const [showPassword, setShowPassword] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const firstName = e.target.firstName.value;
-    const lastName = e.target.lastName.value;
-    const email = e.target.email.value;
-    const password = e.target.password.value;
+    const firstName = e.target.firstName.value.trim();
+    const lastName = e.target.lastName.value.trim();
+    const email = e.target.email.value.trim();
+    const password = e.target.password.value.trim();
 
     dispatch(signupRequest());
 
@@ -32,95 +39,120 @@ const SignUp = () => {
       } else {
         dispatch(signupFailure('All fields are required'));
       }
-    }, 1000);
+    }, 800);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg">
-        <h2 className="text-3xl font-bold mb-8 text-center bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-          Create Account
-        </h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
+        {/* Header */}
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-semibold text-gray-900">Create your account</h2>
+          <p className="text-gray-500 mt-1 text-sm">
+            Welcome! Please fill in the details to get started.
+          </p>
+        </div>
+
+        {/* Error Message */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded-lg animate-pulse">
-            <p className="text-sm font-medium">{error}</p>
+          <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-3 mb-6 rounded-md text-sm">
+            {error}
           </div>
         )}
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label htmlFor="firstName" className="block text-sm font-semibold text-gray-700 mb-2">
-              First Name
-            </label>
-            <input
-              type="text"
-              id="firstName"
-              name="firstName"
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-gray-50/50"
-              placeholder="Enter your first name"
-              required
-            />
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="space-y-5">
+          {/* First & Last Name */}
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                First name <span className="text-gray-400 text-xs">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                name="firstName"
+                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+                placeholder="First name"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="lastName"
+                className="block text-sm font-medium text-gray-700 mb-1"
+              >
+                Last name <span className="text-gray-400 text-xs">(Optional)</span>
+              </label>
+              <input
+                type="text"
+                id="lastName"
+                name="lastName"
+                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+                placeholder="Last name"
+              />
+            </div>
           </div>
+
+          {/* Email */}
           <div>
-            <label htmlFor="lastName" className="block text-sm font-semibold text-gray-700 mb-2">
-              Last Name
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-gray-50/50"
-              placeholder="Enter your last name"
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-              Email Address
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email address
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-gray-50/50"
-              placeholder="Enter your email"
+              className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+              placeholder="Enter your email address"
               required
             />
           </div>
+
+          {/* Password */}
           <div>
-            <label htmlFor="password" className="block text-sm font-semibold text-gray-700 mb-2">
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 focus:border-blue-500 transition-all duration-300 bg-gray-50/50"
-              placeholder="Enter your password"
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                id="password"
+                name="password"
+                className="w-full rounded-lg border border-gray-300 bg-white p-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+                placeholder="Enter your password"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-3 flex items-center text-gray-500 hover:text-gray-700"
+              >
+                {/* {showPassword ? <EyeOff size={18} /> : <Eye size={18} />} */}
+              </button>
+            </div>
+            <p className="text-xs text-gray-500 mt-1">
+              Your password must contain 8 or more characters.
+            </p>
           </div>
+
+          {/* Submit Button */}
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:from-blue-700 hover:to-purple-700 transform hover:scale-105 focus:outline-none focus:ring-4 focus:ring-blue-500/30 transition-all duration-300 disabled:from-gray-400 disabled:to-gray-500 disabled:scale-100 disabled:cursor-not-allowed"
             disabled={isLoading}
+            className="w-full mt-2 bg-gray-900 text-white py-3 rounded-lg font-medium text-sm hover:bg-gray-800 transition focus:outline-none focus:ring-2 focus:ring-gray-400 disabled:opacity-50"
           >
-            {isLoading ? (
-              <span className="flex items-center justify-center">
-                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Signing Up...
-              </span>
-            ) : (
-              'Sign Up'
-            )}
+            {isLoading ? 'Creating account...' : 'Continue'}
           </button>
         </form>
+
+        {/* Footer */}
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link href="/login" className="text-blue-600 hover:text-blue-800 font-semibold transition-colors">
-            Sign In
+          <Link href="/login" className="text-gray-900 font-medium hover:underline">
+            Sign in
           </Link>
         </p>
       </div>
