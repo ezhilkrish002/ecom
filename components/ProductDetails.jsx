@@ -73,18 +73,14 @@ const ProductDetails = ({ product }) => {
                     <button
                         onClick={() => {
                             const quantity = cart[productId] || 1; // Default to 1 if not in cart
-
                             const message = `
-Hi, I'm interested in booking an enquiry for the following product:
-
-🛍️ *Product:* ${product.name}
-💰 *Price:* ${currency}${product.price}
-📦 *Quantity:* ${quantity}
-🖼️ *Product Link:* ${typeof window !== 'undefined' ? window.location.href : ''}
-
-Please let me know the next steps.
-    `.trim();
-
+                            Hi, I'm interested in booking an enquiry for the following product:
+                            🛍️ *Product:* ${product.name}
+                            💰 *Price:* ${currency}${product.price}
+                            📦 *Quantity:* ${quantity}
+                            🖼️ *Product Link:* ${typeof window !== 'undefined' ? window.location.href : ''}
+                            Please let me know the next steps.
+                                `.trim();
                             const encodedMessage = encodeURIComponent(message);
                             const phoneNumber = "9345795629"; // replace with your number (no + or 0)
 
