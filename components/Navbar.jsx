@@ -57,7 +57,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between max-w-7xl mx-auto py-2.5 transition-all">
           {/* Logo */}
           <Link href="/" className="relative text-4xl font-semibold text-slate-700">
-            <Image src={WVlogo} alt="WV logo" className="w-28 h-auto" />
+            <Image
+              src={WVlogo}
+              alt="WV logo"
+              className="w-20 h-10 sm:w-28 sm:h-auto"
+            />
+
           </Link>
 
           {/* Center Menu (Desktop) */}
@@ -106,7 +111,7 @@ const Navbar = () => {
               className="p-2 hover:bg-slate-200 rounded-full transition"
             >
 
-           
+
 
               <UserCircle size={20} />
             </Link>
@@ -198,7 +203,7 @@ const Navbar = () => {
             <div className="flex flex-col">
               <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
                 <Link href="/" className="relative text-4xl font-semibold text-slate-700">
-                  <Image src={WVlogo} alt="WV logo" className="w-28 h-auto" />
+                  <Image src={WVlogo} alt="WV logo" className="w-20 h-10" />
                 </Link>
                 <button onClick={toggleMenu} className="text-slate-600">
                   <X size={24} />

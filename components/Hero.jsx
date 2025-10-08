@@ -39,7 +39,7 @@ const Hero = () => {
                     <div className="flex sm:hidden items-center justify-between px-3">
                         <div className="text-[#3A3634] text-sm font-medium">
                             <p>Starts from</p>
-                            <p className="text-3xl">{currency}4.90</p>
+                            <p className="text-3xl">{currency}499</p>
                             <button className="bg-[#7B1E3A] text-white text-xs sm:text-sm py-2 px-5 sm:py-3 sm:px-7 md:py-4 md:px-10 mt-3 rounded-md hover:bg-[#61162D] hover:scale-105 active:scale-95 transition">
                                 LEARN MORE
                             </button>
