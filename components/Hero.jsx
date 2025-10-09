@@ -7,7 +7,7 @@ import CategoriesMarquee from './CategoriesMarquee'
 
 const Hero = () => {
 
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
+    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹'
 
     return (
         <div className='mx-6'>
@@ -17,7 +17,7 @@ const Hero = () => {
                     <div className='p-5 sm:p-10'>
                         <div className="inline-flex items-center gap-3 bg-[#7B1E3A]/10 text-[#7B1E3A] pr-1 p-1 rounded-full text-xs sm:text-sm">
                             <span className="bg-[#E29B2B] px-3 py-1 max-sm:ml-1 rounded-full text-white text-xs">NEWS</span>
-                            Free Shipping on Orders Above $50!
+                            Free Shipping on Orders Above ₹50!
                             <ChevronRightIcon className="group-hover:ml-2 transition-all" size={16} />
                         </div>
 
@@ -28,7 +28,7 @@ const Hero = () => {
                         {/* ✅ Desktop Layout */}
                         <div className='hidden sm:block text-[#3A3634] text-sm font-medium mt-4 sm:mt-1'>
                             <p>Starts from</p>
-                            <p className='text-3xl'>{currency}4.90</p>
+                            <p className='text-3xl'>{currency}499</p>
                             <button className='bg-[#7B1E3A] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 mt-4 sm:mt-10 rounded-md hover:bg-[#61162D] hover:scale-103 active:scale-95 transition'>
                                 LEARN MORE
                             </button>
@@ -39,7 +39,7 @@ const Hero = () => {
                     <div className="flex sm:hidden items-center justify-between px-3">
                         <div className="text-[#3A3634] text-sm font-medium">
                             <p>Starts from</p>
-                            <p className="text-3xl">{currency}4.90</p>
+                            <p className="text-3xl">{currency}499</p>
                             <button className="bg-[#7B1E3A] text-white text-xs sm:text-sm py-2 px-5 sm:py-3 sm:px-7 md:py-4 md:px-10 mt-3 rounded-md hover:bg-[#61162D] hover:scale-105 active:scale-95 transition">
                                 LEARN MORE
                             </button>
