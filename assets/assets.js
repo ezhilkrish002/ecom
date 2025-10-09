@@ -87,7 +87,7 @@ export const productDummyData = [
         storeId: "seller_1",
         inStock: true,
         store: dummyStoreData,
-        category: "Speakers",
+        category: "Engine",
         rating: dummyRatingsData,
         createdAt: 'Sat Jul 28 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 28 2025 14:51:25 GMT+0530 (India Standard Time)',
