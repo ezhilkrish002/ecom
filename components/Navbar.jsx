@@ -63,12 +63,16 @@ const Navbar = () => {
 
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-4 lg:gap-8 text-slate-600">
-            <Link href="/">Home</Link>
-            <Link href="/shop">Shop</Link>
-            <Link href="/">About</Link>
-            <Link href="/">Contact</Link>
+            <div className="pr-8">
+                 <Link href="/">Home</Link>
+                 <Link href="/shop">Shop</Link>
+                 <Link href="/">About</Link>
+                 <Link href="/">Contact</Link>
+            </div>
+           
 
             {/* Search Bar (Desktop Only) */}
+            <div>
             <div className="relative hidden xl:flex items-center text-sm text-slate-600">
               <button
                 type="button"
@@ -124,7 +128,7 @@ const Navbar = () => {
               Login
             </button>
           </div>
-
+              </div>
           {/* Mobile Icons Row */}
           <div className="flex items-center gap-2 sm:hidden ml-auto">
             <button
