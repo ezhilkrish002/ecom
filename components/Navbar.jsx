@@ -126,13 +126,33 @@ const Navbar = () => {
 
           {/* Desktop Icons */}
           <div className="hidden sm:flex items-center gap-5 text-slate-600">
-            <button
-              type="button"
-              onClick={toggleSearch}
-              className="p-2 hover:bg-slate-200 rounded-full transition"
-            >
-              <Search size={18} />
-            </button>
+            {/* Search Icon */}
+            {/* Search Icon or Search Input inline */}
+            {showSearch ? (
+              <form onSubmit={handleSearch} className="flex items-center">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search products..."
+                  className="border border-gray-300 rounded-md px-2 py-1 text-sm w-40 focus:outline-blue-500"
+                  autoFocus
+                />
+                <button type="submit" className="ml-2 text-blue-600 hover:text-blue-800">
+                  <Search size={18} />
+                </button>
+              </form>
+            ) : (
+              <button
+                type="button"
+                onClick={toggleSearch}
+                className="p-2 hover:bg-slate-200 rounded-full transition"
+                aria-label="Open search"
+              >
+                <Search size={18} />
+              </button>
+            )}
+
 
             <Link href="/wishlist" className="relative flex items-center">
               <Heart size={18} />
