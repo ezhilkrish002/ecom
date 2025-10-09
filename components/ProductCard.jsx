@@ -109,7 +109,7 @@ const ProductCard = ({ product }) => {
                   key={index}
                   size={14}
                   className="text-transparent mt-0.5"
-                  fill={rating >= index + 1 ? '#00C950' : '#D1D5DB'}
+                  fill={rating >= index + 1 ? '#c31e5aff' : '#D1D5DB'}
                 />
               ))}
           </div>
