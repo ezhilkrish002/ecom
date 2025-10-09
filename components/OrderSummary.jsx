@@ -23,7 +23,7 @@ const OrderSummary = ({ totalPrice, items }) => {
     message += `Total Items: ${totalQuantity}\n\nPlease let me know the next steps.`;
 
     const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = "9345795629"; // Your WhatsApp number without + or 0
+    const phoneNumber = "9344144419"; // Your WhatsApp number without + or 0
 
     window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
   };

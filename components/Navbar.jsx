@@ -27,7 +27,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     router.push(`/shop?search=${search}`);
-    setShowSearch(false);
+    setShowSearch(false); // close search after submit
   };
 
   const toggleMenu = () => {
@@ -157,7 +157,7 @@ const Navbar = () => {
             <Link href="/wishlist" className="relative flex items-center">
               <Heart size={18} />
               {mounted && wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
@@ -166,7 +166,7 @@ const Navbar = () => {
             <Link href="/cart" className="relative flex items-center">
               <ShoppingCart size={18} />
               {mounted && cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
@@ -283,3 +283,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
