@@ -38,65 +38,90 @@ export default function CategoryProducts({ categoryName }) {
       </h1>
 
       {products.length > 0 ? (
-        <div
-          className="
-            grid
-            grid-cols-2
-            sm:grid-cols-3
-            md:grid-cols-4
-            gap-4 sm:gap-6
-            justify-center
-            place-items-center
-          "
-        >
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="group bg-gray-50 rounded-xl shadow-sm hover:shadow-md transition duration-300 border border-gray-100 flex flex-col items-center p-3 sm:p-4 text-center w-full max-w-[160px] sm:max-w-[180px] md:max-w-[200px]"
-            >
-              {/* Product Image */}
-              <div className="w-full h-36 sm:h-44 flex items-center justify-center bg-white rounded-lg overflow-hidden mb-3">
-                <img
-                  src={product.images[0].src || product.images[0]}
-                  alt={product.name}
-                  className="max-h-32 object-contain group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-
-              {/* Product Info */}
-              <h2 className="font-semibold text-gray-800 text-xs sm:text-sm truncate w-full">
-                {product.name}
-              </h2>
-
-              {/* Rating */}
-              <div className="flex justify-center items-center mt-1 mb-1">
-                {[...Array(5)].map((_, i) => (
-                  <Star
-                    key={i}
-                    size={12}
-                    className="text-green-500 fill-green-500"
-                  />
-                ))}
-              </div>
-
-              {/* Price */}
-              <p className="text-slate-800 font-semibold text-xs sm:text-sm">
-                ₹{product.price}
-              </p>
-
-              {/* Add to Cart Button */}
-              <button
-                onClick={() => handleAddToCart(product)}
-                className="mt-2 bg-slate-800 text-white text-xs sm:text-sm font-medium px-3 py-1.5 rounded-full hover:bg-slate-700 transition"
-              >
-                Add to Cart
-              </button>
-            </div>
-          ))}
+        <>
+          {products.map((product,index) => (
+             <div key={index} className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl border border-gray-200 p-4 sm:p-6 md:p-10 mt-6 sm:mt-8">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
+        {/* Image Section */}
+        <div className="flex justify-center">
+          <div className=" p-4  rounded-xl  w-full sm:w-auto flex justify-center">
+            <img
+              src={product.images?.[0]?.src || product.images?.[0]}
+              alt={product.name}
+              className="rounded-xl w-full sm:w-full md:w-full h-full sm:h-full md:h-full object-contain"
+            />
+          </div>
         </div>
+
+        {/* Content Section */}
+        <div className="md:col-span-2 space-y-4 sm:space-y-5">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 text-center md:text-left">
+            {product.name}
+          </h1>
+          <p className="text-gray-600 text-center md:text-left">
+            {product.description}
+          </p>
+
+          {/* Options */}
+          <div>
+            <h2 className="font-semibold text-gray-800 mb-2 text-center md:text-left">
+              Available Options:
+            </h2>
+            <div className="flex flex-wrap justify-center md:justify-start gap-3">
+              {product.options.map((opt,index) => (
+                <button
+                  key={index}
+                  className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-400 transition text-sm sm:text-base"
+                >
+                  {opt}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Technical Specifications */}
+          <div>
+            
+            <h2 className="font-semibold text-gray-800 mb-3 text-center md:text-left">
+              Technical Specifications:
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-700">
+              {product.specs.map((item,index) => (
+                <Spec key={index} label={item.label} value={item.value} />
+              ))}
+            </div>
+          </div>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
+            <button className="w-full sm:w-auto px-6 py-2 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg">
+              View Details
+            </button>
+            <button className="w-full sm:w-auto px-6 py-2 bg-[#f48638] text-white rounded-lg hover:bg-[#f48638]-700 transition">
+              Send Enquiry
+            </button>
+            <button onClick={handleAddToCart} className="w-full sm:w-auto px-6 py-2 bg-[#c31e5aff] text-white rounded-lg hover:bg-[#c31e5aff]-700 transition">
+              Add to Cart
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+          ))}
+        </>
       ) : (
         <p className="text-gray-500 text-center">No products found in this category.</p>
       )}
+    </div>
+  );
+}
+
+// Helper component for specs
+function Spec({ label, value }) {
+  return (
+    <div className="flex justify-between border-b border-gray-100 pb-1">
+      <span className="font-medium text-gray-800">{label}</span>
+      <span className="text-gray-600">{value}</span>
     </div>
   );
 }
