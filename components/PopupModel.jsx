@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { X, PhoneCall, UserPlus } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { addEnquiry } from '@/lib/features/enquiry/enquirySlice';
-import toast from 'react-hot-toast'; // ✅ import toast
+import toast from 'react-hot-toast';
 
 const ModalPopup = ({
   isOpen,
@@ -21,12 +21,26 @@ const ModalPopup = ({
   const [userMobile, setUserMobile] = useState('');
   const dispatch = useDispatch();
 
-  // ✅ Handle submit & show toast
-  const handleSubmitEnquiry = () => {
-    if (!userName || !userMobile) {
-      toast.error('Please fill out all fields before submitting.');
-      return;
+  // 🧠 Validate name and mobile before submitting
+  const validateInputs = () => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const mobileRegex = /^[0-9]{10}$/;
+
+    if (!userName.trim() || !nameRegex.test(userName)) {
+      toast.error('Please enter a valid name (letters only).');
+      return false;
     }
+
+    if (!mobileRegex.test(userMobile)) {
+      toast.error('Please enter a valid 10-digit mobile number.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmitEnquiry = () => {
+    if (!validateInputs()) return;
 
     const enhancedItems = items.map((item) => {
       const productLink =
@@ -47,7 +61,6 @@ const ModalPopup = ({
 
     dispatch(addEnquiry(enquiryData));
 
-    // ✅ Success toast
     toast.success('Enquiry submitted successfully!');
 
     // Reset form
@@ -126,18 +139,32 @@ const ModalPopup = ({
 
         {showForm && (
           <div className="space-y-4 mb-4">
+            {/* 🟩 Name field validation */}
             <input
               type="text"
               placeholder="Your Name"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^[A-Za-z\s]*$/.test(value)) {
+                  setUserName(value);
+                }
+              }}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
             />
+
+            {/* 🟩 Mobile number validation */}
             <input
               type="tel"
               placeholder="Mobile Number"
               value={userMobile}
-              onChange={(e) => setUserMobile(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^[0-9]*$/.test(value) && value.length <= 10) {
+                  setUserMobile(value);
+                }
+              }}
+              maxLength={10}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
             />
           </div>
