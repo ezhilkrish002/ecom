@@ -1,67 +1,100 @@
 'use client'
 import { assets } from '@/assets/assets'
-import { ArrowRightIcon, ChevronRightIcon } from 'lucide-react'
+import { ArrowRightIcon, ChevronRightIcon,ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import React from 'react'
+import React,{useState,useEffect} from 'react'
 import CategoriesMarquee from './CategoriesMarquee'
 
 const Hero = () => {
 
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹'
+    // const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹'
+     // 5 same images
+  const images = [assets.banner3, assets.banner1, assets.banner2, assets.banner3];
+
+  const [current, setCurrent] = useState(0);
+
+  // You can change these to different images + texts later
+  const slides = [
+    {
+      image: assets.banner1,
+      title: "Your Solution for Consistent and Efficient Pumping",
+      subtitle: "Built for performance and durability",
+    },
+    {
+      image: assets.banner2,
+      title: "Engineered for durability and long working hours.",
+      subtitle: "Save more with our advanced motor technology",
+    },
+    {
+      image: assets.banner3,
+      title: "Trusted Pumping Partner",
+      subtitle: "Engineered for industrial and domestic use",
+    },
+    {
+      image: assets.banner1,
+      title: "Your Solution for Consistent and Efficient Pumping",
+      subtitle: "Delivering consistent pressure and performance",
+    },
+    {
+      image: assets.banner2,
+      title: "Engineered for durability and long working hours.",
+      subtitle: "Crafted with care and cutting-edge tech",
+    },
+  ];
+   // Auto slide every 4 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
 
     return (
         <div className='mx-6'>
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
+            <div className='flex-1 flex flex-col justify-center items-start gap-6'>
+           <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden bg-gray-100">
+      {/* Slide Images */}
+      <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
+        <Image
+          src={slides[current].image}
+          alt={slides[current].title}
+          width={1200}
+          height={500}
+          priority
+          className="w-full h-full object-cover rounded-3xl"
+        />
 
-                <div className='relative flex-1 flex flex-col bg-gradient-to-br from-[#F8E7E9] via-[#FFF3E0] to-[#F4E8D3] rounded-3xl xl:min-h-100 group'>
-                    <div className='p-5 sm:p-10'>
-                        <div className="inline-flex items-center gap-3 bg-[#7B1E3A]/10 text-[#7B1E3A] pr-1 p-1 rounded-full text-xs sm:text-sm">
-                            <span className="bg-[#E29B2B] px-3 py-1 max-sm:ml-1 rounded-full text-white text-xs">NEWS</span>
-                            Free Shipping on Orders Above ₹50!
-                            <ChevronRightIcon className="group-hover:ml-2 transition-all" size={16} />
-                        </div>
+        {/* Text Overlay */}
+        <div className="absolute left-2 top-6 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
+          <h2 className="text-lg sm:text-2xl md:text-4xl font-bold mb-2 drop-shadow-md text-black">
+            {slides[current].title}
+          </h2>
+          {/* <p className="text-sm sm:text-base md:text-lg  drop-shadow-sm text-black">
+            {slides[current].subtitle}
+          </p> */}
+        </div>
+        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 rounded-full">
+            <button className="text-white bg-[rgb(55,50,46)] p-4 rounded-xl">View More</button>
+        </div>
+      </div>
 
-                        <h2 className='text-3xl sm:text-5xl leading-[1.2] my-3 font-medium bg-gradient-to-r from-[#7B1E3A] to-[#E29B2B] bg-clip-text text-transparent max-w-xs sm:max-w-md'>
-                            Gadgets you'll love. Prices you'll trust.
-                        </h2>
-
-                        {/* ✅ Desktop Layout */}
-                        <div className='hidden sm:block text-[#3A3634] text-sm font-medium mt-4 sm:mt-1'>
-                            <p>Starts from</p>
-                            <p className='text-3xl'>{currency}499</p>
-                            <button className='bg-[#7B1E3A] text-white text-sm py-2.5 px-7 sm:py-5 sm:px-12 mt-4 sm:mt-10 rounded-md hover:bg-[#61162D] hover:scale-103 active:scale-95 transition'>
-                                LEARN MORE
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* ✅ Mobile Layout */}
-                    <div className="flex sm:hidden items-center justify-between px-3">
-                        <div className="text-[#3A3634] text-sm font-medium">
-                            <p>Starts from</p>
-                            <p className="text-3xl">{currency}499</p>
-                            <button className="bg-[#7B1E3A] text-white text-xs sm:text-sm py-2 px-5 sm:py-3 sm:px-7 md:py-4 md:px-10 mt-3 rounded-md hover:bg-[#61162D] hover:scale-105 active:scale-95 transition">
-                                LEARN MORE
-                            </button>
-                        </div>
-
-                        <Image
-                            src={assets.hero_model_img}
-                            alt="Gadget"
-                            width={400}
-                            height={400}
-                            className="w-40 transition-all duration-300"
-                        />
-                    </div>
-
-                    <Image
-                        className='hidden sm:block sm:absolute bottom-0 right-0 md:right-10 w-full sm:max-w-sm'
-                        src={assets.hero_model_img}
-                        alt="Gadget"
-                    />
+      {/* Dots */}
+      <div className="absolute bottom-4 flex gap-2">
+        {slides.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrent(index)}
+            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+              current === index ? "bg-black scale-110" : "bg-gray-400"
+            }`}
+          ></button>
+        ))}
+      </div>
+    </div>
                 </div>
 
-                <div className='flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-slate-600'>
+                <div className='hidden sm:flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-slate-600'>
                     <div className='flex-1 flex items-center justify-between w-full bg-green-100 rounded-3xl p-6 px-6 group'>
                         <div>
                             <p className='text-3xl font-medium bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent max-w-40'>
@@ -94,6 +127,7 @@ const Hero = () => {
 }
 
 export default Hero
+
 
 
 
