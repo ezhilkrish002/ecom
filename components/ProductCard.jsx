@@ -1,90 +1,5 @@
-// 'use client'
-// import { StarIcon, Heart, Eye, ShoppingCart } from 'lucide-react'
-// import Image from 'next/image'
-// import Link from 'next/link'
-// import { useDispatch, useSelector } from 'react-redux'
-// import React, { use, useState } from 'react'
-// const ProductCard = ({ product }) => {
-//     // const isInWishlist = useSelector(state => state.wishlist.items.find(item => item.id === product.id))
-//     // const isInCart = useSelector(state => state.cart.items.find(item => item.id === product.id))
-//     const dispatch = useDispatch();
-//     const [isWishlisted, setIsWishlisted] = useState(false)
-//     const [showIcons, setShowIcons] = useState(false)
-//     const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$'
-    
-
-
-//     // calculate the average rating of the product
-//     const rating = Math.round(product.rating.reduce((acc, curr) => acc + curr.rating, 0) / product.rating.length);
-
-
-//     const handleWishlist = (e) => {
-//         e.preventDefault();
-//         setIsWishlisted(!isWishlisted)
-//         // Here you can also dispatch an action to add/remove from wishlist in your global state
-
-//     }   
-
-//     return (
-//         <Link href={`/product/${product.id}`} className=' group max-xl:mx-auto'>
-//             <div className='bg-[#F5F5F5] h-40  sm:w-60 sm:h-68 rounded-lg flex items-center justify-center relative overflow-hidden'>
-//                 <Image width={500} height={500} className='max-h-30 sm:max-h-40 w-auto group-hover:scale-115 transition duration-300' src={product.images[0]} alt="" />
-//                  {/* Hover Icons (centered on image for better UX) */}
-//                 <div
-//                 className={`absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-5 transition-all duration-300 ${
-//                     showIcons ? 'opacity-100 visible' : 'opacity-0 invisible group-hover:opacity-100 group-hover:visible'
-//                 }`}
-//                 >
-//                 {/* View Icon */}
-//                 {/* <Link
-//                     href={`/product/${product.id}`}
-//                     className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition"
-//                     aria-label="View Product"
-//                 >
-//                     <Eye size={18} className="text-gray-800" />
-//                 </Link> */}
-
-//                 {/* Add to Cart Icon */}
-//                 <button
-//                     className="p-2 bg-blue-500 rounded-full shadow-md hover:bg-blue-600 transition"
-//                     aria-label="Add to Cart"
-//                 >
-//                     <ShoppingCart size={18} className="text-white" />
-//                 </button>
-
-//                 {/* Wishlist Icon */}
-//                 <button
-//                     onClick={(e)=>{handleWishlist(e)}}
-//                     className="p-2 bg-white rounded-full shadow-md hover:bg-gray-100 transition"
-//                     aria-label="Add to Wishlist"
-//                 >
-//                     <Heart
-//                     size={18}
-//                     fill={isWishlisted ? '#FF4C4C' : 'none'}
-//                     color={isWishlisted ? '#FF4C4C' : '#333'}
-//                     />
-//                 </button>
-//                 </div>
-//             </div>
-//             <div className='flex justify-between gap-3 text-sm text-slate-800 pt-2 max-w-60'>
-//                 <div>
-//                     <p>{product.name}</p>
-//                     <div className='flex'>
-//                         {Array(5).fill('').map((_, index) => (
-//                             <StarIcon key={index} size={14} className='text-transparent mt-0.5' fill={rating >= index + 1 ? "#00C950" : "#D1D5DB"} />
-//                         ))}
-//                     </div>
-//                 </div>
-//                 <p>{currency}{product.price}</p>
-//             </div>
-//         </Link>
-//     )
-// }
-
-// export default ProductCard
-
-
 'use client';
+
 import { StarIcon, Heart, ShoppingCart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -97,8 +12,7 @@ const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
   // Redux state
-//   const wishlistItems = useSelector((state) => state.wishlist.items);
-const { wishlistItems } = useSelector((state) => state.wishlist);
+  const { wishlistItems } = useSelector((state) => state.wishlist);
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const isInWishlist = wishlistItems[product.id];
@@ -107,7 +21,7 @@ const { wishlistItems } = useSelector((state) => state.wishlist);
   const [isWishlisted, setIsWishlisted] = useState(!!isInWishlist);
   const [showIcons, setShowIcons] = useState(false);
 
-  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
   // Sync with Redux updates
   useEffect(() => {

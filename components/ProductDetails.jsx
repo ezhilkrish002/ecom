@@ -11,7 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 const ProductDetails = ({ product }) => {
 
     const productId = product.id;
-    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '$';
+    const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
     const cart = useSelector(state => state.cart.cartItems);
     const dispatch = useDispatch();
@@ -25,7 +25,7 @@ const ProductDetails = ({ product }) => {
     }
 
     const averageRating = product.rating.reduce((acc, item) => acc + item.rating, 0) / product.rating.length;
-    
+
     return (
         <div className="flex max-lg:flex-col gap-12">
             <div className="flex max-sm:flex-col-reverse gap-3">
@@ -65,9 +65,34 @@ const ProductDetails = ({ product }) => {
                             </div>
                         )
                     }
+
                     <button onClick={() => !cart[productId] ? addToCartHandler() : router.push('/cart')} className="bg-slate-800 text-white px-10 py-3 text-sm font-medium rounded hover:bg-slate-900 active:scale-95 transition">
                         {!cart[productId] ? 'Add to Cart' : 'View Cart'}
                     </button>
+
+                    <button
+                        onClick={() => {
+                            const quantity = cart[productId] || 1; // Default to 1 if not in cart
+                            const message = `
+                            Hi, I'm interested in booking an enquiry for the following product:
+                            🛍️ *Product:* ${product.name}
+                            💰 *Price:* ${currency}${product.price}
+                            📦 *Quantity:* ${quantity}
+                            🖼️ *Product Link:* ${typeof window !== 'undefined' ? window.location.href : ''}
+                            Please let me know the next steps.
+                                `.trim();
+                            const encodedMessage = encodeURIComponent(message);
+                            const phoneNumber = "9345795629"; // replace with your number (no + or 0)
+
+                            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+                        }}
+                        className="bg-green-600 text-white px-10 py-3 text-sm font-medium rounded hover:bg-green-700 active:scale-95 transition"
+                    >
+                        Book Enquiry
+                    </button>
+
+
+
                 </div>
                 <hr className="border-gray-300 my-5" />
                 <div className="flex flex-col gap-4 text-slate-500">

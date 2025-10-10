@@ -83,7 +83,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <p className="py-4 text-sm text-slate-500">
-                    Copyright 2025 © Senba Pumbs & Motors All Right Reserved.
+                    Copyright 2025 © Worley Ventures All Right Reserved.
                 </p>
             </div>
         </footer>
