@@ -54,14 +54,14 @@ const ProductCard = ({ product }) => {
   return (
     <Link href={`/product/${product.id}`} className="group max-xl:mx-auto">
       <div
-        className="bg-[#F5F5F5] h-40 sm:w-60 sm:h-68 rounded-lg flex items-center justify-center relative overflow-hidden"
+        className="h-40 sm:w-60 sm:h-80 rounded-lg flex items-center justify-center relative overflow-hidden"
         onMouseEnter={() => setShowIcons(true)}
         onMouseLeave={() => setShowIcons(false)}
       >
         <Image
-          width={500}
-          height={500}
-          className="max-h-30 sm:max-h-40 w-auto group-hover:scale-115 transition duration-300"
+          width={600}
+          height={800}
+          className="max-h-30 sm:max-h-80 sm:max-w-60 w-auto group-hover:scale-105 transition duration-300"
           src={product.images[0]}
           alt={product.name}
         />
@@ -109,7 +109,7 @@ const ProductCard = ({ product }) => {
                   key={index}
                   size={14}
                   className="text-transparent mt-0.5"
-                  fill={rating >= index + 1 ? '#00C950' : '#D1D5DB'}
+                  fill={rating >= index + 1 ? '#c31e5aff' : '#D1D5DB'}
                 />
               ))}
           </div>

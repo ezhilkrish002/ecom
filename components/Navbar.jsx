@@ -4,7 +4,7 @@ import { Search, ShoppingCart, Menu, X, UserCircle, Heart, ChevronDown } from "l
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import WVlogo from "../assets/YUCHII LOGO.png";
 import { categories } from "@/lib/data";
@@ -17,6 +17,9 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const dropdownRef = useRef(null);
+  const closeTimeoutRef = useRef(null);
+
   const cartCount = useSelector((state) => state.cart.total);
   const { total: wishlistCount } = useSelector((state) => state.wishlist);
   const { email } = useSelector((state) => state.auth);
@@ -24,7 +27,7 @@ const Navbar = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     router.push(`/shop?search=${search}`);
-    setShowSearch(false);
+    setShowSearch(false); // close search after submit
   };
 
   const toggleMenu = () => {
@@ -43,6 +46,34 @@ const Navbar = () => {
     return () => (document.body.style.overflow = "auto");
   }, [menuOpen]);
 
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Handlers for hover with delay on hide
+  const handleMouseEnter = () => {
+    if (closeTimeoutRef.current) {
+      clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
+    setShowDropdown(true);
+  };
+
+  const handleMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => {
+      setShowDropdown(false);
+    }, 200); // 200ms delay before hiding dropdown
+  };
+
   return (
     <nav className="relative bg-white shadow-sm z-50">
       <div className="mx-6">
@@ -57,34 +88,37 @@ const Navbar = () => {
             <Link href="/">Home</Link>
             <Link href="/shop">Shop</Link>
 
-            {/* Categories Dropdown */}
-            {/* Categories Dropdown (Click only) */}
-<div className="relative">
-  <button
-    onClick={() => setShowDropdown((prev) => !prev)}
-    className="flex items-center gap-1 hover:text-slate-800"
-  >
-    Categories <ChevronDown size={16} />
-  </button>
+            {/* Categories Dropdown (Hover with delay) */}
+            <div
+              className="relative"
+              ref={dropdownRef}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
+              <button
+                className="flex items-center gap-1 hover:text-slate-800"
+                type="button"
+              >
+                Categories <ChevronDown size={16} />
+              </button>
 
-  {showDropdown && (
-    <div
-      className="absolute bg-white shadow-lg rounded-lg top-full mt-2 left-0 w-40 py-2 border border-gray-100 z-50"
-    >
-      {categories.map((cat) => (
-        <Link
-          key={cat}
-          href={`/category/${cat}`}
-          className="block px-4 py-2 text-sm hover:bg-slate-100"
-          onClick={() => setShowDropdown(false)} // close when clicked
-        >
-          {cat}
-        </Link>
-      ))}
-    </div>
-  )}
-</div>
-
+              {showDropdown && (
+                <div
+                  className="absolute bg-white shadow-lg rounded-lg top-full mt-2 left-0 w-40 py-2 border border-gray-100 z-50"
+                >
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat}
+                      href={`/category/${cat}`}
+                      className="block px-4 py-2 text-sm hover:bg-slate-100"
+                      onClick={() => setShowDropdown(false)} // close when clicked
+                    >
+                      {cat}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
 
             <Link href="/about">About</Link>
             <Link href="/contact">Contact</Link>
@@ -92,18 +126,38 @@ const Navbar = () => {
 
           {/* Desktop Icons */}
           <div className="hidden sm:flex items-center gap-5 text-slate-600">
-            <button
-              type="button"
-              onClick={toggleSearch}
-              className="p-2 hover:bg-slate-200 rounded-full transition"
-            >
-              <Search size={18} />
-            </button>
+            {/* Search Icon */}
+            {/* Search Icon or Search Input inline */}
+            {showSearch ? (
+              <form onSubmit={handleSearch} className="flex items-center">
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Search products..."
+                  className="border border-gray-300 rounded-md px-2 py-1 text-sm w-40 focus:outline-blue-500"
+                  autoFocus
+                />
+                <button type="submit" className="ml-2 text-blue-600 hover:text-blue-800">
+                  <Search size={18} />
+                </button>
+              </form>
+            ) : (
+              <button
+                type="button"
+                onClick={toggleSearch}
+                className="p-2 hover:bg-slate-200 rounded-full transition"
+                aria-label="Open search"
+              >
+                <Search size={18} />
+              </button>
+            )}
+
 
             <Link href="/wishlist" className="relative flex items-center">
               <Heart size={18} />
               {mounted && wishlistCount > 0 && (
-                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {wishlistCount}
                 </span>
               )}
@@ -112,7 +166,7 @@ const Navbar = () => {
             <Link href="/cart" className="relative flex items-center">
               <ShoppingCart size={18} />
               {mounted && cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
+                <span className="absolute -top-1 left-3 text-[8px] text-white bg-slate-600 size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
@@ -229,3 +283,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
