@@ -94,7 +94,7 @@ const Hero = () => {
     </div>
                 </div>
 
-                <div className='hidden sm:flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-slate-600'>
+                              <div className='hidden sm:flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-slate-600'>
                     <div className='flex-1 flex items-center justify-between w-full bg-green-100 rounded-3xl p-6 px-6 group'>
                         <div>
                             <p className='text-3xl font-medium bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent max-w-40'>
@@ -105,7 +105,7 @@ const Hero = () => {
                                 <ArrowRightIcon className='text-green-600 group-hover:ml-2 transition-all' size={18} />
                             </p>
                         </div>
-                        <Image className='w-35' src={assets.hero_product_img1} alt="" />
+                        <Image className='w-40 h-40 rounded-full' src={assets.product_img2} alt="" />
                     </div>
 
                     <div className='flex-1 flex items-center justify-between w-full bg-blue-200 rounded-3xl p-6 px-8 group'>
@@ -113,9 +113,10 @@ const Hero = () => {
                             <p className='text-3xl font-medium bg-gradient-to-r from-slate-800 to-[#78B2FF] bg-clip-text text-transparent max-w-40'>20% discounts</p>
                             <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p>
                         </div>
-                        <Image className='w-35' src={assets.hero_product_img2} alt="" />
+                        <Image className='w-40 h-40 rounded-full' src={assets.product_img6} alt="" />
                     </div>
                 </div>
+
             </div>
             <CategoriesMarquee />
 
