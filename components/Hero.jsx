@@ -27,7 +27,7 @@ const Hero = () => {
     },
     {
       image: assets.banner3,
-      title: "Trusted Pumping Partner",
+      title: "Delivers consistent performance, even under heavy-duty operations.",
       subtitle: "Engineered for industrial and domestic use",
     },
     {
@@ -54,7 +54,7 @@ const Hero = () => {
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
             <div className='flex-1 flex flex-col justify-center items-start gap-6'>
            <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden bg-gray-100">
-      {/* Slide Images */}
+          {/* Slide Images */}
       <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
         <Image
           src={slides[current].image}
@@ -66,16 +66,14 @@ const Hero = () => {
         />
 
         {/* Text Overlay */}
-        <div className="absolute left-2 top-6 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
-          <h2 className="text-lg sm:text-2xl md:text-4xl font-bold mb-2 drop-shadow-md text-black">
+        <div className="absolute left-2 top-10 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
+          <div className="absolute left-7 top-20 text-left text-lg sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
             {slides[current].title}
-          </h2>
-          {/* <p className="text-sm sm:text-base md:text-lg  drop-shadow-sm text-black">
-            {slides[current].subtitle}
-          </p> */}
+          </div>
         </div>
+
         <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 rounded-full">
-            <button className="text-white bg-[rgb(55,50,46)] p-4 rounded-xl">View More</button>
+            <button className="text-white bg-[rgb(55,50,46)] p-2 sm:p-4 rounded-xl">View More</button>
         </div>
       </div>
 
@@ -91,7 +89,7 @@ const Hero = () => {
           ></button>
         ))}
       </div>
-    </div>
+           </div>
                 </div>
 
                               <div className='hidden sm:flex flex-col md:flex-row xl:flex-col gap-5 w-full xl:max-w-sm text-sm text-slate-600'>
@@ -118,7 +116,7 @@ const Hero = () => {
                 </div>
 
             </div>
-            <CategoriesMarquee />
+            {/* <CategoriesMarquee /> */}
 
 
         </div>
