@@ -122,7 +122,7 @@ Hi, I'm interested in booking an enquiry for the following product:
             {/* Modal Section */}
             {isModalOpen && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center">
-                    <div className="absolute inset-0 bg-[rgb(0,0,0,0.5)] backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
+                    <div className="absolute inset-0 bg-[rgb(0,0,0,0.5)]  backdrop-blur-sm" onClick={() => setIsModalOpen(false)}></div>
 
                     <div className="relative bg-white w-full max-w-md p-6 rounded-2xl shadow-xl z-50">
                         {/* Header */}
