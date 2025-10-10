@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const LatestProducts = () => {
-    const displayQuantity = 2
+    const displayQuantity = 1
     const products = useSelector(state => state.product.list)
     const [startIndex, setStartIndex] = useState(0)
 
@@ -44,7 +44,7 @@ const LatestProducts = () => {
                         style={{ transform: `translateX(-${startIndex * (100 / displayQuantity)}%)` }}
                     >
                         {products.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((product, index) => (
-                            <div key={index} className="flex-shrink-0 w-1/2 px-2">
+                            <div key={index} className="flex-shrink-0 w-full px-2">
                                 <ProductCard product={product} />
                             </div>
                         ))}
