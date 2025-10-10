@@ -67,7 +67,7 @@ const Hero = () => {
 
         {/* Text Overlay */}
         <div className="absolute left-2 top-10 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
-          <div className="absolute left-7 top-20 text-left text-lg sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
+          <div className="w-40 absolute left-7 top-6 sm:top-20 text-left text-lg sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
             {slides[current].title}
           </div>
         </div>
