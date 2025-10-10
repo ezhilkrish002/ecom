@@ -1,7 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { X, PhoneCall, UserPlus } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { addEnquiry } from '@/lib/features/enquiry/enquirySlice';
+import toast from 'react-hot-toast'; // ✅ import toast
 
 const ModalPopup = ({
   isOpen,
@@ -16,12 +19,76 @@ const ModalPopup = ({
   const [showForm, setShowForm] = useState(showInitialForm);
   const [userName, setUserName] = useState('');
   const [userMobile, setUserMobile] = useState('');
+  const dispatch = useDispatch();
 
-  const handleSend = () => {
-    onSendWhatsApp({ userName, userMobile });
+  // ✅ Handle submit & show toast
+  const handleSubmitEnquiry = () => {
+    if (!userName || !userMobile) {
+      toast.error('Please fill out all fields before submitting.');
+      return;
+    }
+
+    const enhancedItems = items.map((item) => {
+      const productLink =
+        typeof window !== 'undefined'
+          ? `${window.location.origin}/product/${item.id || item.slug || 'unknown'}`
+          : '';
+      return { ...item, link: productLink };
+    });
+
+    const enquiryData = {
+      userName,
+      userMobile,
+      items: enhancedItems,
+      totalPrice,
+      totalQuantity,
+      createdAt: new Date().toISOString(),
+    };
+
+    dispatch(addEnquiry(enquiryData));
+
+    // ✅ Success toast
+    toast.success('Enquiry submitted successfully!');
+
+    // Reset form
     setShowForm(false);
     setUserName('');
     setUserMobile('');
+    onClose();
+  };
+
+  const handleSendWhatsApp = () => {
+    const enhancedItems = items.map((item) => {
+      const productLink =
+        typeof window !== 'undefined'
+          ? `${window.location.origin}/product/${item.id || item.slug || 'unknown'}`
+          : '';
+      return { ...item, link: productLink };
+    });
+
+    let message = `Hello, I'm interested in placing an order. Here are the details:\n\n`;
+    enhancedItems.forEach((item, index) => {
+      message += `Item ${index + 1}:\n`;
+      message += `🛍 *Product:* ${item.name}\n`;
+      message += `💰 *Price:* ${currency}${item.price}\n`;
+      message += `📦 *Quantity:* ${item.quantity}\n`;
+      message += `🖼 *Product Link:* ${item.link}\n\n`;
+    });
+
+    if (userName && userMobile) {
+      message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+    }
+
+    message += `\nTotal: ${currency}${totalPrice}\nTotal Items: ${totalQuantity}\n\nPlease let me know the next steps.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = '9345795629';
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+    setShowForm(false);
+    setUserName('');
+    setUserMobile('');
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -76,11 +143,11 @@ const ModalPopup = ({
           </div>
         )}
 
-        <div className="flex justify-end gap-3">
+        <div className={`flex ${showForm ? 'justify-center' : 'justify-end'} gap-3`}>
           {!showForm ? (
             <>
               <button
-                onClick={handleSend}
+                onClick={handleSendWhatsApp}
                 className="flex items-center gap-2 px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
               >
                 <PhoneCall size={16} />
@@ -95,15 +162,12 @@ const ModalPopup = ({
               </button>
             </>
           ) : (
-            <div className="flex justify-center gap-3">
-  <button
-    onClick={handleSend}
-    className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-  >
-    Submit
-  </button>
-</div>
-
+            <button
+              onClick={handleSubmitEnquiry}
+              className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Submit
+            </button>
           )}
         </div>
       </div>
