@@ -5,9 +5,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import React, { useState, useEffect } from 'react';
-import { addToWishlist, removeFromWishlist } from '@/lib/features/wishlist/wishlistSlice';
-import { addToCart } from '@/lib/features/cart/cartSlice';
-
+// import { addToWishlist, removeFromWishlist } from '@/lib/features/wishlist/wishlistSlice';
+// import { addToCart } from '@/lib/features/cart/cartSlice';
+import ModalPopup from './PopupModel';
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
 
@@ -22,6 +22,8 @@ const ProductCard = ({ product }) => {
 
   const [isWishlisted, setIsWishlisted] = useState(!!isInWishlist);
   // const [showIcons, setShowIcons] = useState(false);
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
@@ -52,23 +54,46 @@ const ProductCard = ({ product }) => {
   //   dispatch(addToCart({ productId: product.id }));
   // };
 
-  const handleEnquiry = (e) => {
+ function handleEnquiry(e) {  
     e.preventDefault();
-    const subject = `Enquiry about ${product.name}`;
-    const body = `Hello,\n\nI would like to enquire about the product: ${product.name} (ID: ${product.id}).\n\nPlease provide more details.\n\nThank you.`;
-    window.location.href = `mailto:`}
+    setIsModalOpen(true);
+  } 
+const handleSendWhatsApp = ({ userName, userMobile }) => {
+    const quantity = product.id || 1;
+    const productLink = typeof window !== 'undefined' ? window.location.href : '';
 
+    let message = `
+Hi, I'm interested in booking an enquiry for the following product:
+🛍️ *Product:* ${product.name}
+💰 *Price:* ${currency}${product.price}
+📦 *Quantity:* ${quantity}
+🖼️ *Product Link:* ${productLink}
+`;
+
+    if (userName && userMobile) {
+      message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+    }
+
+    message += `Please let me know the next steps.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = "9345795629";
+
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+    setIsModalOpen(false);
+  };
   return (
-    <Link href={`/product/${product.id}`} className="group max-xl:mx-auto">
+    <>
+    <Link href={`/product/${product.id}`} className="group max-xl:mx-auto flex flex-col items-center">
       <div
-        className="h-40 sm:w-60 sm:h-80 rounded-lg flex items-center justify-center relative overflow-hidden group-hover:scale-108  transition duration-300"
+        className="h-60 w-40 sm:w-60 sm:h-80 rounded-lg flex items-center justify-center relative overflow-hidden group-hover:scale-108  transition duration-300"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <Image
           width={600}
           height={800}
-          className="max-h-30 sm:max-h-80 sm:max-w-60 w-auto "
+          className="max-h-60  max-w-40 sm:max-h-80 sm:max-w-60 w-auto "
           src={product.images[0]}
           alt={product.name}
         />
@@ -88,7 +113,7 @@ const ProductCard = ({ product }) => {
 
       </div>
 
-      <div className="flex justify-between sm:gap-1 md:gap-3 text-sm text-slate-800 pt-2 max-w-60 -mt-5 sm:mt-2">
+      <div className="flex justify-center sm:justify-between sm:gap-1 md:gap-3 text-sm text-slate-800 pt-2 max-w-60 mt-2 sm:mt-2">
         <div>
           <p className='text-wrap'>{product.name}</p>
           <div className="flex">
@@ -109,6 +134,21 @@ const ProductCard = ({ product }) => {
         </div>
       </div>
     </Link>
+    
+      <ModalPopup
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        items={[{
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        }]}
+        totalPrice={product.price }
+        totalQuantity={1}
+        currency={currency}
+        onSendWhatsApp={handleSendWhatsApp}
+      />
+    </>
   );
 };
 
