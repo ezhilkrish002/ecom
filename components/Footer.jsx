@@ -16,10 +16,11 @@ const Footer = () => {
         {
             title: "PRODUCTS",
             links: [
-                { text: "Earphones", path: '/', icon: null },
-                { text: "Headphones", path: '/', icon: null },
-                { text: "Smartphones", path: '/', icon: null },
-                { text: "Laptops", path: '/', icon: null },
+                { text: "Engine", path: '/', icon: null },
+                { text: "Air Compressor", path: '/', icon: null },
+                { text: "Generator", path: '/', icon: null },
+                { text: "Pumps", path: '/', icon: null },
+                { text: "Electric Motor", path: '/', icon: null },
             ]
         },
         {
