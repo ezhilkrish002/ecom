@@ -113,7 +113,7 @@ Hi, I'm interested in booking an enquiry for the following product:
 
       </div>
 
-      <div className="flex justify-center sm:justify-between sm:gap-1 md:gap-3 text-sm text-slate-800 pt-2 max-w-60 mt-2 sm:mt-2">
+      <div className="w-40 sm:w-60 flex justify-center sm:justify-between sm:gap-1 md:gap-3 text-sm text-slate-800 pt-2 max-w-60 mt-2">
         <div>
           <p className='text-wrap'>{product.name}</p>
           <div className="flex">
