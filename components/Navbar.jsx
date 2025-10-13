@@ -147,7 +147,7 @@ const Navbar = () => {
           {/* Mobile Icons */}
           <div className="flex items-center gap-4 sm:hidden">
             <Link href="/cart" className="relative flex items-center">
-              <ShoppingCart size={20} />
+              <ShoppingCart size={25} />
               {mounted && cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 text-[8px] text-white bg-[#7C2A47] size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
@@ -158,7 +158,7 @@ const Navbar = () => {
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-[#E6A02A]/20 rounded-full transition"
             >
-              <UserCircle size={20} />
+              <UserCircle size={27} />
             </Link>
           </div>
         </div>
