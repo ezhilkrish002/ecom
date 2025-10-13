@@ -7,7 +7,6 @@ import { signOut } from '../../../lib/features/login/authSlice';
 import {
   LayoutGrid,
   ShoppingBag,
-  Download,
   Home,
   User,
   LogOut,
@@ -26,54 +25,47 @@ const SignOut = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
-      <div className="w-full max-w-sm bg-white rounded-2xl shadow-md overflow-hidden">
+    <div className=" flex items-center justify-center bg-gray-50 px-4 py-13 sm:px-6  lg:px-8">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white rounded-2xl shadow-md overflow-hidden">
         {/* Profile Header */}
-        <div className="flex flex-col items-center py-8 border-b border-gray-100">
-          <div className="w-16 h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-2xl font-semibold">
+        <div className="flex flex-col items-center py-6 sm:py-8 border-b border-gray-100">
+          <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-indigo-600 flex items-center justify-center text-white text-xl sm:text-2xl font-semibold">
             {firstName ? firstName.charAt(0).toUpperCase() : 'U'}
           </div>
-          <h2 className="mt-3 text-lg font-semibold text-gray-900">
+          <h2 className="mt-2 sm:mt-3 text-base sm:text-lg font-semibold text-gray-900">
             {firstName && lastName ? `${firstName} ${lastName}` : 'User Name'}
           </h2>
-          <p className="text-sm text-gray-500">Member Since Sep 2020</p>
+          <p className="text-xs sm:text-sm text-gray-500">Member Since Sep 2020</p>
         </div>
 
         {/* Menu */}
-        <div className="p-4 space-y-2">
-          <button className="w-full flex items-center gap-3 p-3 rounded-lg bg-indigo-50 text-indigo-700 font-medium">
-            <LayoutGrid className="h-5 w-5" />
+        <div className="p-3 sm:p-4 space-y-2">
+          <button className="w-full flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-indigo-50 text-indigo-700 font-medium text-sm sm:text-base">
+            <LayoutGrid className="h-4 w-4 sm:h-5 sm:w-5" />
             Dashboard
           </button>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
-            <ShoppingBag className="h-5 w-5 text-gray-600" />
-            <span className="text-gray-700 font-medium text-sm">Orders</span>
+          <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition">
+            <ShoppingBag className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+            <span className="text-gray-700 font-medium text-xs sm:text-sm">Orders</span>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
-            <Download className="h-5 w-5 text-gray-600" />
-            <span className="text-gray-700 font-medium text-sm">Downloads</span>
+          <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition">
+            <Home className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+            <span className="text-gray-700 font-medium text-xs sm:text-sm">Addresses</span>
           </div>
 
-          <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
-            <Home className="h-5 w-5 text-gray-600" />
-            <span className="text-gray-700 font-medium text-sm">Addresses</span>
-          </div>
-
-          <div className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition">
-            <User className="h-5 w-5 text-gray-600" />
-            <span className="text-gray-700 font-medium text-sm">
-              Account Details
-            </span>
+          <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition">
+            <User className="h-4 w-4 sm:h-5 sm:w-5 text-gray-600" />
+            <span className="text-gray-700 font-medium text-xs sm:text-sm">Account Details</span>
           </div>
 
           {/* Sign Out Button */}
           <button
             onClick={handleSignOut}
-            className="w-full flex items-center gap-3 p-3 rounded-lg hover:bg-red-50 transition text-red-600 font-medium"
+            className="w-full flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-red-50 transition text-red-600 font-medium text-xs sm:text-sm"
           >
-            <LogOut className="h-5 w-5" />
+            <LogOut className="h-4 w-4 sm:h-5 sm:w-5" />
             Logout
           </button>
         </div>

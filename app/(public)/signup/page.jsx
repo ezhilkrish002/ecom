@@ -28,26 +28,33 @@ const SignUp = () => {
     dispatch(signupRequest());
 
     setTimeout(() => {
-      if (firstName && lastName && email && password) {
-        if (users && users.some((user) => user.email === email)) {
-          dispatch(signupFailure('Email already exists'));
-          return;
-        }
-        dispatch(signupSuccess({ firstName, lastName, email, password }));
-        alert('Sign up successful! Please sign in.');
-        router.push('/login');
-      } else {
-        dispatch(signupFailure('All fields are required'));
+      if (!firstName || !email || !password) {
+        dispatch(signupFailure('All required fields must be filled'));
+        return;
       }
+
+      if (password.length < 8) {
+        dispatch(signupFailure('Password must be at least 8 characters long'));
+        return;
+      }
+
+      if (users && users.some((user) => user.email === email)) {
+        dispatch(signupFailure('Email already exists'));
+        return;
+      }
+
+      dispatch(signupSuccess({ firstName, lastName, email, password }));
+      alert('Sign up successful! Please sign in.');
+      router.push('/login');
     }, 800);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+    <div className="flex items-center justify-center bg-gray-50 p-10">
       <div className="w-full max-w-md bg-white rounded-2xl shadow-sm border border-gray-200 p-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900">Create your account</h2>
+          <h2 className="text-2xl font-semibold text-[#c31e5aff]">Create your account</h2>
           <p className="text-gray-500 mt-1 text-sm">
             Welcome! Please fill in the details to get started.
           </p>
@@ -62,38 +69,39 @@ const SignUp = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* First & Last Name */}
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label
-                htmlFor="firstName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                First name <span className="text-gray-400 text-xs">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                id="firstName"
-                name="firstName"
-                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
-                placeholder="First name"
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="lastName"
-                className="block text-sm font-medium text-gray-700 mb-1"
-              >
-                Last name <span className="text-gray-400 text-xs">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
-                placeholder="Last name"
-              />
-            </div>
+          {/* First Name */}
+          <div>
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              First name <span className="text-gray-400 text-xs">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+              placeholder="First name"
+              required
+            />
+          </div>
+
+          {/* Last Name */}
+          <div>
+            <label
+              htmlFor="lastName"
+              className="block text-sm font-medium text-gray-700 mb-1"
+            >
+              Last name <span className="text-gray-400 text-xs">(Optional)</span>
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
+              placeholder="Last name"
+            />
           </div>
 
           {/* Email */}
@@ -121,6 +129,7 @@ const SignUp = () => {
                 type={showPassword ? 'text' : 'password'}
                 id="password"
                 name="password"
+                minLength={8}
                 className="w-full rounded-lg border border-gray-300 bg-white p-3 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-gray-400 transition"
                 placeholder="Enter your password"
                 required
@@ -134,7 +143,7 @@ const SignUp = () => {
               </button>
             </div>
             <p className="text-xs text-gray-500 mt-1">
-              Your password must contain 8 or more characters.
+              Your password must contain <span className="font-medium text-gray-700">at least 8 characters.</span>
             </p>
           </div>
 
@@ -151,7 +160,7 @@ const SignUp = () => {
         {/* Footer */}
         <p className="mt-6 text-center text-sm text-gray-600">
           Already have an account?{' '}
-          <Link href="/login" className="text-gray-900 font-medium hover:underline">
+          <Link href="/login" className="text-[#f48638] font-medium hover:underline">
             Sign in
           </Link>
         </p>

@@ -4,29 +4,38 @@ import upload_area from "./upload_area.svg"
 import hero_model_img from "./hero_model_img.png"
 import hero_product_img1 from "./hero_product_img1.png"
 import hero_product_img2 from "./hero_product_img2.png"
-import product_img1 from "./1.jpg"
-import product_img2 from "./3.jpg"
-import product_img3 from "./8.jpg"
-import product_img4 from "./15.jpg"
-import product_img5 from "./19.jpg"
-import product_img6 from "./23.jpg"
-import product_img7 from "./27.jpg"
-import product_img8 from "./28.jpg"
-import product_img9 from "./33.jpg"
-import product_img10 from "./44.jpg"
-import product_img11 from "./45.jpg"
-import product_img12 from "./55.jpg"
+import product_img1 from "./Borewell Submersible Pump.jpg"
+import product_img2 from "./Centrifugal Monobloc Pump1.jpg"
+import product_img3 from "./Jet Pump 1HP4.jpg"
+import product_img4 from "./Mini Pressure Booster Pump3.jpg"
+import product_img5 from "./Openwell Submersible Pump4.jpg"
+import product_img6 from "./Petrol Engine1.jpg"
+import product_img7 from "./Petrol Engine Water Pump2.jpg"
+import product_img8 from "./Pressure Booster Pump2.jpg"
+import product_img9 from "./Self Priming Monobloc_Mini Pump1(1).jpg"
+import product_img10 from "./Shallow Well Pump1.jpg"
+import product_img11 from "./Slowspeed Monobloc Pump2.jpg"
+import product_img12 from "./V-Type Monobloc Pump.jpg"
+import product_img01 from "./pump.jpg"
+import product_img02 from "./electric motor.jpg"
+import product_img03 from "./engine.jpg"
+import product_img04 from "./generator.jpg"
+import product_img05 from "./air compressor.jpg"
 import product_img0 from "./0.jpg"
 import { ClockFadingIcon, HeadsetIcon, SendIcon } from "lucide-react";
 import profile_pic1 from "./profile_pic1.jpg"
 import profile_pic2 from "./profile_pic2.jpg"
 import profile_pic3 from "./profile_pic3.jpg"
-
+import banner from "./banner.jpg";
+import banner1 from "./banner1.jpg";
+import banner2 from "./banner2.jpg";
+import banner3 from "./banner3.jpg";
 export const assets = {
     upload_area, hero_model_img,
     hero_product_img1, hero_product_img2, gs_logo,
     product_img1, product_img2, product_img3, product_img4, product_img5, product_img6,
-    product_img7, product_img8, product_img9, product_img10, product_img11, product_img12,product_img0
+    product_img7, product_img8, product_img9, product_img10, product_img11, product_img12,product_img0,banner1,banner2,banner3,banner,
+    product_img01,product_img02,product_img03,product_img04,product_img05
 }
 
 export const categories = ["Pumps","Electric Motor","Engine","Generator","Air Compressor"];
@@ -62,6 +71,9 @@ export const dummyStoreData = {
     }
 }
 
+
+
+
 export const productDummyData = [
     {
         id: "prod_1",
@@ -74,7 +86,18 @@ export const productDummyData = [
         storeId: "seller_1",
         inStock: true,
         store: dummyStoreData,
-        rating: dummyRatingsData,
+        rating: dummyRatingsData,options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 29 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 29 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -89,7 +112,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Pumps",
-        rating: dummyRatingsData,
+        rating: dummyRatingsData,options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 28 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 28 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -104,7 +138,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Pumps",
-        rating: dummyRatingsData,
+        rating: dummyRatingsData,options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 27 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 27 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -119,7 +164,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Pumps",
-        rating: dummyRatingsData,
+        rating: dummyRatingsData,options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 26 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 26 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -133,7 +189,18 @@ export const productDummyData = [
         storeId: "seller_1",
         inStock: true,
         store: dummyStoreData,
-        category: "ElectricMotor",
+        category: "ElectricMotor",options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         rating: [...dummyRatingsData,...dummyRatingsData],
         createdAt: 'Sat Jul 25 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 25 2025 14:51:25 GMT+0530 (India Standard Time)',
@@ -149,7 +216,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Engine",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 25 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 25 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -164,7 +242,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "ElectricMotor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 24 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 24 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -179,7 +268,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "ElectricMotor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 23 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 23 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -194,7 +294,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "ElectricMotor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 22 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 22 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -209,7 +320,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Engine",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 21 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 21 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -224,7 +346,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Engine",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 20 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 20 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -239,7 +372,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Engine",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -255,7 +399,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Generator",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -270,7 +425,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Generator",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -285,7 +451,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Generator",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -300,7 +477,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "Generator",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -315,7 +503,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "AirCompressor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -330,7 +529,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "AirCompressor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -345,7 +555,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "AirCompressor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },
@@ -360,7 +581,18 @@ export const productDummyData = [
         inStock: true,
         store: dummyStoreData,
         category: "AirCompressor",
-        rating: [...dummyRatingsData,...dummyRatingsData],
+        rating: [...dummyRatingsData,...dummyRatingsData],options: ["HP: 0.5", "HP: 1", "HP: 1.5", "HP: 2"],
+    specs: [
+      { label: "Speed", value: "2780 rpm" },
+      { label: "Power", value: "0.5 HP, 1 HP, 1.5 HP, 2 HP" },
+      { label: "Voltage range", value: "180v–240v (1ph)—50 HZ" },
+      { label: "Duty", value: "S1 (continuous)" },
+      { label: "Protection", value: "IP44" },
+      { label: "Insulation", value: "B class" },
+      { label: "Pipe size", value: "25×25 mm" },
+      { label: "Head range", value: "6–50 mtr" },
+      { label: "Flow range", value: "8–60 lpm" },
+    ],
         createdAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
         updatedAt: 'Sat Jul 19 2025 14:51:25 GMT+0530 (India Standard Time)',
     },

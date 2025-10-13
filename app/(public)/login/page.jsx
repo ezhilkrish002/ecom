@@ -34,10 +34,10 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="w-full max-w-sm bg-white rounded-2xl shadow-lg p-8">
+    <div className=" flex items-center justify-center bg-gray-50 p-12">
+      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
         {/* Header */}
-        <h1 className="text-xl font-semibold text-center text-gray-900">
+        <h1 className="text-xl font-semibold text-center text-[#c31e5aff]">
           Sign in to My Application
         </h1>
         <p className="text-sm text-gray-500 text-center mt-2 mb-6">
@@ -111,7 +111,7 @@ const Login = () => {
           Don’t have an account?{' '}
           <Link
             href="/signup"
-            className="text-gray-900 font-medium hover:underline"
+            className="text-[#f48638] font-medium hover:underline"
           >
             Sign up
           </Link>
