@@ -32,7 +32,7 @@ const Categories = () => {
   }
 
   return (
-    <div className="px-6 my-30 max-w-6xl mx-auto">
+    <div className="px-6 mt-10 sm:my-30 max-w-6xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* --- Mobile View (Touch-Scrollable Carousel with Hidden Scrollbar) --- */}
@@ -57,7 +57,7 @@ const Categories = () => {
             {categories.map((cat, index) => (
               <Link
                 key={index}
-                href={`/shop?category=${cat.toLowerCase()}`}
+                href={`/category/${cat}`}
                 className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-center"
               >
                 <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
@@ -90,7 +90,7 @@ const Categories = () => {
       {/* --- Desktop View (Static Grid) --- */}
       <div className="hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-between">
         {categories.slice(0, 5).map((cat, index) => (
-          <Link key={index} href={`/shop?category=${cat.toLowerCase()}`} className="group max-xl:mx-auto">
+          <Link key={index} href={`/category/${cat}`} className="group max-xl:mx-auto">
             <div className="flex flex-col justify-center items-center">
               <div className="bg-[#F5F5F5] h-30 w-30 sm:w-40 sm:h-40 rounded-full flex items-center justify-center overflow-hidden">
                 <Image

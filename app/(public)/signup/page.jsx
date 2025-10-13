@@ -30,25 +30,14 @@ const SignUp = () => {
     e.preventDefault();
     const { fullName, email, password, confirmPassword } = formData;
 
-    // ✅ Email validation regex
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
     dispatch(signupRequest());
 
     setTimeout(() => {
-      // Field validation
       if (!fullName || !email || !password || !confirmPassword) {
         dispatch(signupFailure('All fields are required'));
         return;
       }
 
-      // ✅ Email format validation
-      if (!emailRegex.test(email)) {
-        dispatch(signupFailure('Please enter a valid email address'));
-        return;
-      }
-
-      // Password validation
       if (password !== confirmPassword) {
         dispatch(signupFailure('Passwords do not match'));
         return;
@@ -64,7 +53,6 @@ const SignUp = () => {
         return;
       }
 
-      // Success
       dispatch(signupSuccess({ fullName, email, password }));
       alert('Account created successfully! Please sign in.');
       router.push('/login');
@@ -75,20 +63,20 @@ const SignUp = () => {
     <div className="mt-9 px-4 sm:px-6">
       {/* Breadcrumbs */}
       <nav className="w-full max-w-7xl mx-auto mb-8 text-sm font-medium text-gray-600">
-        <ol className="flex items-center space-x-2">
-          <li>
-            <Link href="/" className="text-[#f48638] hover:text-[#c31e5aff] transition-colors duration-200">
-              Home
-            </Link>
-          </li>
-          <li>
-            <span className="text-gray-400">&gt;</span>
-          </li>
-          <li>
-            <span className="text-gray-700">Sign Up</span>
-          </li>
-        </ol>
-      </nav>
+           <ol className="flex items-center space-x-2">
+             <li>
+               <Link href="/" className="text-[#f48638] hover:text-[#c31e5aff] transition-colors duration-200">
+                 Home
+               </Link>
+             </li>
+             <li>
+               <span className="text-gray-400">&gt;</span>
+             </li>
+             <li>
+               <span className="text-gray-700">Sign Up</span>
+             </li>
+           </ol>
+         </nav>
 
       <div className="flex items-center justify-center">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-md border border-gray-200 p-8">
@@ -96,7 +84,7 @@ const SignUp = () => {
           <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-[#c31e5aff]">Create an Account</h2>
             <p className="text-gray-500 mt-2 text-sm">
-              Enter your details below
+              Enter your detail below
             </p>
           </div>
 
@@ -138,11 +126,7 @@ const SignUp = () => {
                 placeholder="john@gmail.com"
                 value={formData.email}
                 onChange={handleChange}
-                className={`w-full rounded-lg border p-3 text-sm bg-white focus:outline-none focus:ring-2 ${
-                  error?.toLowerCase().includes('email')
-                    ? 'border-red-500 focus:ring-red-300'
-                    : 'border-gray-300 focus:ring-indigo-400 focus:border-indigo-400'
-                }`}
+                className="w-full rounded-lg border border-gray-300 bg-white p-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:border-indigo-400"
                 required
               />
             </div>
