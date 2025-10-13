@@ -180,7 +180,7 @@ const Navbar = () => {
 
         {/* Search Bar */}
         <div className="px-6 py-4">
-          <div className="flex items-center bg-[#7C2A47]/10 rounded-full px-3 py-2">
+          <div className="flex items-center bg-gray-200 rounded-full px-3 py-2">
             <Search size={18} className="text-[#7C2A47]" />
             <input
               type="text"
@@ -205,7 +205,7 @@ const Navbar = () => {
               className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
                 isActive(item.href)
                   ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                  : "bg-[#fdf8f3] text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+                  : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
               }`}
             >
               {item.icon} {item.label}
@@ -214,12 +214,22 @@ const Navbar = () => {
 
           {/* Categories Dropdown */}
           <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer p-2 rounded-lg bg-[#fdf8f3] text-[#4A4644] border-l-4 border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] transition">
-              <span className="flex items-center gap-3">
-                <LayoutGrid size={18} /> Categories
-              </span>
-              <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
-            </summary>
+            <summary
+  className="flex items-center justify-between cursor-pointer p-2 
+             text-[#4A4644]
+             border-l-4 border-transparent 
+             hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] hover:border-[#7C2A47]
+             group-open:bg-[#fef4ea] group-open:text-[#7C2A47] 
+             group-open:border-l-4 group-open:border-[#7C2A47]
+             group-open:rounded-lg
+             transition-all duration-200"
+>
+  <span className="flex items-center gap-3">
+    <LayoutGrid size={18} /> Categories
+  </span>
+  <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
+</summary>
+
             <div className="ml-8 mt-2 flex flex-col gap-2">
               {categories.map((cat) => (
                 <Link
