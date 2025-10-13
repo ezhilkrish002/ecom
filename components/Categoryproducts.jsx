@@ -12,8 +12,8 @@ export default function CategoryProducts({ categoryName }) {
   const dispatch = useDispatch();
 
   // Filter products by category
-  const products = productDummyData.filter(
-    (p) => p.category.toLowerCase() === categoryName.toLowerCase()
+  const products = categoryName==="products" ? productDummyData : productDummyData.filter(
+    (product) => product.category.toLowerCase() === categoryName.toLowerCase()
   );
 
   // 🛒 Add to Cart
