@@ -164,7 +164,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      <hr />
 
       {/* Mobile Menu */}
     {menuOpen && (
