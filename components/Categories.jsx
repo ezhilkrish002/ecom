@@ -8,11 +8,11 @@ import React, { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const categoryImages = {
-  "Pumps": assets.product_img1,
-  "Electric Motor": assets.product_img0,
-  "Engine": assets.product_img6,
-  "Generator": assets.product_img0,
-  "Air Compressor": assets.product_img0,
+  "Pumps": assets.product_img01,
+  "Electric Motor": assets.product_img02,
+  "Engine": assets.product_img03,
+  "Generator": assets.product_img04,
+  "Air Compressor": assets.product_img05,
 }
 
 const Categories = () => {

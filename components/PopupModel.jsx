@@ -1,7 +1,10 @@
-'use client'
+'use client';
 
 import React, { useState } from 'react';
 import { X, PhoneCall, UserPlus } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { addEnquiry } from '@/lib/features/enquiry/enquirySlice';
+import toast from 'react-hot-toast';
 
 const ModalPopup = ({
   isOpen,
@@ -16,12 +19,89 @@ const ModalPopup = ({
   const [showForm, setShowForm] = useState(showInitialForm);
   const [userName, setUserName] = useState('');
   const [userMobile, setUserMobile] = useState('');
+  const dispatch = useDispatch();
 
-  const handleSend = () => {
-    onSendWhatsApp({ userName, userMobile });
+  // 🧠 Validate name and mobile before submitting
+  const validateInputs = () => {
+    const nameRegex = /^[A-Za-z\s]+$/;
+    const mobileRegex = /^[0-9]{10}$/;
+
+    if (!userName.trim() || !nameRegex.test(userName)) {
+      toast.error('Please enter a valid name (letters only).');
+      return false;
+    }
+
+    if (!mobileRegex.test(userMobile)) {
+      toast.error('Please enter a valid 10-digit mobile number.');
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmitEnquiry = () => {
+    if (!validateInputs()) return;
+
+    const enhancedItems = items.map((item) => {
+      const productLink =
+        typeof window !== 'undefined'
+          ? `${window.location.origin}/product/${item.id || item.slug || 'unknown'}`
+          : '';
+      return { ...item, link: productLink };
+    });
+
+    const enquiryData = {
+      userName,
+      userMobile,
+      items: enhancedItems,
+      totalPrice,
+      totalQuantity,
+      createdAt: new Date().toISOString(),
+    };
+
+    dispatch(addEnquiry(enquiryData));
+
+    toast.success('Enquiry submitted successfully!');
+
+    // Reset form
     setShowForm(false);
     setUserName('');
     setUserMobile('');
+    onClose();
+  };
+
+  const handleSendWhatsApp = () => {
+    const enhancedItems = items.map((item) => {
+      const productLink =
+        typeof window !== 'undefined'
+          ? `${window.location.origin}/product/${item.id || item.slug || 'unknown'}`
+          : '';
+      return { ...item, link: productLink };
+    });
+
+    let message = `Hello, I'm interested in placing an order. Here are the details:\n\n`;
+    enhancedItems.forEach((item, index) => {
+      message += `Item ${index + 1}:\n`;
+      message += `🛍 *Product:* ${item.name}\n`;
+      message += `💰 *Price:* ${currency}${item.price}\n`;
+      message += `📦 *Quantity:* ${item.quantity}\n`;
+      message += `🖼 *Product Link:* ${item.link}\n\n`;
+    });
+
+    if (userName && userMobile) {
+      message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+    }
+
+    message += `\nTotal: ${currency}${totalPrice}\nTotal Items: ${totalQuantity}\n\nPlease let me know the next steps.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = '9345795629';
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+
+    setShowForm(false);
+    setUserName('');
+    setUserMobile('');
+    onClose();
   };
 
   if (!isOpen) return null;
@@ -59,28 +139,42 @@ const ModalPopup = ({
 
         {showForm && (
           <div className="space-y-4 mb-4">
+            {/* 🟩 Name field validation */}
             <input
               type="text"
               placeholder="Your Name"
               value={userName}
-              onChange={(e) => setUserName(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^[A-Za-z\s]*$/.test(value)) {
+                  setUserName(value);
+                }
+              }}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
             />
+
+            {/* 🟩 Mobile number validation */}
             <input
               type="tel"
               placeholder="Mobile Number"
               value={userMobile}
-              onChange={(e) => setUserMobile(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value;
+                if (/^[0-9]*$/.test(value) && value.length <= 10) {
+                  setUserMobile(value);
+                }
+              }}
+              maxLength={10}
               className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-green-500"
             />
           </div>
         )}
 
-        <div className="flex justify-end gap-3">
+        <div className={`flex ${showForm ? 'justify-center' : 'justify-end'} gap-3`}>
           {!showForm ? (
             <>
               <button
-                onClick={handleSend}
+                onClick={handleSendWhatsApp}
                 className="flex items-center gap-2 px-5 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition"
               >
                 <PhoneCall size={16} />
@@ -95,15 +189,12 @@ const ModalPopup = ({
               </button>
             </>
           ) : (
-            <div className="flex justify-center gap-3">
-  <button
-    onClick={handleSend}
-    className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
-  >
-    Submit
-  </button>
-</div>
-
+            <button
+              onClick={handleSubmitEnquiry}
+              className="flex items-center gap-2 px-5 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
+            >
+              Submit
+            </button>
           )}
         </div>
       </div>
