@@ -65,7 +65,7 @@ const BestSelling = () => {
             //   description={`Showing ${
             //     filtered.length < displayQuantity ? filtered.length : displayQuantity
             //   } of ${filtered.length} products`}
-              href="/shop"
+              href={`/category/${category}`}
             />
 
             {/* 🧩 Responsive Product Grid */}
