@@ -4,7 +4,7 @@ import ProductDetails from "@/components/ProductDetails";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
+import Link from "next/link";
 export default function Product() {
 
     const { productId } = useParams();
@@ -27,10 +27,24 @@ export default function Product() {
         <div className="mx-6">
             <div className="max-w-7xl mx-auto">
 
-                {/* Breadcrums */}
-                <div className="  text-gray-600 text-sm mt-8 mb-5">
-                    Home / Products / {product?.category}
-                </div>
+                {/* ✅ Breadcrumbs */}
+                    <div className="text-gray-600 text-sm mt-8 mb-5 space-x-1">
+                    <Link 
+                        href="/" 
+                        className="hover:text-black transition-colors duration-200"
+                    >
+                        Home
+                    </Link>
+                    <span>/</span>
+                    <Link 
+                        href={`/category/products`}
+                        className="hover:text-black transition-colors duration-200"
+                    >
+                        Products
+                    </Link>
+                    <span>/</span>
+                    <span className="text-[rgb(55,50,46)] font-medium">{product?.category}</span>
+                    </div>
 
                 {/* Product Details */}
                 {product && (<ProductDetails product={product} />)}

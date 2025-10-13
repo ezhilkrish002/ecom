@@ -93,9 +93,9 @@ const Navbar = () => {
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden sm:flex items-center gap-6 text-[#4A4644] absolute left-1/2 transform -translate-x-1/2">
+          <div className="hidden sm:flex items-center gap-6 text-slate-600 absolute left-1/2 transform -translate-x-1/2">
             <Link href="/" className="hover:text-[#7C2A47]">Home</Link>
-            <Link href="/shop" className="hover:text-[#7C2A47]">Shop</Link>
+            <Link href="/category/products" className="hover:text-[#7C2A47]">Products</Link>
 
             <div
               className="relative"
