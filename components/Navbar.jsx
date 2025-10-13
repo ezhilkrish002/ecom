@@ -10,6 +10,7 @@ import {
   LogIn,
   UserPlus,
   Search,
+  ShoppingBag,
   Info, 
   Phone,
   LayoutGrid,
@@ -173,13 +174,13 @@ const Navbar = () => {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6A02A]/40">
           <Image src={WVlogo} alt="WV logo" className="w-20 h-auto" />
-          <button onClick={toggleMenu}>
+          {/* <button onClick={toggleMenu}>
             <X size={24} className="text-[#7C2A47]" />
-          </button>
+          </button> */}
         </div>
 
         {/* Search Bar */}
-        <div className="px-6 py-4">
+        {/* <div className="px-6 py-4">
           <div className="flex items-center bg-gray-200 rounded-full px-3 py-2">
             <Search size={18} className="text-[#7C2A47]" />
             <input
@@ -188,65 +189,85 @@ const Navbar = () => {
               className="bg-transparent outline-none text-sm w-full pl-2 text-[#4A4644]"
             />
           </div>
-        </div>
+        </div> */}
 
         {/* Menu Items */}
-        <div className="flex flex-col gap-2 px-6 text-[#4A4644] flex-grow overflow-y-auto">
+       <div className="flex flex-col gap-2 px-6 text-[#4A4644] flex-grow overflow-y-auto mt-2">
 
-          {[
-            { label: "Home", href: "/", icon: <Home size={18} /> },
-            { label: "About", href: "/about", icon: <Info size={18} /> },
-            { label: "Contact", href: "/contact", icon: <Phone size={18} /> },
-          ].map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={toggleMenu}
-              className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
-                isActive(item.href)
-                  ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                  : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
-              }`}
-            >
-              {item.icon} {item.label}
-            </Link>
-          ))}
+  {[ // Menu items excluding categories here
+    { label: "Home", href: "/", icon: <Home size={18} /> },
+    { label: "Shop", href: "/shop", icon: <ShoppingBag size={18} /> },
+  ].map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      onClick={toggleMenu}
+      className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
+        isActive(item.href)
+          ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+          : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+      }`}
+    >
+      {item.icon} {item.label}
+    </Link>
+  ))}
 
-          {/* Categories Dropdown */}
-          <details className="group">
-            <summary
-  className="flex items-center justify-between cursor-pointer p-2 
-             text-[#4A4644]
-             border-l-4 border-transparent 
-             hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] hover:border-[#7C2A47]
-             group-open:bg-[#fef4ea] group-open:text-[#7C2A47] 
-             group-open:border-l-4 group-open:border-[#7C2A47]
-             group-open:rounded-lg
-             transition-all duration-200"
->
-  <span className="flex items-center gap-3">
-    <LayoutGrid size={18} /> Categories
-  </span>
-  <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
-</summary>
+  {/* Move Categories dropdown here */}
+  <details className="group">
+    <summary
+      className="flex items-center justify-between cursor-pointer p-2 
+                 text-[#4A4644]
+                 border-l-4 border-transparent 
+                 hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] hover:border-[#7C2A47]
+                 group-open:bg-[#fef4ea] group-open:text-[#7C2A47] 
+                 group-open:border-l-4 group-open:border-[#7C2A47]
+                 group-open:rounded-lg
+                 transition-all duration-200"
+    >
+      <span className="flex items-center gap-3">
+        <LayoutGrid size={18} /> Categories
+      </span>
+      <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
+    </summary>
 
-            <div className="ml-8 mt-2 flex flex-col gap-2">
-              {categories.map((cat) => (
-                <Link
-                  key={cat}
-                  href={`/category/${cat}`}
-                  onClick={toggleMenu}
-                  className="text-sm text-gray-600 hover:text-[#7C2A47]"
-                >
-                  {cat}
-                </Link>
-              ))}
-            </div>
-          </details>
-        </div>
+    <div className="ml-8 mt-2 flex flex-col gap-2">
+      {categories.map((cat) => (
+        <Link
+          key={cat}
+          href={`/category/${cat}`}
+          onClick={toggleMenu}
+          className="text-sm text-gray-600 hover:text-[#7C2A47]"
+        >
+          {cat}
+        </Link>
+      ))}
+    </div>
+  </details>
+
+  {/* Now About and Contact below categories */}
+  {[ // About and Contact only
+    { label: "About", href: "/about", icon: <Info size={18} /> },
+    { label: "Contact", href: "/contact", icon: <Phone size={18} /> },          
+  ].map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      onClick={toggleMenu}
+      className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
+        isActive(item.href)
+          ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+          : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+      }`}
+    >
+      {item.icon} {item.label}
+    </Link>
+  ))}
+
+</div>
+
 
         {/* Footer Buttons */}
-        <div className="px-6 py-6 border-t border-[#E6A02A]/40">
+        {/* <div className="px-6 py-6 border-t border-[#E6A02A]/40">
           <button
             onClick={() => {
               toggleMenu();
@@ -265,7 +286,7 @@ const Navbar = () => {
           >
             <UserPlus size={18} /> Register
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
 
