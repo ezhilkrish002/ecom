@@ -3,6 +3,7 @@ import { assets } from '@/assets/assets'
 import { ArrowRightIcon, ChevronRightIcon,ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import React,{useState,useEffect} from 'react'
+import Link from "next/link";
 import CategoriesMarquee from './CategoriesMarquee'
 
 const Hero = () => {
@@ -64,7 +65,6 @@ const Hero = () => {
           priority
           className="w-full h-full object-cover rounded-3xl"
         />
-
         {/* Text Overlay */}
         <div className="absolute left-2 top-10 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
           <div className="w-40 absolute left-7 top-6 sm:top-20 text-left text-lg sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
@@ -98,10 +98,10 @@ const Hero = () => {
                             <p className='text-3xl font-medium bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent max-w-40'>
                                 Best products
                             </p>
-                            <p className='flex items-center gap-1 mt-4 text-green-700'>
+                           <Link href="/shop">  <p className='flex items-center gap-1 mt-4 text-green-700'>
                                 View more
                                 <ArrowRightIcon className='text-green-600 group-hover:ml-2 transition-all' size={18} />
-                            </p>
+                            </p></Link>
                         </div>
                         <Image className='w-40 h-40 rounded-full' src={assets.product_img2} alt="" />
                     </div>
@@ -109,7 +109,7 @@ const Hero = () => {
                     <div className='flex-1 flex items-center justify-between w-full bg-blue-200 rounded-3xl p-6 px-8 group'>
                         <div>
                             <p className='text-3xl font-medium bg-gradient-to-r from-slate-800 to-[#78B2FF] bg-clip-text text-transparent max-w-40'>20% discounts</p>
-                            <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p>
+                          <Link href="/shop"> <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p></Link>
                         </div>
                         <Image className='w-40 h-40 rounded-full' src={assets.product_img6} alt="" />
                     </div>

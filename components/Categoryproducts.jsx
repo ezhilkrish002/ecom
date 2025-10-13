@@ -2,6 +2,8 @@
 'use client';
 
 import React from "react";
+import ModalPopup from './PopupModel'; // assuming it's in the same folder
+import { useState } from 'react';
 import { productDummyData } from "@/assets/assets";
 import { Star } from "lucide-react";
 import { useDispatch } from "react-redux";
@@ -10,6 +12,9 @@ import { toast } from "react-hot-toast";
 
 export default function CategoryProducts({ categoryName }) {
   const dispatch = useDispatch();
+
+  const [selectedProduct, setSelectedProduct] = useState(null);
+const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Filter products by category
   const products = productDummyData.filter(
@@ -31,7 +36,42 @@ export default function CategoryProducts({ categoryName }) {
     toast.success(`${product.name} added to cart!`);
   };
 
+  const handleSendEnquiry = (product) => {
+  setSelectedProduct(product);
+  setIsModalOpen(true);
+};
+
+const handleSendWhatsApp = ({ userName, userMobile }) => {
+  if (!selectedProduct) return;
+
+  const quantity = 1; // Default to 1 since cart not integrated here
+  const productLink = typeof window !== 'undefined' ? window.location.href : '';
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
+
+  let message = `
+Hi, I'm interested in booking an enquiry for the following product:
+🛍️ *Product:* ${selectedProduct.name}
+💰 *Price:* ${currency}${selectedProduct.price}
+📦 *Quantity:* ${quantity}
+🖼️ *Product Link:* ${productLink}
+`;
+
+  if (userName && userMobile) {
+    message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+  }
+
+  message += `Please let me know the next steps.`;
+
+  const encodedMessage = encodeURIComponent(message);
+  const phoneNumber = "9345795629";
+
+  window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+  setIsModalOpen(false);
+};
+
+
   return (
+    <>
     <div className="max-w-7xl mx-auto py-6 px-3 sm:px-6">
       <h1 className="text-xl sm:text-2xl font-semibold mb-6 text-slate-800 text-center sm:text-left">
         Category: {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
@@ -97,9 +137,13 @@ export default function CategoryProducts({ categoryName }) {
             <button className="w-full sm:w-auto px-6 py-2 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg">
               View Details
             </button>
-            <button className="w-full sm:w-auto px-6 py-2 bg-[#f48638] text-white rounded-lg hover:bg-[#f48638]-700 transition">
-              Send Enquiry
-            </button>
+            <button
+  onClick={() => handleSendEnquiry(product)}
+  className="w-full sm:w-auto px-6 py-2 bg-[#f48638] text-white rounded-lg hover:bg-[#f48638]-700 transition"
+>
+  Send Enquiry
+</button>
+
             <button onClick={handleAddToCart} className="w-full sm:w-auto px-6 py-2 bg-[#c31e5aff] text-white rounded-lg hover:bg-[#c31e5aff]-700 transition">
               Add to Cart
             </button>
@@ -113,6 +157,22 @@ export default function CategoryProducts({ categoryName }) {
         <p className="text-gray-500 text-center">No products found in this category.</p>
       )}
     </div>
+    {selectedProduct && (
+  <ModalPopup
+    isOpen={isModalOpen}
+    onClose={() => setIsModalOpen(false)}
+    items={[{
+      name: selectedProduct.name,
+      price: selectedProduct.price,
+      quantity: 1
+    }]}
+    totalPrice={selectedProduct.price}
+    totalQuantity={1}
+    currency={process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹'}
+    onSendWhatsApp={handleSendWhatsApp}
+  />
+)}
+</>
   );
 }
 
