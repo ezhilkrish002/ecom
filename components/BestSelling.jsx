@@ -65,7 +65,7 @@ const BestSelling = () => {
             //   description={`Showing ${
             //     filtered.length < displayQuantity ? filtered.length : displayQuantity
             //   } of ${filtered.length} products`}
-              href="/shop"
+              href={`/category/${category}`}
             />
 
             {/* 🧩 Responsive Product Grid */}
@@ -73,7 +73,7 @@ const BestSelling = () => {
               className="
                 mt-8 
                 grid
-                grid-cols-1        /* 📱 Mobile: 1 per row */
+                grid-cols-2        /* 📱 Mobile: 1 per row */
                 sm:grid-cols-2     /* 📲 Small tablets: 2 per row */
                 md:grid-cols-3     /* 💻 Tablets: 3 per row */
                 lg:grid-cols-4     /* 🖥️ Desktop: 4 per row */

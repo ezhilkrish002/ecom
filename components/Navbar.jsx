@@ -88,7 +88,7 @@ const Navbar = () => {
           {/* Desktop Menu */}
           <div className="hidden sm:flex items-center gap-6 text-slate-600 absolute left-1/2 transform -translate-x-1/2">
             <Link href="/">Home</Link>
-            <Link href="/shop">Shop</Link>
+            <Link href="/shop">Products</Link>
 
             {/* Categories Dropdown (Hover with delay) */}
             <div

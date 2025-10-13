@@ -11,7 +11,7 @@ export default function CategoryPage() {
   return (
     <div>
       {/* Pass category name to the reusable component */}
-      <CategoryProducts categoryName={name} />
+      <CategoryProducts categoryName={name.replaceAll("%20","")} />
     </div>
   );
 }
