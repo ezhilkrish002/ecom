@@ -172,8 +172,10 @@ const Navbar = () => {
     <div className="sm:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-50 transform transition-transform duration-300">
       <div className="flex flex-col h-full">
         {/* Header */}
-        <div className="flex items-center justify-between px-6 py-4 border-b border-[#E6A02A]/40">
-          <Image src={WVlogo} alt="WV logo" className="w-20 h-auto" />
+        <div className="flex items-center justify-center px-6 py-4 border-b border-[#E6A02A]/40">
+           <Link href="/" className="relative text-4xl font-semibold text-[#7C2A47]">
+                <Image src={WVlogo} alt="WV logo" className="w-20 h-auto" />
+              </Link>
           {/* <button onClick={toggleMenu}>
             <X size={24} className="text-[#7C2A47]" />
           </button> */}
