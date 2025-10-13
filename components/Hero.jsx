@@ -73,12 +73,13 @@ const Hero = () => {
         </div>
 
         <div className="absolute bottom-5 left-4 sm:bottom-6 sm:left-6 rounded-full">
-            <button className="text-white bg-[rgb(55,50,46)] p-2 sm:p-3  rounded-xl text-sm sm:text-lg">View More</button>
+            <button className="hidden sm:flex text-white bg-[rgb(55,50,46)] p-2 sm:p-3  rounded-xl text-sm sm:text-lg">View More</button>
+            <Link href="/shop"> <p className='text-sm sm:text-xl sm:hidden flex items-center  mt-4 text-[#c31e5a]'>View more <ArrowRightIcon className='group-hover:ml-2 mt-1 transition-all' size={15} /> </p></Link>
         </div>
       </div>
 
       {/* Dots */}
-      <div className="absolute bottom-4 flex gap-2">
+      <div className="absolute bottom-6 flex gap-2">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -126,9 +127,3 @@ const Hero = () => {
 }
 
 export default Hero
-
-
-
-
-
-

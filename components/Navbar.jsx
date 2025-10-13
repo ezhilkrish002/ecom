@@ -164,7 +164,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      <hr />
 
       {/* Mobile Menu */}
     {menuOpen && (
@@ -198,7 +197,7 @@ const Navbar = () => {
 
   {[ // Menu items excluding categories here
     { label: "Home", href: "/", icon: <Home size={18} /> },
-    { label: "Shop", href: "/shop", icon: <ShoppingBag size={18} /> },
+    { label: "Shop", href: "/category/products", icon: <ShoppingBag size={18} /> },
   ].map((item) => (
     <Link
       key={item.href}
