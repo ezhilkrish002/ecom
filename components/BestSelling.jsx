@@ -41,7 +41,7 @@ const BestSelling = () => {
                     <div key={index} className='mb-16'>
                         <Title 
                             title={`${category}`} 
-                            description={`Showing ${filtered.length < displayQuantity ? filtered.length : displayQuantity} of ${filtered.length} products`} 
+                            // description={`Showing ${filtered.length < displayQuantity ? filtered.length : displayQuantity} of ${filtered.length} products`} 
                             href='/shop' 
                         />
                         <div className='mt-8 grid grid-cols-2 sm:flex flex-wrap gap-6 xl:gap-12'>
