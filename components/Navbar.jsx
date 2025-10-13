@@ -259,7 +259,7 @@ const Navbar = () => {
           <button
             onClick={() => {
               toggleMenu();
-              router.push("/register");
+              router.push("/signup");
             }}
             className="w-full flex items-center justify-center gap-2 bg-[#7C2A47] text-white rounded-full py-2 font-medium hover:bg-[#E6A02A] transition"
           >
