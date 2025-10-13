@@ -7,9 +7,16 @@ import { Star } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/lib/features/cart/cartSlice";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
+import { ShoppingCart, ArrowRight, Send } from "lucide-react";
+import ModalPopup from "./PopupModel";
+import {useState} from "react";
 
 export default function CategoryProducts({ categoryName }) {
   const dispatch = useDispatch();
+
+      const [isModalOpen, setIsModalOpen] = useState(false);
+  const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
   // Filter products by category
   const products = categoryName==="products" ? productDummyData : productDummyData.filter(
@@ -31,11 +38,59 @@ export default function CategoryProducts({ categoryName }) {
     toast.success(`${product.name} added to cart!`);
   };
 
+  function handleEnquiry(e) {  
+    e.preventDefault();
+    setIsModalOpen(true);
+  } 
+const handleSendWhatsApp = ({ userName, userMobile }) => {
+    const quantity = product.id || 1;
+    const productLink = typeof window !== 'undefined' ? window.location.href : '';
+
+    let message = `
+Hi, I'm interested in booking an enquiry for the following product:
+🛍️ *Product:* ${product.name}
+💰 *Price:* ${currency}${product.price}
+📦 *Quantity:* ${quantity}
+🖼️ *Product Link:* ${productLink}
+`;
+
+    if (userName && userMobile) {
+      message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+    }
+
+    message += `Please let me know the next steps.`;
+
+    const encodedMessage = encodeURIComponent(message);
+    const phoneNumber = "9345795629";
+
+    window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, "_blank");
+    setIsModalOpen(false);
+  };
+
+
   return (
     <div className="max-w-7xl mx-auto py-6 px-3 sm:px-6">
-      <h1 className="text-xl sm:text-2xl font-semibold mb-6 text-slate-800 text-center sm:text-left">
+                      {/* ✅ Breadcrumbs */}
+                    <div className="text-gray-600 text-lg mt-8 mb-5 sm:ml-10 space-x-1">
+                    <Link 
+                        href="/" 
+                        className="hover:text-black transition-colors duration-200"
+                    >
+                        Home
+                    </Link>
+                    <span>&gt;</span>
+                    <Link 
+                        href={`/category/products`}
+                        className="hover:text-black transition-colors duration-200"
+                    >
+                        Products
+                    </Link>
+                    <span>&gt;</span>
+                    <span className="text-[rgb(55,50,46)] font-medium">{categoryName==="products"?"All Products":categoryName}</span>
+                    </div>
+      {/* <h1 className="text-xl sm:text-2xl font-semibold mb-6 text-slate-800 text-center sm:text-left">
         Category: {categoryName.charAt(0).toUpperCase() + categoryName.slice(1)}
-      </h1>
+      </h1> */}
 
       {products.length > 0 ? (
         <>
@@ -93,18 +148,65 @@ export default function CategoryProducts({ categoryName }) {
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-6 justify-center md:justify-start">
-            <button className="w-full sm:w-auto px-6 py-2 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg">
-              View Details
-            </button>
-            <button className="w-full sm:w-auto px-6 py-2 bg-[#f48638] text-white rounded-lg hover:bg-[#f48638]-700 transition">
-              Send Enquiry
-            </button>
-            <button onClick={handleAddToCart} className="w-full sm:w-auto px-6 py-2 bg-[#c31e5aff] text-white rounded-lg hover:bg-[#c31e5aff]-700 transition">
-              Add to Cart
-            </button>
-          </div>
+<div className="flex flex-wrap gap-3 mt-6 justify-between md:justify-start items-center">
+  {/* 🛒 Add to Cart */}
+  <div className="relative group">
+    <button
+      onClick={() => handleAddToCart(product)}
+      className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[#c31e5a] text-white rounded-lg hover:bg-[#a81a4d] transition-all"
+    >
+      <ShoppingCart size={18} />
+      <span className="hidden md:inline">Add to Cart</span>
+    </button>
+    {/* Tooltip (mobile only) */}
+    <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
+      Add to Cart
+    </span>
+  </div>
+
+  {/* ✉️ Send Enquiry */}
+  <div className="relative group">
+    <button
+      onClick={(e) => handleEnquiry(e)}
+      className="flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#f48638] text-white rounded-lg hover:bg-[#e47424] transition-all"
+    >
+      <Send size={18} />
+      <span className="md:inline">Send Enquiry</span>
+    </button>
+    {/* Tooltip (mobile only) */}
+    <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
+      Send Enquiry
+    </span>
+  </div>
+
+  {/* 🔍 View Details */}
+  <div className="relative group">
+    <button 
+      className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg hover:bg-[rgb(40,36,33)] transition-all"
+    >
+      <ArrowRight size={18} />
+      <span className="hidden md:inline">View Details</span>
+    </button>
+    {/* Tooltip (mobile only) */}
+    <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
+      View Details
+    </span>
+  </div>
+</div>
         </div>
+        <ModalPopup
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        items={[{
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        }]}
+        totalPrice={product.price }
+        totalQuantity={1}
+        currency={currency}
+        onSendWhatsApp={handleSendWhatsApp}
+      />
       </div>
     </div>
           ))}
@@ -112,6 +214,7 @@ export default function CategoryProducts({ categoryName }) {
       ) : (
         <p className="text-gray-500 text-center">No products found in this category.</p>
       )}
+      
     </div>
   );
 }

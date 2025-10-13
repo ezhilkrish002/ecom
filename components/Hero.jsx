@@ -53,27 +53,27 @@ const Hero = () => {
         <div className='mx-6'>
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
             <div className='flex-1 flex flex-col justify-center items-start gap-6'>
-           <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden bg-gray-100">
+           <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden">
           {/* Slide Images */}
-      <div className="relative w-full h-[250px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
+      <div className="relative w-full h-[200px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
         <Image
           src={slides[current].image}
           alt={slides[current].title}
           width={1200}
           height={500}
           priority
-          className="w-full h-full object-cover rounded-3xl"
+          className="w-full h-full object-contain sm:object-cover sm:rounded-3xl"
         />
 
         {/* Text Overlay */}
         <div className="absolute left-2 top-10 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
-          <div className="w-40 absolute left-7 top-6 sm:top-20 text-left text-lg sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
+          <div className="w-40 absolute left-7 top-6 sm:top-20 text-left text-sm sm:text-2xl md:text-4xl md:w-100 font-bold mb-2 drop-shadow-md text-[rgb(55,50,46)] ">
             {slides[current].title}
           </div>
         </div>
 
-        <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 rounded-full">
-            <button className="text-white bg-[rgb(55,50,46)] p-2 sm:p-4 rounded-xl">View More</button>
+        <div className="absolute bottom-5 left-4 sm:bottom-6 sm:left-6 rounded-full">
+            <button className="text-white bg-[rgb(55,50,46)] p-2 sm:p-3  rounded-xl text-sm sm:text-lg">View More</button>
         </div>
       </div>
 
@@ -83,7 +83,7 @@ const Hero = () => {
           <button
             key={index}
             onClick={() => setCurrent(index)}
-            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
               current === index ? "bg-black scale-110" : "bg-gray-400"
             }`}
           ></button>

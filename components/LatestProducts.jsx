@@ -1,5 +1,6 @@
+
 'use client'
-import React, { useState } from 'react'
+import React, { useRef } from 'react'
 import Title from './Title'
 import ProductCard from './ProductCard'
 import { useSelector } from 'react-redux'
@@ -7,74 +8,88 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
 const LatestProducts = () => {
-    const displayQuantity = 1
-    const products = useSelector(state => state.product.list)
-    const [startIndex, setStartIndex] = useState(0)
+  const products = useSelector(state => state.product.list)
+  const carouselRef = useRef(null)
 
-    const handleNext = () => {
-        if (startIndex + displayQuantity < products.length) {
-            setStartIndex(startIndex + displayQuantity)
-        }
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: -carouselRef.current.offsetWidth, // scroll by full width
+        behavior: 'smooth',
+      })
     }
+  }
 
-    const handlePrev = () => {
-        if (startIndex - displayQuantity >= 0) {
-            setStartIndex(startIndex - displayQuantity)
-        }
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({
+        left: carouselRef.current.offsetWidth,
+        behavior: 'smooth',
+      })
     }
+  }
 
-    return (
-        <div className='px-6 my-30 max-w-6xl mx-auto'>
-            <Title title='Latest Products' description='Explore our newest arrivals' visibleButton={false} />
+  return (
+    <div className="px-2 sm:px-6 my-12 max-w-6xl mx-auto">
+      <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={false} />
 
-            {/* --- Mobile View (Carousel) --- */}
-            <div className="mt-8 md:hidden flex items-center justify-between relative">
-                {/* Left Arrow */}
-                <div
-                    onClick={handlePrev}
-                    className={`p-2 rounded-full cursor-pointer z-10 ${startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'}`}
-                >
-                    <ChevronLeft className="h-6 w-6" />
-                </div>
+      {/* --- Mobile Carousel --- */}
+      <div className="relative mt-6 md:hidden">
+        {/* Left Arrow */}
+        <button
+          onClick={scrollLeft}
+          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
 
-                {/* Visible Items with sliding animation */}
-                <div className="overflow-hidden w-full">
-                    <div
-                        className="flex transition-transform duration-500 ease-in-out"
-                        style={{ transform: `translateX(-${startIndex * (100 / displayQuantity)}%)` }}
-                    >
-                        {products.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).map((product, index) => (
-                            <div key={index} className="flex-shrink-0 w-full px-2">
-                                <ProductCard product={product} />
-                            </div>
-                        ))}
-                    </div>
-                </div>
+        {/* Right Arrow */}
+        <button
+          onClick={scrollRight}
+          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
 
-                {/* Right Arrow with View More */}
-                <div className="flex items-center">
-                    <div
-                        onClick={handleNext}
-                        className={`p-2 rounded-full cursor-pointer z-10 ${startIndex + displayQuantity >= products.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'}`}
-                    >
-                        <ChevronRight className="h-6 w-6" />
-                    </div>
-                    {startIndex + displayQuantity >= products.length && (
-                        <Link href="/shop" className="flex items-center gap-1 text-sm text-[#c31e5aff] ml-2">
-                            View more <ArrowRight size={14} />
-                        </Link>
-                    )}
-                </div>
-            </div>
-
-            {/* --- Desktop View (Grid) --- */}
-            <div className='hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 justify-between'>
-                {products.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 8).map((product, index) => (
-                    <ProductCard key={index} product={product} />
-                ))}
-            </div>
+        {/* Scrollable container */}
+        <div
+          ref={carouselRef}
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+        >
+          {products
+            .slice()
+            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+            .map((product, index) => (
+              <div
+                key={index}
+                className="flex-shrink-0 w-full snap-start"
+              >
+                {/* Pass mobile prop to ProductCard for full-width 3:4 ratio */}
+                <ProductCard product={product} mobile />
+              </div>
+          ))}
         </div>
-    )
+      </div>
+
+      {/* --- Desktop Grid --- */}
+      <div className="hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+        {products
+          .slice()
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+          .slice(0, 8)
+          .map((product, index) => (
+            <ProductCard key={index} product={product} />
+        ))}
+      </div>
+
+      {/* Optional View More */}
+      {/* <div className="mt-4 md:hidden text-right px-2">
+        <Link href="/shop" className="flex items-center gap-1 text-sm text-[#c31e5aff] justify-end">
+          View more <ArrowRight size={14} />
+        </Link>
+      </div> */}
+    </div>
+  )
 }
 
 export default LatestProducts

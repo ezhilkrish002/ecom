@@ -32,21 +32,24 @@ const Categories = () => {
   }
 
   return (
-    <div className="px-6 my-30 max-w-6xl mx-auto">
+    <div className="px-6 mt-10 sm:my-30 max-w-6xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
-      {/* --- Mobile View (Carousel) --- */}
-      <div className="mt-8 md:hidden flex items-center justify-between relative">
+      {/* --- Mobile View (Touch-Scrollable Carousel with Hidden Scrollbar) --- */}
+      <div className="mt-8 md:hidden relative flex items-center justify-between w-full">
         {/* Left Arrow */}
-        <div
+        <button
           onClick={handlePrev}
-          className={`p-2 rounded-full cursor-pointer z-10 ${startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'}`}
+          disabled={startIndex === 0}
+          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -ml-6 ${
+            startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+          }`}
         >
-          <ChevronLeft className="h-6 w-6" />
-        </div>
+          <ChevronLeft className="h-8 w-8 text-gray-700" />
+        </button>
 
-        {/* Visible Items with sliding animation */}
-        <div className="overflow-hidden w-full">
+        {/* Touch-Scrollable Container */}
+        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${startIndex * (100 / itemsPerPage)}%)` }}
@@ -55,31 +58,36 @@ const Categories = () => {
               <Link
                 key={index}
                 href={`/category/${cat}`}
-                className="group flex-shrink-0 w-1/2 px-2 flex flex-col items-center"
+                className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-center"
               >
-                <div className="bg-[#F5F5F5] h-28 w-28 rounded-full flex items-center justify-center overflow-hidden">
+                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     className="scale-110 group-hover:scale-115 transition duration-300"
                     src={categoryImages[cat]}
                     alt={cat}
+                    width={144}
+                    height={144}
                   />
                 </div>
-                <p className="text-center mt-2 text-sm text-slate-800">{cat}</p>
+                <p className="text-center mt-3 text-base text-slate-800">{cat}</p>
               </Link>
             ))}
           </div>
         </div>
 
         {/* Right Arrow */}
-        <div
+        <button
           onClick={handleNext}
-          className={`p-2 rounded-full cursor-pointer z-10 ${startIndex + itemsPerPage >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'}`}
+          disabled={startIndex + itemsPerPage >= categories.length}
+          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -mr-6 ${
+            startIndex + itemsPerPage >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+          }`}
         >
-          <ChevronRight className="h-6 w-6" />
-        </div>
+          <ChevronRight className="h-8 w-8 text-gray-700" />
+        </button>
       </div>
 
-      {/* --- Desktop View (Grid) --- */}
+      {/* --- Desktop View (Static Grid) --- */}
       <div className="hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-between">
         {categories.slice(0, 5).map((cat, index) => (
           <Link key={index} href={`/category/${cat}`} className="group max-xl:mx-auto">
@@ -89,6 +97,8 @@ const Categories = () => {
                   className="scale-110 group-hover:scale-115 transition duration-300"
                   src={categoryImages[cat]}
                   alt={cat}
+                  width={160}
+                  height={160}
                 />
               </div>
               <p className="text-center mt-2 text-sm text-slate-800">{cat}</p>
