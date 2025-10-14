@@ -182,7 +182,7 @@ const Navbar = () => {
                               }}
                             >
                               {subCat}
-                            </Link>
+                             </Link>
                           ))}
                         </div>
                       )}
