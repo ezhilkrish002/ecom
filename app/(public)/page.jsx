@@ -14,8 +14,9 @@ export default function Home() {
             <Categories/>
             <LatestProducts />
             <BestSelling />
-            <OurSpecs />
             <About />
+            <OurSpecs />
+            
             {/* <Newsletter /> */}
         </div>
     );

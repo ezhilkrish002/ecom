@@ -1,11 +1,17 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import CountUp from 'react-countup';
+import { useInView } from 'react-intersection-observer';
 import WVlogo from "@/assets/YUCHII LOGO.png";
 
 export default function About() {
+  const { ref, inView } = useInView({
+    triggerOnce: true,   // Only trigger once
+    threshold: 0.3       // Trigger when 30% is visible
+  });
+
   return (
     <div className="min-h-screen bg-[#F5F5F5] text-[#3A3634]">
       <div className="max-w-6xl mx-auto px-6 py-16">
@@ -43,48 +49,48 @@ export default function About() {
         </div>
 
         {/* ✅ Statistics Section */}
-        <div className="mt-16 grid grid-cols-1 sm:grid-cols-3 text-center gap-10">
-  <div>
-    <h2 className="text-6xl font-bold text-[#7C2A47]">
-      <CountUp end={5000} duration={3} />
-      <span>+</span>
-    </h2>
-    <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
-      Total Products
-    </p>
-  </div>
+        <div ref={ref} className="mt-20 grid grid-cols-1 sm:grid-cols-3 text-center gap-10">
+          <div>
+            <h2 className="text-6xl font-bold text-[#7C2A47]">
+              {inView && <CountUp end={5000} duration={3} />}
+              <span>+</span>
+            </h2>
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+              Total Products
+            </p>
+          </div>
 
-  <div>
-    <h2 className="text-6xl font-bold text-[#7C2A47]">
-      <CountUp end={1200} duration={3} />
-      <span>+</span>
-    </h2>
-    <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
-      Exclusive Dealers
-    </p>
-  </div>
+          <div>
+            <h2 className="text-6xl font-bold text-[#7C2A47]">
+              {inView && <CountUp end={1200} duration={3} />}
+              <span>+</span>
+            </h2>
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+              Exclusive Dealers
+            </p>
+          </div>
 
-  <div>
-    <h2 className="text-6xl font-bold text-[#7C2A47]">
-      <CountUp end={800} duration={3} />
-      <span>+</span>
-    </h2>
-    <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
-      Pumps Sold / Day
-    </p>
-  </div>
-</div>
+          <div>
+            <h2 className="text-6xl font-bold text-[#7C2A47]">
+              {inView && <CountUp end={800} duration={3} />}
+              <span>+</span>
+            </h2>
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+              Pumps Sold / Day
+            </p>
+          </div>
+        </div>
       </div>
 
+      {/* Footer slogan section */}
       <div className="w-full flex justify-center mt-6">
-  <div className="bg-[#7C2A47] text-[#F5F5F5] py-4 px-2 sm:py-8 sm:px-8 text-center w-full sm:w-[1200] rounded-lg shadow-md">
-    <h2 className="text-2xl sm:text-3xl font-semibold mb-2">
-      Quality • Trust • Innovation
-    </h2>
-    <p className="text-lg sm:text-xl">Driven by performance, powered by integrity.</p>
-  </div>
-</div>
-
+        <div className="bg-[#7C2A47] text-[#F5F5F5] py-2 px-4 sm:py-6 sm:px-18 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
+          <h2 className="text-xl sm:text-3xl font-semibold mb-2">
+            Quality • Trust • Innovation
+          </h2>
+          <p className="text-md sm:text-xl">Driven by performance, powered by integrity.</p>
+        </div>
+      </div>
     </div>
   );
 }
