@@ -4,8 +4,6 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
-import { CheckCircle2 } from 'lucide-react'; // ✅ Icon for popup
 import { loginRequest, loginSuccess, loginFailure } from '../../../lib/features/login/authSlice';
 
 const Login = () => {
@@ -14,7 +12,6 @@ const Login = () => {
   const { isLoading, error, users } = useSelector((state) => state.auth);
 
   const [showPassword, setShowPassword] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,11 +24,8 @@ const Login = () => {
       const user = users?.find((u) => u.email === email && u.password === password);
       if (user) {
         dispatch(loginSuccess({ email }));
-        setShowPopup(true); // ✅ Trigger popup
-        setTimeout(() => {
-          setShowPopup(false);
-          router.push('/');
-        }, 2000);
+        alert('Login successful!');
+        router.push('/');
       } else {
         dispatch(loginFailure('Invalid email or password'));
       }
@@ -39,7 +33,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div className="min-h-screen bg-white px-4 py-12 sm:px-6 lg:px-8">
       {/* Breadcrumbs */}
       <nav className="w-full max-w-7xl mx-auto mb-8 text-sm font-medium text-gray-600">
         <ol className="flex items-center space-x-2">
@@ -57,14 +51,14 @@ const Login = () => {
         </ol>
       </nav>
 
-      {/* Login Card */}
       <div className="flex items-center justify-center">
         <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8 sm:p-10">
+          {/* Header */}
           <h1 className="text-2xl sm:text-3xl font-semibold text-center text-[#c31e5aff] mb-2">
             Sign In to Your Account
           </h1>
           <p className="text-sm sm:text-base text-gray-400 text-center mb-8">
-            Enter your details below
+            Enter your detail below
           </p>
 
           {/* Error Message */}
@@ -119,18 +113,21 @@ const Login = () => {
             </button>
           </form>
 
-         <div className="mt-4 text-center">
-  <Link href="/forget_password" className="text-xs sm:text-sm text-gray-400 hover:underline">
-    Forgot your password?
-  </Link>
-</div>
+          {/* Forgot password */}
+          <div className="mt-4 text-center">
+            <a href="#" className="text-xs sm:text-sm text-gray-400 hover:underline">
+              Forgot your password?
+            </a>
+          </div>
 
+          {/* Or separator */}
           <div className="flex items-center my-6">
             <hr className="flex-grow border-gray-300" />
             <span className="mx-4 text-gray-400 text-sm sm:text-base">Or</span>
             <hr className="flex-grow border-gray-300" />
           </div>
 
+          {/* Sign up */}
           <p className="text-center text-gray-600 text-xs sm:text-sm">
             Don't have an account?{' '}
             <Link
@@ -142,62 +139,8 @@ const Login = () => {
           </p>
         </div>
       </div>
-
-      {/* ✅ Animated Success Popup */}
-      <AnimatePresence>
-        {showPopup && (
-          <motion.div
-            key="popup"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 flex items-center justify-center bg-black/40 backdrop-blur-sm z-50"
-          >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: 'easeOut' }}
-              className="relative bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-center border border-gray-200"
-            >
-              <motion.div
-                initial={{ rotate: -20, opacity: 0 }}
-                animate={{ rotate: 0, opacity: 1 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-                className="flex justify-center mb-4"
-              >
-                <CheckCircle2 className="w-14 h-14 text-green-500" />
-              </motion.div>
-
-              <motion.h2
-                initial={{ y: -10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="text-xl sm:text-2xl font-semibold text-[#0F172A] mb-2"
-              >
-                Login Successful
-              </motion.h2>
-
-              <motion.p
-                initial={{ y: 10, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="text-gray-500 text-sm sm:text-base"
-              >
-                Redirecting to your home page...
-              </motion.p>
-
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ delay: 0.3, duration: 2, ease: 'easeInOut' }}
-                className="mt-5 h-1 bg-green-500 rounded-full origin-left"
-              />
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 };
+
 export default Login;
