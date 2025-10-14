@@ -1,4 +1,3 @@
-// components/CategoryProducts.jsx
 'use client';
 
 import React, { useState } from "react";
@@ -10,7 +9,7 @@ import Link from "next/link";
 import { ShoppingCart, ArrowRight, Send } from "lucide-react";
 import ModalPopup from "./PopupModel";
 
-export default function CategoryProducts({ categoryName }) {
+export default function CategoryProducts({ categoryName, subCategoryName }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
@@ -19,10 +18,19 @@ export default function CategoryProducts({ categoryName }) {
 
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
-  // Filter products by category
+  // Filter products by category and subcategory
   const products =
-    categoryName === "products"
+    categoryName === "products" 
       ? productDummyData
+      : subCategoryName
+      ? productDummyData.filter(
+          (product) =>
+            product?.subCategory 
+            &&
+             // Ensure 
+            // gory exists
+            product?.subCategory.toLowerCase() === subCategoryName.toLowerCase()
+        )
       : productDummyData.filter(
           (product) => product.category.toLowerCase() === categoryName.toLowerCase()
         );
@@ -84,12 +92,27 @@ Hi, I'm interested in booking an enquiry for the following product:
           Products
         </Link>
         <span>&gt;</span>
-        <span className="text-[rgb(55,50,46)] font-medium">
-          {categoryName === "products" ? "All Products" : categoryName}
-        </span>
+        {subCategoryName ? (
+          <>
+            <Link
+              href={`/category/${categoryName}`}
+              className="hover:text-black transition-colors duration-200"
+            >
+              {categoryName}
+            </Link>
+            <span>&gt;</span>
+            <span className="text-[rgb(55,50,46)] font-medium">
+              {subCategoryName}
+            </span>
+          </>
+        ) : (
+          <span className="text-[rgb(55,50,46)] font-medium">
+            {categoryName === "products" ? "All Products" : categoryName}
+          </span>
+        )}
       </div>
 
-      {products.length > 0 && (
+      {products.length > 0 ? (
         <>
           {products.map((product, index) => (
             <div
@@ -192,6 +215,10 @@ Hi, I'm interested in booking an enquiry for the following product:
             </div>
           ))}
         </>
+      ) : (
+        <div className="text-center text-gray-600 py-10">
+          No products found for this {subCategoryName ? "subcategory" : "category"}.
+        </div>
       )}
 
       {/* WhatsApp Modal */}
