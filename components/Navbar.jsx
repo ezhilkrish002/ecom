@@ -241,8 +241,8 @@ const Navbar = () => {
                     href={item.href}
                     onClick={toggleMenu}
                     className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${isActive(item.href)
-                        ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                        : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+                      ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+                      : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
                       }`}
                   >
                     {item.icon} {item.label}
@@ -265,15 +265,16 @@ const Navbar = () => {
                         {cat === "Pumps" ? (
                           <details className="group">
                             <summary
-                              className="flex items-center justify-between cursor-pointer text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-gray-100 px-2 py-1 rounded-md transition"
+                              className="flex items-center justify-between cursor-pointer text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
                               onClick={() => setShowMobilePumpSubmenu(!showMobilePumpSubmenu)}
                             >
                               <span>{cat}</span>
                               <ChevronLeft
                                 size={16}
-                                className="transition-transform group-open:rotate-180"
+                                className="transition-transform group-open:rotate-180 text-gray-600 hover:text-[#7C2A47]"
                               />
                             </summary>
+
                             {showMobilePumpSubmenu && (
                               <div className="ml-4 mt-2 flex flex-col gap-2">
                                 {pumpSubCategories.map((subCat) => (
@@ -281,7 +282,7 @@ const Navbar = () => {
                                     key={subCat}
                                     href={`/category/Pumps/${subCat}`}
                                     onClick={toggleMenu}
-                                    className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-gray-200 px-2 py-1 rounded-md transition"
+                                    className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
                                   >
                                     {subCat}
                                   </Link>
@@ -293,7 +294,7 @@ const Navbar = () => {
                           <Link
                             href={`/category/${cat}`}
                             onClick={toggleMenu}
-                            className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-gray-100 px-2 py-1 rounded-md transition"
+                            className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
                           >
                             {cat}
                           </Link>
@@ -313,8 +314,8 @@ const Navbar = () => {
                     href={item.href}
                     onClick={toggleMenu}
                     className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${isActive(item.href)
-                        ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                        : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+                      ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+                      : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
                       }`}
                   >
                     {item.icon} {item.label}
