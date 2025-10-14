@@ -1,33 +1,54 @@
 'use client'
 
-import { assets, categories } from '@/assets/assets'
+import { assets } from '@/assets/assets'
 import Title from './Title'
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
+// Dummy categories array with 10 categories
+const categories = [
+  "Pumps",
+  "Electric Motor",
+  "Engine",
+  "Generator",
+  "Air Compressor",
+  "Hydraulic Systems",
+  "Power Tools",
+  "Welding Equipment",
+  "Industrial Fans",
+  "Control Panels"
+]
+
+// Dummy category images (using placeholder images for new categories)
 const categoryImages = {
-  "Pumps": assets.product_img01,
-  "Electric Motor": assets.product_img02,
-  "Engine": assets.product_img03,
-  "Generator": assets.product_img04,
-  "Air Compressor": assets.product_img05,
+  "Pumps": assets.product_img01 || 'https://via.placeholder.com/160',
+  "Electric Motor": assets.product_img02 || 'https://via.placeholder.com/160',
+  "Engine": assets.product_img03 || 'https://via.placeholder.com/160',
+  "Generator": assets.product_img04 || 'https://via.placeholder.com/160',
+  "Air Compressor": assets.product_img05 || 'https://via.placeholder.com/160',
+  "Hydraulic Systems": assets.product_img01,
+  "Power Tools": assets.product_img01,
+  "Welding Equipment": assets.product_img01,
+  "Industrial Fans": assets.product_img01,
+  "Control Panels": assets.product_img01,
 }
 
 const Categories = () => {
   const [startIndex, setStartIndex] = useState(0)
-  const itemsPerPage = 2
+  const itemsPerPageMobile = 2 // Mobile view shows 2 items per page
+  const itemsPerPageDesktop = 5 // Desktop view shows 5 items per page
 
   const handleNext = () => {
-    if (startIndex + itemsPerPage < categories.length) {
-      setStartIndex(startIndex + itemsPerPage)
+    if (startIndex + itemsPerPageMobile < categories.length) {
+      setStartIndex(startIndex + itemsPerPageMobile)
     }
   }
 
   const handlePrev = () => {
-    if (startIndex - itemsPerPage >= 0) {
-      setStartIndex(startIndex - itemsPerPage)
+    if (startIndex - itemsPerPageMobile >= 0) {
+      setStartIndex(startIndex - itemsPerPageMobile)
     }
   }
 
@@ -37,7 +58,6 @@ const Categories = () => {
 
       {/* --- Mobile View (Touch-Scrollable Carousel with Hidden Scrollbar) --- */}
       <div className="mt-8 md:hidden relative flex items-center justify-between w-full">
-        {/* Left Arrow */}
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
@@ -48,17 +68,16 @@ const Categories = () => {
           <ChevronLeft className="h-8 w-8 text-gray-700" />
         </button>
 
-        {/* Touch-Scrollable Container */}
-        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide">
+        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-x">
           <div
             className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${startIndex * (100 / itemsPerPage)}%)` }}
+            style={{ transform: `translateX(-${startIndex * (100 / itemsPerPageMobile)}%)` }}
           >
             {categories.map((cat, index) => (
               <Link
                 key={index}
                 href={`/category/${cat}`}
-                className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-center"
+                className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-start"
               >
                 <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
@@ -75,37 +94,88 @@ const Categories = () => {
           </div>
         </div>
 
-        {/* Right Arrow */}
         <button
           onClick={handleNext}
-          disabled={startIndex + itemsPerPage >= categories.length}
+          disabled={startIndex + itemsPerPageMobile >= categories.length}
           className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -mr-6 ${
-            startIndex + itemsPerPage >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+            startIndex + itemsPerPageMobile >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
           <ChevronRight className="h-8 w-8 text-gray-700" />
         </button>
       </div>
 
-      {/* --- Desktop View (Static Grid) --- */}
-      <div className="hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6 justify-between">
-        {categories.slice(0, 5).map((cat, index) => (
-          <Link key={index} href={`/category/${cat}`} className="group max-xl:mx-auto">
-            <div className="flex flex-col justify-center items-center">
-              <div className="bg-[#F5F5F5] h-30 w-30 sm:w-40 sm:h-40 rounded-full flex items-center justify-center overflow-hidden">
-                <Image
-                  className="scale-110 group-hover:scale-115 transition duration-300"
-                  src={categoryImages[cat]}
-                  alt={cat}
-                  width={160}
-                  height={160}
-                />
+      {/* --- Desktop View --- */}
+      {categories.length <= 5 ? (
+        // Static Grid for 5 or fewer categories
+        <div className="hidden md:grid mt-12 grid-cols-5 gap-6 justify-between">
+          {categories.map((cat, index) => (
+            <Link key={index} href={`/category/${cat}`} className="group max-xl:mx-auto">
+              <div className="flex flex-col justify-center items-center">
+                <div className="bg-[#F5F5F5] h-30 w-30 sm:w-40 sm:h-40 rounded-full flex items-center justify-center overflow-hidden">
+                  <Image
+                    className="scale-110 group-hover:scale-115 transition duration-300"
+                    src={categoryImages[cat]}
+                    alt={cat}
+                    width={160}
+                    height={160}
+                  />
+                </div>
+                <p className="text-center mt-2 text-sm text-slate-800">{cat}</p>
               </div>
-              <p className="text-center mt-2 text-sm text-slate-800">{cat}</p>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        // Scrollable Carousel for more than 5 categories
+        <div className="hidden md:block mt-12 relative flex items-center justify-between w-full">
+          <button
+            onClick={handlePrev}
+            disabled={startIndex === 0}
+            className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -ml-6 ${
+              startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+            }`}
+          >
+            <ChevronLeft className="h-8 w-8 text-gray-700" />
+          </button>
+
+          <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide">
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${startIndex * (100 / itemsPerPageDesktop)}%)` }}
+            >
+              {categories.map((cat, index) => (
+                <Link
+                  key={index}
+                  href={`/category/${cat}`}
+                  className="group flex-shrink-0 w-1/5 px-4 flex flex-col items-center snap-center"
+                >
+                  <div className="bg-[#F5F5F5] h-30 w-30 sm:w-40 sm:h-40 rounded-full flex items-center justify-center overflow-hidden">
+                    <Image
+                      className="scale-110 group-hover:scale-115 transition duration-300"
+                      src={categoryImages[cat]}
+                      alt={cat}
+                      width={160}
+                      height={160}
+                    />
+                  </div>
+                  <p className="text-center mt-2 text-sm text-slate-800">{cat}</p>
+                </Link>
+              ))}
             </div>
-          </Link>
-        ))}
-      </div>
+          </div>
+
+          <button
+            onClick={handleNext}
+            disabled={startIndex + itemsPerPageDesktop >= categories.length}
+            className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -mr-6 ${
+              startIndex + itemsPerPageDesktop >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+            }`}
+          >
+            <ChevronRight className="h-8 w-8 text-gray-700" />
+          </button>
+        </div>
+      )}
     </div>
   )
 }

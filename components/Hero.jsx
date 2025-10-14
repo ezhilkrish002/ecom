@@ -51,19 +51,19 @@ const Hero = () => {
   }, [slides.length]);
 
     return (
-        <div className='mx-6'>
+        <div className='bg-[#F7F7F7] py-1 px-5 sm:pt-6 sm:pb-10'>
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
             <div className='flex-1 flex flex-col justify-center items-start gap-6'>
            <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden">
           {/* Slide Images */}
-      <div className="relative w-full h-[200px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
+      <div className="relative w-full h-[230px] sm:h-[350px] md:h-[450px] transition-all duration-700 ease-in-out">
         <Image
           src={slides[current].image}
           alt={slides[current].title}
           width={1200}
           height={500}
           priority
-          className="w-full h-full object-contain sm:object-cover sm:rounded-3xl"
+          className="w-full h-full object-cover sm:rounded-3xl"
         />
         {/* Text Overlay */}
         <div className="absolute left-2 top-10 flex flex-col justify-center items-center text-center text-white px-4 sm:px-8 transition-opacity duration-700">
@@ -73,8 +73,8 @@ const Hero = () => {
         </div>
 
         <div className="absolute bottom-5 left-4 sm:bottom-6 sm:left-6 rounded-full">
-            <button className="hidden sm:flex text-white bg-[rgb(55,50,46)] p-2 sm:p-3  rounded-xl text-sm sm:text-lg">View More</button>
-            <Link href="/shop"> <p className='text-sm sm:text-xl sm:hidden flex items-center  mt-4 text-[#c31e5a]'>View more <ArrowRightIcon className='group-hover:ml-2 mt-1 transition-all' size={15} /> </p></Link>
+            <Link href="/category/products"><button className="hidden sm:flex text-white bg-[rgb(55,50,46)] p-2 sm:p-3  rounded-xl text-sm sm:text-lg">View More</button></Link> 
+            <Link href="/category/products"> <p className='text-sm sm:text-xl sm:hidden flex items-center  mt-4 text-[#c31e5a]'>View more <ArrowRightIcon className='group-hover:ml-2 mt-1 transition-all' size={15} /> </p></Link>
         </div>
       </div>
 
@@ -99,7 +99,7 @@ const Hero = () => {
                             <p className='text-3xl font-medium bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent max-w-40'>
                                 Best products
                             </p>
-                           <Link href="/shop">  <p className='flex items-center gap-1 mt-4 text-green-700'>
+                           <Link href="/category/products">  <p className='flex items-center gap-1 mt-4 text-green-700'>
                                 View more
                                 <ArrowRightIcon className='text-green-600 group-hover:ml-2 transition-all' size={18} />
                             </p></Link>
@@ -110,7 +110,7 @@ const Hero = () => {
                     <div className='flex-1 flex items-center justify-between w-full bg-blue-200 rounded-3xl p-6 px-8 group'>
                         <div>
                             <p className='text-3xl font-medium bg-gradient-to-r from-slate-800 to-[#78B2FF] bg-clip-text text-transparent max-w-40'>20% discounts</p>
-                          <Link href="/shop"> <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p></Link>
+                          <Link href="/category/products"> <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p></Link>
                         </div>
                         <Image className='w-40 h-40 rounded-full' src={assets.product_img6} alt="" />
                     </div>
