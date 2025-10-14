@@ -218,11 +218,10 @@ const Navbar = () => {
                     key={item.href}
                     href={item.href}
                     onClick={toggleMenu}
-                    className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
-                      isActive(item.href)
-                        ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                        : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
-                    }`}
+                    className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${isActive(item.href)
+                      ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+                      : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+                      }`}
                   >
                     {item.icon} {item.label}
                   </Link>
@@ -246,14 +245,45 @@ const Navbar = () => {
                   </summary>
                   <div className="ml-8 mt-2 flex flex-col gap-2">
                     {categories.map((cat) => (
-                      <Link
-                        key={cat}
-                        href={`/category/${cat}`}
-                        onClick={toggleMenu}
-                        className="text-sm text-gray-600 hover:text-[#7C2A47]"
-                      >
-                        {cat}
-                      </Link>
+                      <div key={cat}>
+                        {cat === "Pumps" ? (
+                          <details className="group">
+                            <summary
+                              className="flex items-center justify-between cursor-pointer text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
+                              onClick={() => setShowMobilePumpSubmenu(!showMobilePumpSubmenu)}
+                            >
+                              <span>{cat}</span>
+                              <ChevronLeft
+                                size={16}
+                                className="transition-transform group-open:rotate-180 text-gray-600 hover:text-[#7C2A47]"
+                              />
+                            </summary>
+
+                            {showMobilePumpSubmenu && (
+                              <div className="ml-4 mt-2 flex flex-col gap-2">
+                                {pumpSubCategories.map((subCat) => (
+                                  <Link
+                                    key={subCat}
+                                    href={`/category/Pumps/${subCat}`}
+                                    onClick={toggleMenu}
+                                    className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
+                                  >
+                                    {subCat}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+                          </details>
+                        ) : (
+                          <Link
+                            href={`/category/${cat}`}
+                            onClick={toggleMenu}
+                            className="text-sm text-gray-600 hover:text-[#7C2A47] hover:bg-[#E6A02A]/20 px-2 py-1 rounded-md transition-colors duration-200"
+                          >
+                            {cat}
+                          </Link>
+                        )}
+                      </div>
                     ))}
                   </div>
                 </details>
@@ -265,11 +295,10 @@ const Navbar = () => {
                     key={item.href}
                     href={item.href}
                     onClick={toggleMenu}
-                    className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${
-                      isActive(item.href)
-                        ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
-                        : " text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
-                    }`}
+                    className={`flex items-center gap-3 p-2 rounded-lg transition border-l-4 ${isActive(item.href)
+                      ? "bg-[#fef4ea] text-[#7C2A47] border-[#7C2A47]"
+                      : "text-[#4A4644] border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47]"
+                      }`}
                   >
                     {item.icon} {item.label}
                   </Link>

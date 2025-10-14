@@ -28,8 +28,10 @@ const Footer = () => {
             links: [
                 { text: "Home", path: '/', icon: null },
                 { text: "Privacy Policy", path: '/', icon: null },
-                { text: "Become Plus Member", path: '/pricing', icon: null },
-                { text: "Create Your Store", path: '/create-store', icon: null },
+                { text: "Contact", path: '/contact', icon: null },
+                { text: "About Us", path: '/about', icon: null },
+                // { text: "Become Plus Member", path: '/pricing', icon: null },
+                // { text: "Create Your Store", path: '/create-store', icon: null },
             ]
         },
         {
