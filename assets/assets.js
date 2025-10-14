@@ -38,7 +38,7 @@ export const assets = {
     product_img01,product_img02,product_img03,product_img04,product_img05
 }
 
-export const categories = ["Pumps","Electric Motor","Engine","Generator","Air Compressor"];
+export const categories = ["Pumps","ElectricMotor","Engine","Generator","AirCompressor"];
 export const pumpSubCategories = [
   "Submersible Pumps",
   "Monobloc Pumps",

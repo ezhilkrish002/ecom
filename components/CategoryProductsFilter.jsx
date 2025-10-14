@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { productDummyData } from "@/assets/assets";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/lib/features/cart/cartSlice";
@@ -8,32 +8,120 @@ import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { ShoppingCart, ArrowRight, Send } from "lucide-react";
 import ModalPopup from "./PopupModel";
+import ProductFilters from "./ProductFilters";
 
-export default function CategoryProducts({ categoryName, subCategoryName }) {
+export default function CategoryProductsFilter({ categoryName }) {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.cartItems);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    selectedPipeSizes: [],
+    selectedSpeeds: [],
+    selectedHeadRanges: [],
+    selectedFlowRanges: [],
+    selectedHPs: [],
+    selectedCategories: [],
+    inStockOnly: false,
+    sortBy: "default",
+  });
 
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
-  // Filter products by category and subcategory
-  const products =
-    categoryName === "products" 
+  // Filter products by category (only if categoryName is 'products', otherwise use URL category)
+  let products =
+    categoryName === "products"
       ? productDummyData
-      : subCategoryName
-      ? productDummyData.filter(
-          (product) =>
-            product?.subCategory 
-            &&
-             // Ensure 
-            // gory exists
-            product?.subCategory.toLowerCase() === subCategoryName.toLowerCase()
-        )
       : productDummyData.filter(
           (product) => product.category.toLowerCase() === categoryName.toLowerCase()
         );
+
+  // Apply filters and sorting
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    let updatedProducts = [...products];
+
+    // Apply category filter (only if not filtering by URL category)
+    if (categoryName === "products" && filters.selectedCategories.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        filters.selectedCategories.includes(p.category)
+      );
+    }
+
+    // Apply pipe size filter
+    if (filters.selectedPipeSizes.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Pipe size" && filters.selectedPipeSizes.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply speed filter
+    if (filters.selectedSpeeds.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Speed" && filters.selectedSpeeds.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply head range filter
+    if (filters.selectedHeadRanges.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Head range" && filters.selectedHeadRanges.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply flow range filter
+    if (filters.selectedFlowRanges.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Flow range" && filters.selectedFlowRanges.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply HP filter
+    if (filters.selectedHPs.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.options.some((opt) => filters.selectedHPs.includes(opt))
+      );
+    }
+
+    // Apply inStock filter
+    if (filters.inStockOnly) {
+      updatedProducts = updatedProducts.filter((p) => p.inStock);
+    }
+
+    // Apply sorting
+    switch (filters.sortBy) {
+      case "priceLowToHigh":
+        updatedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "priceHighToLow":
+        updatedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "newest":
+        updatedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      case "rating":
+        updatedProducts.sort((a, b) => {
+          const avgA = a.rating.reduce((sum, r) => sum + r.rating, 0) / a.rating.length || 0;
+          const avgB = b.rating.reduce((sum, r) => sum + r.rating, 0) / b.rating.length || 0;
+          return avgB - avgA;
+        });
+        break;
+      default:
+        break;
+    }
+
+    setFilteredProducts(updatedProducts);
+  }, [filters, categoryName]);
 
   // 🛒 Add to Cart
   const handleAddToCart = (product) => {
@@ -75,9 +163,9 @@ Hi, I'm interested in booking an enquiry for the following product:
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-6 px-3 sm:px-6">
+    <div className="max-w-8xl mx-auto py-4 px-3 sm:px-6">
       {/* ✅ Breadcrumbs */}
-      <div className="text-gray-600 text-md sm:text-lg mt-8 mb-5 sm:ml-10 space-x-1">
+      <div className="text-gray-600 text-sm sm:text-base mt-4 mb-4 sm:mb-5 sm:ml-4 space-x-1">
         <Link
           href="/"
           className="hover:text-black transition-colors duration-200"
@@ -92,30 +180,23 @@ Hi, I'm interested in booking an enquiry for the following product:
           Products
         </Link>
         <span>&gt;</span>
-        {subCategoryName ? (
-          <>
-            <Link
-              href={`/category/${categoryName}`}
-              className="hover:text-black transition-colors duration-200"
-            >
-              {categoryName}
-            </Link>
-            <span>&gt;</span>
-            <span className="text-[rgb(55,50,46)] font-medium">
-              {subCategoryName}
-            </span>
-          </>
-        ) : (
-          <span className="text-[rgb(55,50,46)] font-medium">
-            {categoryName === "products" ? "All Products" : categoryName}
-          </span>
-        )}
+        <span className="text-[rgb(55,50,46)] font-medium">
+          {categoryName === "products" ? "All Products" : categoryName}
+        </span>
       </div>
 
-      {products.length > 0 ? (
-        <>
-          {products.map((product, index) => (
-            <div
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 sm:gap-6">
+        {/* Filters Sidebar */}
+        <div className="md:col-span-1">
+          <ProductFilters products={products} onFilterChange={setFilters} />
+        </div>
+
+        {/* Products List */}
+        <div className="md:col-span-3">
+          {filteredProducts.length > 0 ? (
+            <>
+              {filteredProducts.map((product, index) => (
+                 <div
               key={index}
               className="max-w-6xl mx-auto bg-white shadow-lg rounded-2xl border border-gray-200 p-4 sm:p-6 md:p-10 mt-6 sm:mt-8"
             >
@@ -217,13 +298,15 @@ Hi, I'm interested in booking an enquiry for the following product:
                 </div>
               </div>
             </div>
-          ))}
-        </>
-      ) : (
-        <div className="text-center text-gray-600 py-10">
-          No products found for this {subCategoryName ? "subcategory" : "category"}.
+              ))}
+            </>
+          ) : (
+            <p className="text-center text-gray-600 text-sm sm:text-base">
+              No products match the filters.
+            </p>
+          )}
         </div>
-      )}
+      </div>
 
       {/* WhatsApp Modal */}
       {selectedProduct && (
@@ -251,9 +334,8 @@ Hi, I'm interested in booking an enquiry for the following product:
 function Spec({ label, value }) {
   return (
     <div className="flex justify-between border-b border-gray-100 pb-1">
-      <span className="font-medium text-gray-800">{label}</span>
-      <span className="text-gray-600">{value}</span>
+      <span className="font-medium text-gray-800 text-xs sm:text-sm">{label}</span>
+      <span className="text-gray-600 text-xs sm:text-sm">{value}</span>
     </div>
   );
 }
-

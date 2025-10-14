@@ -51,7 +51,7 @@ const Hero = () => {
   }, [slides.length]);
 
     return (
-        <div className='mx-6'>
+        <div className='bg-[#F7F7F7] py-1 px-5 sm:pt-6 sm:pb-10'>
             <div className='flex max-xl:flex-col gap-8 max-w-7xl mx-auto my-10'>
             <div className='flex-1 flex flex-col justify-center items-start gap-6'>
            <div className="relative w-full flex-1 flex flex-col justify-center items-center rounded-3xl overflow-hidden">
