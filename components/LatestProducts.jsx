@@ -31,7 +31,7 @@ const LatestProducts = () => {
 
   return (
     <div className="px-2 sm:px-6 my-12 max-w-6xl mx-auto">
-      <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={true} href='/category/products'/>
+      <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={false} />
 
       {/* --- Mobile Carousel --- */}
       <div className="relative mt-6 md:hidden">
@@ -88,7 +88,6 @@ const LatestProducts = () => {
           View more <ArrowRight size={14} />
         </Link>
       </div> */}
-      
     </div>
   )
 }

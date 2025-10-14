@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -44,6 +43,7 @@ const Navbar = () => {
     const [showPumpSubmenu, setShowPumpSubmenu] = useState(false);
   const [showMobilePumpSubmenu, setShowMobilePumpSubmenu] = useState(false);
   const dropdownRef = useRef(null);
+  const pumpSubmenuRef = useRef(null);
   const closeTimeoutRef = useRef(null);
   const pumpSubmenuRef = useRef(null);
 
@@ -69,8 +69,13 @@ const Navbar = () => {
 
   useEffect(() => {
     function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        (!pumpSubmenuRef.current || !pumpSubmenuRef.current.contains(event.target))
+      ) {
         setShowDropdown(false);
+        setShowPumpSubmenu(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -83,17 +88,25 @@ const Navbar = () => {
   };
 
   const handleMouseLeave = () => {
-    closeTimeoutRef.current = setTimeout(() => setShowDropdown(false), 200);
+    closeTimeoutRef.current = setTimeout(() => {
+      setShowDropdown(false);
+      setShowPumpSubmenu(false);
+    }, 200);
   };
 
-  // New: active logic for main tabs and dropdown
-  const isActive = (path, label) => {
-    if (label === "Categories") return showDropdown;
-    return pathname === path;
+  const handlePumpMouseEnter = () => {
+    if (closeTimeoutRef.current) clearTimeout(closeTimeoutRef.current);
+    setShowPumpSubmenu(true);
   };
+
+  const handlePumpMouseLeave = () => {
+    closeTimeoutRef.current = setTimeout(() => setShowPumpSubmenu(false), 200);
+  };
+
+  const isActive = (path) => pathname === path;
 
   return (
-    <nav className="relative bg-white shadow-sm z-50 ">
+    <nav className="relative bg-white shadow-sm z-50">
       <div className="mx-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto py-2.5">
           {/* Hamburger + Logo (Mobile) */}
@@ -110,6 +123,7 @@ const Navbar = () => {
                 <Image src={WVlogo} alt="WV logo" className="w-16 h-10" />
               </Link>
             </div>
+
             {/* Desktop Logo */}
             <div className="hidden sm:flex">
               <Link href="/" className="relative text-4xl font-semibold text-[#7C2A47]">
@@ -189,48 +203,21 @@ const Navbar = () => {
                     </div>
                       ))}
                     </div>
-                  )}
+                  ))}
                 </div>
-              ) : (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={`flex flex-row items-center px-6 py-2 rounded-lg transition font-medium
-                    ${isActive(item.href, item.label)
-                      ? "bg-[#fef4ea] border-b-4 border-[#7C2A47] text-[#7C2A47] shadow"
-                      : "hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] border-b-4 border-transparent text-slate-700"
-                    }
-                  `}
-                >
-                  <item.icon size={16} color={isActive(item.href, item.label) ? "#7C2A47" : "#888"} className="mr-2"/>
-                  <span className="mt-1 text-[15px]">{item.label}</span>
-                </Link>
-              )
-            )}
+              )}
+            </div>
+
+            <Link href="/about" className="hover:text-[#7C2A47]">About</Link>
+            <Link href="/contact" className="hover:text-[#7C2A47]">Contact</Link>
           </div>
+
           {/* Desktop Icons */}
           <div className="hidden sm:flex items-center gap-4 text-[#4A4644]">
             <Link href="/cart" className="relative flex items-center">
-              <ShoppingCart size={23} />
+              <ShoppingCart size={18} />
               {mounted && cartCount > 0 && (
                 <span className="absolute -top-1 left-3 text-[8px] text-white bg-[#7C2A47] size-3.5 rounded-full flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Link>
-            <Link
-              href={email ? "/signout" : "/login"}
-              className="p-2 hover:bg-[#E6A02A]/20 rounded-full transition"
-            >
-              <UserCircle size={24} />
-            </Link>
-          </div>
-          {/* Mobile Icons */}
-          <div className="flex items-center gap-4 sm:hidden">
-            <Link href="/cart" className="relative flex items-center">
-              <ShoppingCart size={20} />
-              {mounted && cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-[#7C2A47] size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
@@ -242,8 +229,27 @@ const Navbar = () => {
               <UserCircle size={20} />
             </Link>
           </div>
+
+          {/* Mobile Icons */}
+          <div className="flex items-center gap-4 sm:hidden">
+            <Link href="/cart" className="relative flex items-center">
+              <ShoppingCart size={25} />
+              {mounted && cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 text-[8px] text-white bg-[#7C2A47] size-3.5 rounded-full flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+            <Link
+              href={email ? "/signout" : "/login"}
+              className="p-2 hover:bg-[#E6A02A]/20 rounded-full transition"
+            >
+              <UserCircle size={27} />
+            </Link>
+          </div>
         </div>
       </div>
+
       {/* Mobile Menu */}
       {menuOpen && (
         <>
@@ -255,6 +261,7 @@ const Navbar = () => {
                   <Image src={WVlogo} alt="WV logo" className="w-20 h-auto" />
                 </Link>
               </div>
+
               {/* Menu Items */}
               <div className="flex flex-col gap-2 px-6 text-[#4A4644] flex-grow overflow-y-auto mt-2">
                 {[
@@ -349,6 +356,7 @@ const Navbar = () => {
               </div>
             </div>
           </div>
+
           {/* Overlay */}
           <div
             className="fixed inset-0 bg-black/20 backdrop-blur-[2px] z-40"
@@ -361,5 +369,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

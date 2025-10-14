@@ -77,7 +77,7 @@ Hi, I'm interested in booking an enquiry for the following product:
   return (
     <div className="max-w-7xl mx-auto py-6 px-3 sm:px-6">
       {/* ✅ Breadcrumbs */}
-      <div className="text-gray-600 text-md sm:text-lg mt-8 mb-5 sm:ml-10 space-x-1">
+      <div className="text-gray-600 text-lg mt-8 mb-5 sm:ml-10 space-x-1">
         <Link
           href="/"
           className="hover:text-black transition-colors duration-200"
@@ -122,7 +122,6 @@ Hi, I'm interested in booking an enquiry for the following product:
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                 {/* Image Section */}
                 <div className="flex justify-center">
-                  <Link href={`/product/${product.id}`} className="w-full h-full">
                   <div className="p-4 rounded-xl w-full sm:w-auto flex justify-center">
                     <img
                       src={product.images?.[0]?.src || product.images?.[0]}
@@ -130,15 +129,12 @@ Hi, I'm interested in booking an enquiry for the following product:
                       className="rounded-xl w-full h-full object-contain"
                     />
                   </div>
-                  </Link>
                 </div>
 
                 {/* Content Section */}
                 <div className="md:col-span-2 space-y-4 sm:space-y-5">
                   <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 text-center md:text-left">
-                    <Link href={`/product/${product.id}`} className="w-full h-full">
                     {product.name}
-                    </Link>
                   </h1>
                   <p className="text-gray-600 text-center md:text-left">{product.description}</p>
 
@@ -160,8 +156,8 @@ Hi, I'm interested in booking an enquiry for the following product:
                   </div>
 
                   {/* Technical Specifications */}
-                  <div className="border border-gray-200 p-4 rounded-lg shadow-sm">
-                    <h2 className="font-semibold text-gray-800  mb-3 text-center md:text-left">
+                  <div>
+                    <h2 className="font-semibold text-gray-800 mb-3 text-center md:text-left">
                       Technical Specifications:
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-3 text-gray-700">
@@ -256,4 +252,3 @@ function Spec({ label, value }) {
     </div>
   );
 }
-

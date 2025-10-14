@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { signOut } from '../../../lib/features/login/authSlice';
@@ -10,25 +10,22 @@ import {
   Home,
   User,
   LogOut,
-  CheckCircle,
-  X,
 } from 'lucide-react';
 
 const SignOut = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const { firstName, lastName } = useSelector((state) => state.auth);
-
-  const [showPopup, setShowPopup] = useState(false);
+  const { firstName, lastName, email } = useSelector((state) => state.auth);
 
   const handleSignOut = (e) => {
     e.preventDefault();
     dispatch(signOut());
-    setShowPopup(true);
+    alert('Signed out successfully!');
+    router.push('/login');
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-50 px-4 py-16 sm:px-6 lg:px-8 relative">
+    <div className=" flex items-center justify-center bg-gray-50 px-4 py-13 sm:px-6  lg:px-8">
       <div className="w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg bg-white rounded-2xl shadow-md overflow-hidden">
         {/* Profile Header */}
         <div className="flex flex-col items-center py-6 sm:py-8 border-b border-gray-100">
@@ -69,40 +66,10 @@ const SignOut = () => {
             className="w-full flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-red-50 transition text-red-600 font-medium text-xs sm:text-sm"
           >
             <LogOut className="h-4 w-4 sm:h-5 sm:w-5" />
-            Sign Out
+            Logout
           </button>
         </div>
       </div>
-
-      {/* ✅ Logout Success Popup */}
-      {showPopup && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">
-          <div className="relative bg-white p-6 rounded-xl shadow-xl text-center max-w-sm mx-auto animate-fade-in">
-            <CheckCircle className="text-green-500 w-12 h-12 mx-auto mb-3" />
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">
-              Signed Out Successfully!
-            </h3>
-            <p className="text-sm text-gray-500 mb-5">
-              You have been signed out. Please sign in again to continue.
-            </p>
-            <button
-              onClick={() => {
-                setShowPopup(false);
-                router.push('/login');
-              }}
-              className="w-full bg-[#f48638] text-white py-2.5 rounded-lg font-medium hover:bg-[#c31e5a] transition"
-            >
-              Go to Sign In
-            </button>
-            <button
-              onClick={() => setShowPopup(false)}
-              className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
-            >
-              <X size={20} />
-            </button>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
