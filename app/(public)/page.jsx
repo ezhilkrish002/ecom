@@ -9,12 +9,14 @@ import About from "@/components/About";
 import Testimonial from "@/components/Testimonial";
 import Service from "@/components/Service"
 import ProductHelpBanner from "@/components/ProductHelpBanner";
+import QuickEnquiryButton from "@/components/QuickEnquiryButton";
 
 export default function Home() {
     return (
         <div>
             <Hero />
             <Service />
+            <QuickEnquiryButton/>
             <Categories/>
             <LatestProducts />
             <BestSelling />
