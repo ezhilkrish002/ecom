@@ -129,7 +129,7 @@ const Navbar = () => {
           {/* Desktop Icons */}
           <div className="hidden sm:flex items-center gap-4 text-[#4A4644]">
             <Link href="/cart" className="relative flex items-center">
-              <ShoppingCart size={18} />
+              <ShoppingCart size={23} />
               {mounted && cartCount > 0 && (
                 <span className="absolute -top-1 left-3 text-[8px] text-white bg-[#7C2A47] size-3.5 rounded-full flex items-center justify-center">
                   {cartCount}
@@ -140,7 +140,7 @@ const Navbar = () => {
               href={email ? "/signout" : "/login"}
               className="p-2 hover:bg-[#E6A02A]/20 rounded-full transition"
             >
-              <UserCircle size={20} />
+              <UserCircle size={24} />
             </Link>
           </div>
 
