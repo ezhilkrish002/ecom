@@ -84,9 +84,9 @@ export default function About() {
 
       {/* Footer slogan section */}
       <div className="w-full flex justify-center mt-6">
-        <div className="bg-[#7C2A47] text-[#F5F5F5] py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
+        <div className="mb-5 bg-[#7C2A47] text-[#F5F5F5] py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
           <h2 className="text-xl sm:text-3xl font-semibold mb-2">
-            Quality • Trust • Innovation
+            Quality • Trust • Service
           </h2>
           <p className="text-md sm:text-xl">Driven by performance, powered by integrity.</p>
         </div>
