@@ -63,7 +63,7 @@ export default function PumpApplications() {
                 key={index}
                 className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-start"
               >
-                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full  flex items-center justify-center overflow-hidden">
+                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full  cursor-pointer flex items-center justify-center overflow-hidden">
                   <Image
                     className="scale-110 group-hover:scale-115 transition duration-300"
                     src={app.src}
@@ -95,17 +95,15 @@ export default function PumpApplications() {
       <div className="hidden md:grid mt-12 grid-cols-5 mb-5 gap-12 justify-between">
         {applications.map((app, index) => (
           <div key={index} className="group flex flex-col items-center">
-            <div className="bg-[#F5F5F5] h-32 w-32 sm:h-50 sm:w-50  flex items-center justify-center overflow-hidden">
+            <div className="bg-[#F5F5F5] h-32 w-32 sm:h-50 sm:w-50 cursor-pointer hover:shadow-[15px_-15px_0_#c31e5a] flex items-center justify-center overflow-hidden">
               <Image
-                className="scale-110 group-hover:scale-115  transition duration-300 "
+                className="scale-110 group-hover:scale-115 w-full h-full transition duration-300   "
                 
                 src={app.src}
                 alt={app.label}
-                width={200}
-                height={200}
               />
             </div>
-            <p className="text-center mt-6 text-sm sm:text-2xl w-full font-bold  text-slate-800">{app.label}</p>
+            <p className="text-center cursor-pointer mt-6 text-sm sm:text-2xl w-full font-bold  text-slate-800">{app.label}</p>
           </div>
         ))}
       </div>
