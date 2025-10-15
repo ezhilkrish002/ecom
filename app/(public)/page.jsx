@@ -8,15 +8,17 @@ import Categories from "@/components/Categories";
 import About from "@/components/About";
 import Testimonial from "@/components/Testimonial";
 import Service from "@/components/Service"
+import ProductHelpBanner from "@/components/ProductHelpBanner";
 
 export default function Home() {
     return (
         <div>
             <Hero />
+            <Service />
             <Categories/>
             <LatestProducts />
             <BestSelling />
-            <Service />
+            <ProductHelpBanner/>
             <About />
             <OurSpecs />
             <Testimonial />

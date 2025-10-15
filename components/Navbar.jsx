@@ -93,6 +93,7 @@ const Navbar = () => {
   };
 
   return (
+    <div className="sticky top-0 w-full bg-white z-50 shadow-sm">
     <nav className="relative bg-white shadow-sm z-50 ">
       <div className="mx-6">
         <div className="flex items-center justify-between max-w-7xl mx-auto py-2.5">
@@ -139,7 +140,7 @@ const Navbar = () => {
                     onClick={() => setShowDropdown(v => !v)}
                   >
                     <LayoutGrid size={18} color={showDropdown ? "#7C2A47" : "#888"} className="mb-1"/>
-                    <span className="flex items-center gap-1 py-1 ">
+                    <span className="flex items-center gap-1 py-1 text-[15px]">
                       {item.label}
                       <ChevronDown size={18} color={showDropdown ? "#7C2A47" : "#888"} />
                     </span>
@@ -195,7 +196,7 @@ const Navbar = () => {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex flex-row items-center px-6 py-2 rounded-lg transition font-medium
+                  className={`flex flex-row items-center px-1 sm:px-2 md:px-4 lg:px-6 py-2 rounded-lg transition font-medium
                     ${isActive(item.href, item.label)
                       ? "bg-[#fef4ea] border-b-4 border-[#7C2A47] text-[#7C2A47] shadow"
                       : "hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] border-b-4 border-transparent text-slate-700"
@@ -279,8 +280,8 @@ const Navbar = () => {
                   <summary
                     className="flex items-center justify-between cursor-pointer p-2 text-[#4A4644] border-l-4 border-transparent hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] hover:border-[#7C2A47] group-open:bg-[#fef4ea] group-open:text-[#7C2A47] group-open:border-l-4 group-open:border-[#7C2A47] group-open:rounded-lg transition-all duration-200"
                   >
-                    <span className="flex items-center gap-3">
-                      <LayoutGrid size={18} /> Categories
+                    <span className="flex items-center gap-3 text-[15px]">
+                      <LayoutGrid size={18} />Categories
                     </span>
                     <ChevronDown size={18} className="transition-transform group-open:rotate-180" />
                   </summary>
@@ -357,6 +358,7 @@ const Navbar = () => {
         </>
       )}
     </nav>
+    </div>
   );
 };
 
