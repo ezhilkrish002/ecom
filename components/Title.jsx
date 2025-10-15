@@ -6,7 +6,7 @@ import React from 'react'
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
 
     return (
-        <div className='flex flex-row justify-between items-center'>
+        <div className='flex flex-row justify-between items-center mb-3'>
             <div className="flex items-center gap-3">
             {/* <div className="w-[10px] h-full bg-[#c31e5aff]"></div> */}
             <div className="w-2 h-10 rounded-full bg-gradient-to-b bg-[#c31e5aff] shadow-lg"></div>
