@@ -91,7 +91,7 @@ const [categoryOpen, setCategoryOpen] = useState(true);
       <div className="md:hidden">
         <button
           onClick={() => setIsFilterOpen(true)}
-          className="p-2 bg-[#c31e5aff] text-white rounded-full hover:bg-blue-700 transition"
+          className="p-2 bg-[#c31e5aff] text-white hover:bg-blue-700 transition"
           aria-label="Open filters"
         >
           <Filter size={20} />
@@ -102,7 +102,7 @@ const [categoryOpen, setCategoryOpen] = useState(true);
       <div
         className={`${
           isFilterOpen ? "block" : "hidden"
-        } md:block fixed md:static inset-y-0 left-0 md:inset-auto bg-white md:bg-gradient-to-b md:from-white md:to-gray-50 z-50 md:z-auto p-4 sm:p-6 max-h-screen md:max-h-[90vh] overflow-y-auto md:sticky md:top-4 w-4/5 md:w-[280px] shadow-2xl md:shadow-lg rounded-r-3xl md:rounded-2xl transition-transform duration-300 ease-in-out ${isFilterOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-gray-100`}
+        } md:block fixed md:static inset-y-0 left-0 md:inset-auto bg-white md:bg-gradient-to-b md:from-white md:to-gray-50 z-50 md:z-auto p-4 sm:p-6 max-h-screen md:max-h-[90vh] overflow-y-auto md:sticky md:top-4 w-4/5 md:w-[280px] shadow-2xl md:shadow-lg  md:rounded-2xl transition-transform duration-300 ease-in-out ${isFilterOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 scrollbar-thin scrollbar-thumb-blue-400 scrollbar-track-gray-100`}
         role="dialog"
         aria-modal={isFilterOpen ? "true" : "false"}
         aria-label="Filter options"
@@ -137,7 +137,7 @@ const [categoryOpen, setCategoryOpen] = useState(true);
             </button>
             <button
               onClick={() => setIsFilterOpen(false)}
-              className="p-2 bg-gray-100 rounded-full hover:bg-gray-200 transition md:hidden"
+              className="p-2  rounded-full hover:bg-gray-200 transition md:hidden"
               aria-label="Close filters"
             >
               <X size={20} className="text-gray-700" />

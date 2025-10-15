@@ -10,10 +10,10 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 // Dummy categories array with 10 categories
 const categories = [
   "Pumps",
-  "ElectricMotor",
+  "Electric Motor",
   "Engine",
   "Generator",
-  "AirCompressor",
+  "Air Compressor",
   "Hydraulic Systems",
   "Power Tools",
   "Welding Equipment",
