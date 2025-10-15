@@ -3,21 +3,36 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { assets } from '@/assets/assets'
 import Title from './Title'
 
-// Application data
 const applications = [
   { label: 'AGRICULTURE', src: assets.agri },
   { label: 'BUILDING SERVICES', src: assets.build },
-  { label: 'WASTE WATER SOLUTIONS', src: assets.wastewater},
+  { label: 'WASTE WATER SOLUTIONS', src: assets.wastewater },
   { label: 'SOLAR PUMPS', src: assets.solar },
   { label: 'DOMESTIC PUMPS', src: assets.home },
 ]
 
 const itemsPerPageMobile = 2
 const itemsPerPageDesktop = 5
+
+// Animation Variants
+const containerVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.15, // delay between each card
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 60 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+}
 
 export default function PumpApplications() {
   const [startIndex, setStartIndex] = useState(0)
@@ -35,12 +50,18 @@ export default function PumpApplications() {
   }
 
   return (
-    <section className="px-6 mt-10 mb-15 max-w-6xl mx-auto">
-      {/* <h2 className="text-2xl font-bold text-center mb-8">Water Pump Applications</h2> */}
-         <Title
-              title={`Precision Engineering For a Better World`}
-              href={`/category/products`}
-            />
+    <motion.section
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: false, amount: 0.3 }} // 👈 CHANGED: allow animation to trigger again
+      variants={containerVariants}
+      className="px-6 mt-10 mb-15 max-w-6xl mx-auto"
+    >
+      <Title
+        title={`Precision Engineering For a Better World`}
+        href={`/category/products`}
+      />
+
       {/* --- Mobile Carousel --- */}
       <div className="md:hidden relative flex items-center justify-between w-full">
         <button
@@ -54,16 +75,18 @@ export default function PumpApplications() {
         </button>
 
         <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-x">
-          <div
+          <motion.div
             className="flex transition-transform duration-500 ease-in-out mt-5"
             style={{ transform: `translateX(-${startIndex * (100 / itemsPerPageMobile)}%)` }}
+            variants={containerVariants}
           >
             {applications.map((app, index) => (
-              <div
+              <motion.div
                 key={index}
                 className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-start"
+                variants={itemVariants}
               >
-                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full  cursor-pointer flex items-center justify-center overflow-hidden">
+                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     className="scale-110 group-hover:scale-115 transition duration-300"
                     src={app.src}
@@ -72,10 +95,10 @@ export default function PumpApplications() {
                     height={144}
                   />
                 </div>
-                <p className="text-center mt-5 text-sm  text-slate-800">{app.label}</p>
-              </div>
+                <p className="text-center mt-5 text-sm text-slate-800">{app.label}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
         <button
@@ -92,21 +115,31 @@ export default function PumpApplications() {
       </div>
 
       {/* --- Desktop Grid --- */}
-      <div className="hidden md:grid mt-12 grid-cols-5 mb-5 gap-12 justify-between">
+      <motion.div
+        className="hidden md:grid mt-12 grid-cols-5 mb-5 gap-12 justify-between"
+        variants={containerVariants}
+      >
         {applications.map((app, index) => (
-          <div key={index} className="group flex flex-col items-center">
-            <div className="bg-[#F5F5F5] h-32 w-32 sm:h-50 sm:w-50 cursor-pointer hover:shadow-[15px_-15px_0_#c31e5a] flex items-center justify-center overflow-hidden">
+          <motion.div
+            key={index}
+            className="group flex flex-col items-center"
+            variants={itemVariants}
+          >
+            <div className="bg-[#F5F5F5] h-32 w-32 sm:h-50 sm:w-50 cursor-pointer hover:shadow-[15px_-15px_0_#f48638] flex items-center justify-center overflow-hidden">
               <Image
-                className="scale-110 group-hover:scale-115 w-full h-full transition duration-300   "
-                
+                className="scale-110 group-hover:scale-115 transition duration-300"
                 src={app.src}
                 alt={app.label}
+                width={200}
+                height={200}
               />
             </div>
-            <p className="text-center cursor-pointer mt-6 text-sm sm:text-2xl w-full font-bold  text-slate-800">{app.label}</p>
-          </div>
+            <p className="text-center mt-6 text-sm sm:text-xl w-full font-bold text-slate-800">
+              {app.label}
+            </p>
+          </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   )
 }

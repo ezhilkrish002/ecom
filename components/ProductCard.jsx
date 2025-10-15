@@ -18,7 +18,8 @@ const ProductCard = ({ product }) => {
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
   // 🛒 Add to Cart
-    const handleAddToCart = (product) => {
+    const handleAddToCart = (e,product) => {
+      e.preventDefault();
       dispatch(addToCart({ productId: product.id }));
       toast.success(`${product.name} added to cart!`);
     };
@@ -94,7 +95,7 @@ Hi, I'm interested in booking an enquiry for the following product:
       }`}
     >
       {/* 🛒 Cart Icon */}
-      <button
+      {/* <button
         onClick={(e) => {
           e.preventDefault();
           handleAddToCart(product);
@@ -103,10 +104,10 @@ Hi, I'm interested in booking an enquiry for the following product:
         title="Add to Cart"
       >
         <ShoppingCart size={18} />
-      </button>
+      </button> */}
 
       {/* ✉️ Enquiry Icon */}
-      <button
+      {/* <button
         onClick={(e) => {
           e.preventDefault();
           handleEnquiry(e);
@@ -115,10 +116,10 @@ Hi, I'm interested in booking an enquiry for the following product:
         title="Send Enquiry"
       >
         <Send size={18} />
-      </button>
+      </button> */}
 
       {/* ➡️ View Details Icon */}
-      <button
+      {/* <button
         onClick={(e) => {
           e.preventDefault();
           window.location.href = `/product/${product.id}`;
@@ -127,9 +128,50 @@ Hi, I'm interested in booking an enquiry for the following product:
         title="View Details"
       >
         <ArrowRight size={18} />
-      </button>
+      </button> */}
+       
+
+
     </div>
   </div>
+  <div className="flex flex-nowrap  sm:gap-1 mt-6 justify-between w-full items-center">
+                            {/* 🛒 Add to Cart */}
+                            <div className="relative group">
+                              <button
+                                onClick={(e) => handleAddToCart(e,product)}
+                                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[#c31e5a] text-white rounded-lg hover:bg-[#a81a4d] transition-all"
+                              >
+                                <ShoppingCart size={18} />
+                              
+                              </button>
+                          
+                            </div>
+        
+                            {/* ✉️ Send Enquiry */}
+                            <div className="relative group">
+                              <button
+                                onClick={(e) => handleEnquiry(e, product)}
+                                className="flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#f48638] text-white rounded-lg hover:bg-[#e47424] transition-all"
+                              >
+                                <Send size={18} />
+                                <span className="sm:hidden">Send Enquiry</span>
+                              </button>
+                              {/* <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
+                                Send Enquiry
+                              </span> */}
+                            </div>
+        
+                            {/* 🔍 View Details */}
+                            <div className="relative group">
+                              <button
+                                className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg hover:bg-[rgb(40,36,33)] transition-all"
+                              >
+                                <ArrowRight size={18} />
+                            
+                              </button>
+                             
+                            </div>
+                          </div>
 
   {/* Product Info */}
   <div
@@ -142,9 +184,9 @@ Hi, I'm interested in booking an enquiry for the following product:
 </p>
 
     </div>
-    <div className="sm:hidden items-center">
+    {/* <div className="sm:hidden items-center">
       <ArrowRight />
-    </div>
+    </div> */}
   </div>
 </Link>
 
