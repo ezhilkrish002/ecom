@@ -6,12 +6,19 @@ import React from 'react'
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
 
     return (
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-row justify-between items-center'>
+            <div className="flex items-center gap-3">
+            {/* <div className="w-[10px] h-full bg-[#c31e5aff]"></div> */}
+            <div className="w-2 h-10 rounded-full bg-gradient-to-b bg-[#c31e5aff] shadow-lg"></div>
             <h2 className='text-2xl font-semibold text-slate-800'>{title}</h2>
-            <Link href={href} className='flex items-center gap-5 text-sm text-slate-600 mt-2'>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-r from-[#c31e5aff] to-transparent ml-4"></div>
+            <div>
+            <Link href={href} className='flex items-center gap-5 text-sm text-slate-600 mt-1'>
                 {/* <p className='max-w-lg text-center'>{description}</p> */}
                 {visibleButton && <button className='text-[#c31e5aff] flex items-center gap-1'>View more <ArrowRight size={14} /></button>}
             </Link>
+            </div>
         </div>
     )
 }
