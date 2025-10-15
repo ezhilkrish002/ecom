@@ -10,7 +10,7 @@ const Title = ({ title, description, visibleButton = true, href = '' }) => {
             <div className="flex items-center gap-3">
             {/* <div className="w-[10px] h-full bg-[#c31e5aff]"></div> */}
             <div className="w-2 h-10 rounded-full bg-gradient-to-b bg-[#c31e5aff] shadow-lg"></div>
-            <h2 className='text-2xl font-semibold text-slate-800'>{title}</h2>
+            <p className='text-2xl w-[150px] sm:w-full truncate font-semibold text-slate-800'>{title}</p>
             </div>
             <div className="flex-1 h-px bg-gradient-to-r from-[#c31e5aff] to-transparent ml-4"></div>
             <div>
