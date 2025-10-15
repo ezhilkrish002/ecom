@@ -1,4 +1,3 @@
-
 'use client';
 import Title from './Title';
 import ProductCard from './ProductCard';
@@ -11,7 +10,7 @@ const BestSelling = () => {
   const products = useSelector((state) => state.product.list);
   const categories = [...new Set(products.map((p) => p.category))];
 
-  const [current, setCurrent] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState({}); // ✅ store per-category index
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect screen size
@@ -22,37 +21,38 @@ const BestSelling = () => {
     return () => window.removeEventListener('resize', checkSize);
   }, []);
 
-  // Computed for max slide
-  const getMaxIndex = (filtered) => Math.max(0, filtered.length - 1);
-  // Get filtered category products
+  // Handlers per category
+  const handlePrev = (category) => {
+    setCurrentIndex((prev) => ({
+      ...prev,
+      [category]: Math.max(0, (prev[category] || 0) - 1),
+    }));
+  };
+
+  const handleNext = (category, max) => {
+    setCurrentIndex((prev) => ({
+      ...prev,
+      [category]: Math.min(max - 1, (prev[category] || 0) + 1),
+    }));
+  };
+
   const filteredProducts = (category) =>
     products.filter((p) => p.category === category);
-
-  // Handlers
-  const handlePrev = (categoryLength) =>
-    setCurrent((c) => Math.max(0, c - 1));
-  const handleNext = (categoryLength) =>
-    setCurrent((c) => Math.min(categoryLength - 1, c + 1));
 
   return (
     <div className="px-4 sm:px-6 my-20 max-w-6xl mx-auto">
       {categories.map((category, index) => {
         const filtered = filteredProducts(category);
-        const sorted = filtered
-          .slice()
-          .sort((a, b) => b.rating.length - a.rating.length);
-        const maxIndex = getMaxIndex(sorted);
-        const slideIndex = current; // single index for all categories
+        const sorted = filtered.slice().sort((a, b) => b.rating.length - a.rating.length);
+        const maxIndex = Math.max(0, sorted.length - 1);
+        const slideIndex = currentIndex[category] || 0; // ✅ category-specific index
 
         return (
           <div key={index} className="mb-16 relative">
-            {/* Section Title */}
-            <Title title={`${category}`} href={`/category/${category}`} />
+            <Title title={category} href={`/category/${category}`} />
 
-            {/* Carousel for mobile, grid for desktop */}
             {isMobile ? (
               <div className="relative overflow-hidden">
-                {/* Product Slider */}
                 <div
                   className="flex transition-transform duration-500 ease-in-out"
                   style={{ transform: `translateX(-${slideIndex * 100}vw)` }}
@@ -67,19 +67,18 @@ const BestSelling = () => {
                     </div>
                   ))}
                 </div>
-                {/* Chevron Buttons outside the slider */}
+
+                {/* Arrows for this category only */}
                 <button
-                  onClick={() => handlePrev(sorted.length)}
+                  onClick={() => handlePrev(category)}
                   disabled={slideIndex === 0}
-                  aria-label="Previous"
                   className="absolute top-1/2 left-4 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50"
                 >
                   <ChevronLeft size={24} className="text-gray-600" />
                 </button>
                 <button
-                  onClick={() => handleNext(sorted.length)}
+                  onClick={() => handleNext(category, sorted.length)}
                   disabled={slideIndex >= sorted.length - 1}
-                  aria-label="Next"
                   className="absolute top-1/2 right-4 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50"
                 >
                   <ChevronRight size={24} className="text-gray-600" />
@@ -100,4 +99,3 @@ const BestSelling = () => {
 };
 
 export default BestSelling;
-
