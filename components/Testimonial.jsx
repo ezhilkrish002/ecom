@@ -1,3 +1,4 @@
+
 'use client';
 import React from "react";
 import Image from "next/image";
@@ -9,7 +10,7 @@ const Testimonial = () => {
   const testimonials = [...dummyRatingsData, ...dummyRatingsData];
 
   return (
-    <section className="w-full py-16 bg-gray-50 overflow-hidden">
+    <section className="w-full py-16 bg-gray-50 overflow-x-hidden overflow-y-visible">
       <div className="max-w-6xl mx-auto text-center px-4">
         <h2 className="text-3xl font-bold text-gray-800 mb-4">
           What Our Customers Say
@@ -19,15 +20,17 @@ const Testimonial = () => {
         </p>
       </div>
 
-      {/* ✅ Marquee Container */}
-      <div className="relative w-full overflow-hidden">
+      {/* ✅ Marquee Wrapper */}
+      <div className="relative w-full overflow-x-hidden overflow-y-visible pb-8">
         <div className="flex animate-marquee hover:[animation-play-state:paused]">
           {testimonials.map((item, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center text-center 
-              hover:shadow-lg transition-all mx-4 min-w-[300px] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px]"
+              className="bg-white rounded-2xl shadow-md hover:shadow-xl 
+              transition-all duration-300 mx-3 sm:mx-4 flex flex-col items-center text-center 
+              p-5 sm:p-6 min-w-[240px] sm:min-w-[280px] md:min-w-[320px] lg:min-w-[340px]"
             >
+              {/* 👤 User Image */}
               <Image
                 src={item.user.image}
                 alt={item.user.name}
@@ -35,7 +38,9 @@ const Testimonial = () => {
                 width={80}
                 height={80}
               />
-              <h3 className="mt-4 font-semibold text-lg text-gray-800">
+
+              {/* 👤 Name */}
+              <h3 className="mt-4 font-semibold text-base sm:text-lg text-gray-800">
                 {item.user.name}
               </h3>
 
@@ -44,20 +49,20 @@ const Testimonial = () => {
                 {[...Array(5)].map((_, i) => (
                   <Star
                     key={i}
-                    className={`w-4 h-4 ${
+                    className={`w-4 h-4 sm:w-5 sm:h-5 ${
                       i < Math.round(item.rating)
                         ? "text-yellow-400 fill-yellow-400"
                         : "text-gray-300"
                     }`}
                   />
                 ))}
-                <span className="ml-2 text-sm text-gray-600">
+                <span className="ml-2 text-xs sm:text-sm text-gray-600">
                   ({item.rating})
                 </span>
               </div>
 
               {/* 💬 Review */}
-              <p className="mt-4 text-gray-600 text-sm leading-relaxed line-clamp-4">
+              <p className="mt-3 sm:mt-4 text-gray-600 text-sm sm:text-base leading-relaxed line-clamp-4">
                 “{item.review}”
               </p>
             </div>
