@@ -23,7 +23,7 @@ export default function ProductHelpBanner() {
           <h2 className="text-xl sm:text-2xl font-semibold leading-snug">
             Need help deciding on the right products?
           </h2>
-          <p className="text-sm sm:text-base text-[#7C2A47] mt-1">
+          <p className="text-md sm:text-lg text-[#7C2A47] mt-1">
             Try our product selection guide to help you in your decision making
           </p>
         </div>
