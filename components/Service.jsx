@@ -88,7 +88,7 @@ export default function PumpApplications() {
           <ChevronLeft className="h-6 w-6 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <motion.div
             className="flex transition-transform duration-500 ease-in-out mt-5"
             style={{ transform: `translateX(-${mobileIndex * (100 / itemsPerPageMobile)}%)` }}
@@ -141,7 +141,7 @@ export default function PumpApplications() {
           <ChevronLeft className="h-6 w-6 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <motion.div
             className="flex transition-transform duration-500 ease-in-out mt-5"
             style={{ transform: `translateX(-${tabletIndex * (100 / itemsPerPageTablet)}%)` }}
