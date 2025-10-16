@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-6 mt-10 mb-15 max-w-6xl mx-auto"
+      className="px-4 mt-10 mb-15 max-w-7xl mx-auto"
     >
       <Title
         title={`Precision Engineering For a Better World`}
@@ -109,7 +109,7 @@ export default function PumpApplications() {
                     height={144}
                   />
                 </div>
-                <p className="text-center mt-5 text-sm text-slate-800">{app.label}</p>
+                <p className="text-center mt-5 text-sm font-medium text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -161,7 +161,7 @@ export default function PumpApplications() {
                     height={160}
                   />
                 </div>
-                <p className="text-center mt-6 text-base font-bold text-slate-800">{app.label}</p>
+                <p className="text-center mt-6  text-md font-medium text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -182,7 +182,7 @@ export default function PumpApplications() {
 
       {/* --- Desktop Grid (lg: 1024px and above) --- */}
       <motion.div
-        className="hidden lg:grid mt-12 grid-cols-5 gap-12 justify-between"
+        className="hidden lg:grid mt-12 grid-cols-5 gap-12 justify-between max-w-7xl mx-auto"
         variants={containerVariants}
       >
         {applications.map((app, index) => (
@@ -200,7 +200,7 @@ export default function PumpApplications() {
                 height={200}
               />
             </div>
-            <p className="text-center mt-6 text-xl font-bold text-slate-800">
+            <p className="text-center mt-6 text-lg font-medium text-slate-800">
               {app.label}
             </p>
           </motion.div>

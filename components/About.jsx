@@ -55,7 +55,7 @@ export default function About() {
               {inView && <CountUp end={5000} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
             </h2>
-            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-md mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
               Total Products
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function About() {
               <sup className="text-[#f48638]">+</sup>
               
             </h2>
-            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-md mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
               Exclusive Dealers
             </p>
           </div>
@@ -77,7 +77,7 @@ export default function About() {
               <sup className="text-[#f48638]">+</sup>
 
             </h2>
-            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-lg mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
               Pumps Sold / Day
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function About() {
 
       {/* Footer slogan section */}
       <div className="w-full flex justify-center mt-6">
-        <div className="mb-5 bg-[#7C2A47] text-[#F5F5F5] py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
+        <div className="mb-5 bg-[#7C2A47] text-[#F5F5F5] m-6 py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
           <h2 className="text-xl sm:text-3xl font-semibold mb-2">
             Quality • Trust • Service
           </h2>

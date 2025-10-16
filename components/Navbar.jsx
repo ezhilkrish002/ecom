@@ -26,6 +26,7 @@ import { useSelector } from "react-redux";
 import WVlogo from "../assets/YUCHII LOGO.png";
 // import { categories } from "@/lib/data";
 import { categories,pumpSubCategories  } from "@/assets/assets";
+import { set } from "date-fns";
 
 const navItems = [
   { label: "Home", href: "/", icon: Home },
@@ -86,6 +87,8 @@ const Navbar = () => {
     closeTimeoutRef.current = setTimeout(() => setShowDropdown(false), 200);
   };
 
+  const [isHovered, setIsHovered] = useState(false); // New: track hover state
+
   // New: active logic for main tabs and dropdown
   const isActive = (path, label) => {
     if (label === "Categories") return showDropdown;
@@ -140,7 +143,7 @@ const Navbar = () => {
                     onClick={() => setShowDropdown(v => !v)}
                   >
                     <LayoutGrid size={18} color={showDropdown ? "#7C2A47" : "#888"} className="mb-1"/>
-                    <span className="flex items-center gap-1 py-1 text-[15px]">
+                    <span className="flex items-center gap-1 pb-2 mt-1 text-[15px]">
                       {item.label}
                       <ChevronDown size={18} color={showDropdown ? "#7C2A47" : "#888"} />
                     </span>
@@ -193,19 +196,41 @@ const Navbar = () => {
                   )}
                 </div>
               ) : (
+                // <Link
+                //   key={item.href}
+                //   href={item.href}
+                  
+                //   className={`flex flex-row items-center px-1 sm:px-2 md:px-4 lg:px-6 py-2 rounded-lg transition font-medium
+                //     ${isActive(item.href, item.label)
+                //       ? "bg-[#fef4ea] border-b-4 border-[#7C2A47] text-[#7C2A47] shadow"
+                //       : "hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] border-b-4 border-transparent text-slate-700"
+                //     }
+                //   `}
+                // > 
+                  
+                //   <item.icon size={16} color={isActive(item.href, item.label) ? "#7C2A47" : "#888"} className="mr-2"/>
+                 
+                //   <span className="mt-0 text-[15px]">{item.label}</span>
+                // </Link>
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`flex flex-row items-center px-1 sm:px-2 md:px-4 lg:px-6 py-2 rounded-lg transition font-medium
+                  className={`group flex flex-row items-center px-1 sm:px-2 md:px-4 lg:px-6 py-2 rounded-lg transition font-medium
                     ${isActive(item.href, item.label)
                       ? "bg-[#fef4ea] border-b-4 border-[#7C2A47] text-[#7C2A47] shadow"
                       : "hover:bg-[#E6A02A]/10 hover:text-[#7C2A47] border-b-4 border-transparent text-slate-700"
                     }
                   `}
                 >
-                  <item.icon size={16} color={isActive(item.href, item.label) ? "#7C2A47" : "#888"} className="mr-2"/>
-                  <span className="mt-1 text-[15px]">{item.label}</span>
+                  <item.icon
+                    size={16}
+                    className={`mr-2 transition-colors duration-300
+                      ${isActive(item.href, item.label) ? "text-[#7C2A47]" : "text-gray-500 group-hover:text-[#7C2A47]"}`
+                    }
+                  />
+                  <span className="mt-0 text-[15px]">{item.label}</span>
                 </Link>
+
               )
             )}
           </div>
@@ -227,7 +252,7 @@ const Navbar = () => {
             </Link>
           </div>
           {/* Mobile Icons */}
-          <div className="flex items-center gap-4 sm:hidden">
+          <div className="flex items-center gap-4 sm:hidden ">
             <Link href="/cart" className="relative flex items-center">
               <ShoppingCart size={20} />
               {mounted && cartCount > 0 && (
@@ -248,7 +273,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {menuOpen && (
         <>
-          <div className="sm:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-50 transform transition-transform duration-300">
+          <div className="lg:hidden fixed top-0 left-0 h-full w-72 bg-white shadow-xl z-50 transform transition-transform duration-300">
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-center px-6 py-4 border-b border-[#E6A02A]/40">
