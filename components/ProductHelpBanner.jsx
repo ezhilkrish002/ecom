@@ -13,9 +13,9 @@ export default function ProductHelpBanner() {
       {/* Left Icon + Text */}
       <div className="flex items-center gap-4 text-center sm:text-left">
         {/* Icon */}
-        <div className="flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-[#7C2A47] border-2 border-white rounded-full ">
+        <div className="flex items-center justify-center w-[30vw] max-w-[7.5rem] sm:max-w-[5rem] aspect-square bg-[#7C2A47] border-2 border-white rounded-full ">
           {/* <HelpCircle size={36} strokeWidth={2.5} className="text-white" /> */}
-          <Image src={assets.productHelpBanner} alt="Help Icon" className="w-10 h-10 sm:w-12 sm:h-12" />
+          <Image src={assets.productHelpBanner} alt="Help Icon" className="w-9 h-9 sm:w-12 sm:h-12" />
         </div>
 
         {/* Text Content */}
