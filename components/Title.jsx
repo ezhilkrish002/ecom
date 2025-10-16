@@ -1,4 +1,5 @@
 
+
 'use client'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
@@ -6,7 +7,7 @@ import React from 'react'
 
 const Title = ({ title, visibleButton = true, href = '' }) => {
     return (
-        <div className="flex items-center justify-between mb-3 w-full gap-3">
+        <div className="flex items-center justify-between mb-5 w-full gap-3">
             {/* Title + Line */}
             <div className="flex items-center gap-3 flex-1 min-w-0">
                 {/* Vertical colored bar */}
@@ -17,15 +18,24 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
                     {title}
                 </p>
 
-                {/* Horizontal line that starts after the title text and extends */}
+                {/* Horizontal line */}
                 <div className="flex-1 h-px bg-gradient-to-r from-[#c31e5aff] to-transparent"></div>
             </div>
 
             {/* View More Button */}
             {visibleButton && (
                 <div className="flex-shrink-0 ml-3">
-                    <Link href={href} className="flex items-center gap-1 text-xs sm:text-sm text-[#c31e5aff] whitespace-nowrap">
-                        View more <ArrowRight size={16} />
+                    <Link
+                        href={href}
+                        className="flex items-center gap-1 text-xs sm:text-xl text-[#c31e5aff] whitespace-nowrap transition-all duration-300 group relative"
+                    >
+                        <span className="relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:left-0 after:-bottom-1 after:bg-[#c31e5aff] after:transition-all after:duration-300 group-hover:after:w-full">
+                            View more
+                        </span>
+                        <ArrowRight
+                            size={16}
+                            className="transition-transform duration-300 group-hover:translate-x-1"
+                        />
                     </Link>
                 </div>
             )}
@@ -34,4 +44,3 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
 }
 
 export default Title
-

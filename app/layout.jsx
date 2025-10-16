@@ -16,6 +16,7 @@ export default function RootLayout({ children }) {
             <body className={`${outfit.className} antialiased`}>
                 <StoreProvider>
                     <Toaster />
+                    
                     {children}
                 </StoreProvider>
             </body>
