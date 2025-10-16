@@ -36,14 +36,14 @@ import home from "./service/home.jpg"
 import solar from "./service/solar.jpg"
 import wastewater from "./service/wastewater.jpg"
 import productHelpBanner from "./productHelpBannerIcon.png"
-
+import recent1 from "./recent1.jpg"
 
 export const assets = {
     upload_area, hero_model_img,
     hero_product_img1, hero_product_img2, gs_logo,
     product_img1, product_img2, product_img3, product_img4, product_img5, product_img6,
     product_img7, product_img8, product_img9, product_img10, product_img11, product_img12,product_img0,banner1,banner2,banner3,banner,
-    product_img01,product_img02,product_img03,product_img04,product_img05,agri,build,home,solar,wastewater,productHelpBanner
+    product_img01,product_img02,product_img03,product_img04,product_img05,agri,build,home,solar,wastewater,productHelpBanner,recent1
 }
 
 export const categories = ["Pumps","ElectricMotor","Engine","Generator","AirCompressor"];

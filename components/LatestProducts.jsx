@@ -27,9 +27,12 @@ const LatestProducts = () => {
       })
     }
   }
+  /**md:max-w-5xl lg:max-w-6xl xl:max-w-8xl 2xl:max-w-8xl 
+   * md:px-8 lg:px-10 xl:px-12 2xl:px-16
+  */
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 my-20 mx-auto w-full max-w-[95%] sm:max-w-[90%] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+    <div className="px-4  my-20 mx-auto max-w-7xl">
       <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={true} href='/category/products'/>
 
       {/* --- Responsive Carousel --- */}
