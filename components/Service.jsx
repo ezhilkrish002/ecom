@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-4 mt-10 mb-15 max-w-7xl mx-auto"
+      className="px-4 mt-10 mb-15 max-w-7xl mx-auto overflow-x-hidden"
     >
       <Title
         title={`Precision Engineering For a Better World`}
