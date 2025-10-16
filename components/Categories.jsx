@@ -63,7 +63,7 @@ export default function Categories() {
   }
 
   return (
-    <div className="px-6 mt-10 sm:my-30 max-w-6xl mx-auto">
+    <div className="px-4 mt-10 sm:my-30 max-w-7xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* Mobile / Tablet */}
@@ -151,7 +151,7 @@ export default function Categories() {
                     className="scale-110 group-hover:scale-115 transition duration-300"
                   />
                 </div>
-                <p className="text-center mt-2 text-lg text-slate-800">{cat}</p>
+                <p className="font-medium text-center mt-2 text-lg text-slate-800">{cat}</p>
               </Link>
             ))}
           </div>

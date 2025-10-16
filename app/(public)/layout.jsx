@@ -11,8 +11,8 @@ export default function PublicLayout({ children }) {
         <Toaster position="top-center" reverseOrder={false} />
             <Navbar />
             {children}
-           
-   <Footer />
+        
+            <Footer />
         </>
     );
 }
