@@ -191,7 +191,7 @@ export default function PumpApplications() {
             className="group flex flex-col items-center"
             variants={itemVariants}
           >
-            <div className="bg-[#F5F5F5] h-32 w-32 cursor-pointer hover:shadow-[15px_-15px_0_#f48638] flex items-center justify-center overflow-hidden">
+            <div className="bg-[#F5F5F5] h-32 w-32 sm:h-50 sm:w-50 cursor-pointer hover:shadow-[15px_-15px_0_#f48638] flex items-center justify-center overflow-hidden">
               <Image
                 className="scale-110 group-hover:scale-115 transition duration-300"
                 src={app.src}
