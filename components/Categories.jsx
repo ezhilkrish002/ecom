@@ -38,17 +38,29 @@ const categoryImages = {
 const Categories = () => {
   const [startIndex, setStartIndex] = useState(0)
   const itemsPerPageMobile = 2 // Mobile view shows 2 items per page
+  const itemsPerPageTablet = 3 // Tablet view shows 3 items per page
   const itemsPerPageDesktop = 5 // Desktop view shows 5 items per page
 
+  const getItemsPerPage = () => {
+    if (typeof window !== 'undefined') {
+      if (window.innerWidth >= 1024) return itemsPerPageDesktop
+      if (window.innerWidth >= 768) return itemsPerPageTablet
+      return itemsPerPageMobile
+    }
+    return itemsPerPageMobile // Default for SSR
+  }
+
   const handleNext = () => {
-    if (startIndex + itemsPerPageMobile < categories.length) {
-      setStartIndex(startIndex + itemsPerPageMobile)
+    const itemsPerPage = getItemsPerPage()
+    if (startIndex + itemsPerPage < categories.length) {
+      setStartIndex(startIndex + itemsPerPage)
     }
   }
 
   const handlePrev = () => {
-    if (startIndex - itemsPerPageMobile >= 0) {
-      setStartIndex(startIndex - itemsPerPageMobile)
+    const itemsPerPage = getItemsPerPage()
+    if (startIndex - itemsPerPage >= 0) {
+      setStartIndex(startIndex - itemsPerPage)
     }
   }
 
@@ -57,7 +69,7 @@ const Categories = () => {
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* --- Mobile View (Touch-Scrollable Carousel with Hidden Scrollbar) --- */}
-      <div className="mt-8 md:hidden relative flex items-center justify-between w-full">
+      <div className="mt-8 lg:hidden relative flex items-center justify-between w-full">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
@@ -71,13 +83,15 @@ const Categories = () => {
         <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-x">
           <div
             className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(-${startIndex * (100 / itemsPerPageMobile)}%)` }}
+            style={{ transform: `translateX(-${startIndex * (100 / getItemsPerPage())}%)` }}
           >
             {categories.map((cat, index) => (
               <Link
                 key={index}
                 href={`/category/${cat}`}
-                className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-start"
+                className={`group flex-shrink-0 px-4 flex flex-col items-center snap-start ${
+                  getItemsPerPage() === itemsPerPageMobile ? 'w-1/2' : 'w-1/3'
+                }`}
               >
                 <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
@@ -96,9 +110,9 @@ const Categories = () => {
 
         <button
           onClick={handleNext}
-          disabled={startIndex + itemsPerPageMobile >= categories.length}
+          disabled={startIndex + getItemsPerPage() >= categories.length}
           className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 cursor-pointer transition-all duration-200 -mr-6 ${
-            startIndex + itemsPerPageMobile >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
+            startIndex + getItemsPerPage() >= categories.length ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
           <ChevronRight className="h-8 w-8 text-gray-700" />
@@ -108,7 +122,7 @@ const Categories = () => {
       {/* --- Desktop View --- */}
       {categories.length <= 5 ? (
         // Static Grid for 5 or fewer categories
-        <div className="hidden md:grid mt-12 grid-cols-5 gap-6 justify-between">
+        <div className="hidden lg:grid mt-12 grid-cols-5 gap-6 justify-between">
           {categories.map((cat, index) => (
             <Link key={index} href={`/category/${cat}`} className="group max-xl:mx-auto">
               <div className="flex flex-col justify-center items-center">
@@ -128,7 +142,7 @@ const Categories = () => {
         </div>
       ) : (
         // Scrollable Carousel for more than 5 categories
-        <div className="hidden md:block mt-12 relative flex items-center justify-between w-full">
+        <div className="hidden lg:block mt-12 relative flex items-center justify-between w-full">
           <button
             onClick={handlePrev}
             disabled={startIndex === 0}
