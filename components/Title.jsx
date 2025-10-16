@@ -5,7 +5,7 @@ import React from 'react'
 
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
   return (
-    <div className='flex flex-row justify-between items-center mb-3'>
+    <div className='flex flex-row justify-between items-center mb-5'>
       <div className="flex items-center gap-3">
         <div className="w-2 h-10 rounded-full bg-[#c31e5aff] shadow-lg"></div>
         <p className='text-lg sm:text-2xl w-[150px] sm:w-full truncate font-semibold text-slate-800'>
