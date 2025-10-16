@@ -9,11 +9,11 @@ import { assets } from '@/assets/assets'
 import Title from './Title'
 
 const applications = [
-  { label: 'AGRICULTURE', src: assets.agri },
-  { label: 'BUILDING SERVICES', src: assets.build },
-  { label: 'WASTE WATER SOLUTIONS', src: assets.wastewater },
-  { label: 'SOLAR PUMPS', src: assets.solar },
-  { label: 'DOMESTIC PUMPS', src: assets.home },
+  { label: 'Agriculture', src: assets.agri },
+  { label: 'Building Services', src: assets.build },
+  { label: 'Waste Water Solutions', src: assets.wastewater },
+  { label: 'Solar Pumps', src: assets.solar },
+  { label: 'Domastic Pumps', src: assets.home },
 ]
 
 const itemsPerPageMobile = 2
@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-4 mt-10 mb-15 max-w-7xl mx-auto"
+      className="px-4 mt-10 mb-2 max-w-7xl mx-auto"
     >
       <Title
         title={`Precision Engineering For a Better World`}
@@ -109,7 +109,8 @@ export default function PumpApplications() {
                     height={144}
                   />
                 </div>
-                <p className="text-center mt-5 text-sm font-medium text-slate-800">{app.label}</p>
+
+                <p className="text-center mt-3 font-medium text-xl sm:text-lg text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -161,7 +162,7 @@ export default function PumpApplications() {
                     height={160}
                   />
                 </div>
-                <p className="text-center mt-6  text-md font-medium text-slate-800">{app.label}</p>
+                <p className=" text-center mt-2 font-medium text-xl sm:text-lg text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -200,7 +201,7 @@ export default function PumpApplications() {
                 height={200}
               />
             </div>
-            <p className="text-center mt-6 text-lg font-medium text-slate-800">
+            <p className="font-medium text-center mt-2 text-xl sm:text-lg text-slate-800">
               {app.label}
             </p>
           </motion.div>

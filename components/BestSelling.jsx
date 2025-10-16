@@ -32,6 +32,7 @@ const BestSelling = () => {
               sm:grid-cols-2    /* Tablet: 2 per row */
               lg:grid-cols-4    /* Desktop: 4 per row */
               gap-6 xl:gap-8
+              mt-10
             "
           >
             {group.items.map((product, i) => (

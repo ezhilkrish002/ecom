@@ -63,11 +63,11 @@ export default function Categories() {
   }
 
   return (
-    <div className="px-4 mt-10 sm:my-30 max-w-7xl mx-auto">
+    <div className="px-4 mt-1 sm:my-30 max-w-7xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* Mobile / Tablet */}
-      <div className="mt-8 lg:hidden relative flex items-center justify-between w-full">
+      <div className="mt-2 lg:hidden relative flex items-center justify-between w-full">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
@@ -100,7 +100,7 @@ export default function Categories() {
                     className="scale-110 group-hover:scale-115 transition duration-300"
                   />
                 </div>
-                <p className="text-center mt-3 text-base text-slate-800">{cat}</p>
+                <p className="font-medium text-center mt-2 text-xl sm:text-lg  text-slate-800">{cat}</p>
               </Link>
             ))}
           </div>
@@ -120,7 +120,7 @@ export default function Categories() {
       </div>
 
       {/* Desktop */}
-      <div className="hidden lg:block mt-12 relative flex items-center justify-between w-full">
+      <div className="hidden lg:block mt-10 relative flex items-center justify-between w-full">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}

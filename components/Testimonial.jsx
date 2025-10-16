@@ -35,10 +35,10 @@ const Testimonial = () => {
   return (
     <section className="w-full py-15 bg-gray-50 ">
       <div className="max-w-6xl mx-auto px-3">
-        <h2 className="text-3xl font-bold text-gray-800 mb-4 text-center">
+        <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-4 text-center">
           What Our Customers Say
         </h2>
-        <p className="text-gray-600 mb-10 text-center">
+        <p className="text-gray-900 text-lg mb-10 text-center">
           We value every piece of feedback — here’s what our happy customers have to say!
         </p>
 
@@ -84,7 +84,7 @@ const Testimonial = () => {
                   width={80}
                   height={80}
                 />
-                <h3 className="mt-4 font-semibold text-lg text-gray-800">
+                <h3 className="mt-4 font-semibold text-xl text-gray-800">
                   {item.user.name}
                 </h3>
 
@@ -106,7 +106,7 @@ const Testimonial = () => {
                 </div>
 
                 {/* 💬 Review */}
-                <p className="mt-4 text-gray-600 text-sm leading-relaxed px-4 line-clamp-4">
+                <p className="mt-4 text-gray-600 text-lg leading-relaxed px-4 line-clamp-4">
                   “{item.review}”
                 </p>
               </div>

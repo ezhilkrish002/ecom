@@ -3,6 +3,7 @@ import React, { useRef } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import {assets} from '@/assets/assets'
 import Image from 'next/image'
+import Title from '@/components/Title'
 const recentProducts = [
   { id: 1, img: assets.recent1 },
   { id: 2, img: assets.recent1 },
@@ -39,15 +40,19 @@ const RecentProducts = () => {
     <div className="px-4 my-20  mx-auto max-w-7xl">
       {/* Title Section */}
       <div className="flex flex-col items-start mb-10">
-        <h2 className="text-4xl font-bold">
-          <span className="text-[#7C2A47]">RECENT</span>{' '}
-          <span className="text-gray-900">PRODUCTS</span>
+        <h2 className="text-xl sm:text-2xl font-semibold">
+          <span className="text-[#7C2A47]">Recent</span>{' '}
+          <span className="text-gray-900">Products</span>
         </h2>
+          {/* <Title
+                title={`Recent Products`}
+                href={`/category/products`}
+              /> */}
 
         {/* Horizontal Line */}
         <div className="w-full border-t border-gray-300 mt-4 mb-6"></div>
 
-        <p className="text-lg text-[#E6A02A] font-semibold">
+        <p className="font-medium text-md sm:text-lg  text-[#E6A02A]">
           INDUSTRY DESIGNS, INSPIRING GROWTH
         </p>
       </div>
