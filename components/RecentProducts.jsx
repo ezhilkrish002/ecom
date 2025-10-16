@@ -82,20 +82,12 @@ const RecentProducts = () => {
             >
               <div className="bg-white rounded-lg overflow-hidden">
                 <Image
-                  src={product.img}
-                  alt={`Product ${product.id}`}
+                  src={product?.img}
+                  alt={`Product ${product?.id}`}
                   className="w-full h-[250px] object-contain "
                 />
               </div>
-              {/* <div className="h-full w-full flex items-center justify-center overflow-hidden">
-                                <Image
-                                  className="scale-110 group-hover:scale-115 transition duration-300"
-                                  src={product.img}
-                                  alt={product.id}
-                                  width={160}
-                                  height={160}
-                                />
-                              </div> */}
+              
             </div>
           ))}
         </div>
