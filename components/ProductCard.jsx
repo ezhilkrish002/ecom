@@ -76,7 +76,7 @@ Hi, I'm interested in booking an enquiry for the following product:
           />
         </div> */}
         <div
-            className="relative w-full h-[400px] sm:h-[360px] md:h-[380px] lg:h-[400px] rounded-lg overflow-hidden hover:-translate-y-5 transition-transform duration-300"
+            className="relative w-full h-[480px] sm:h-[360px] md:h-[380px] lg:h-[400px] rounded-lg overflow-hidden hover:-translate-y-5 transition-transform duration-300"
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
           >
