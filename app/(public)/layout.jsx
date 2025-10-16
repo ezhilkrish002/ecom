@@ -10,7 +10,7 @@ export default function PublicLayout({ children }) {
     return (
         <>
         <Toaster position="top-center" reverseOrder={false} />
-        <Banner/>
+            <Banner />
             <Navbar />
             {children}
         

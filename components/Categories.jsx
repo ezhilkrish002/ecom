@@ -78,7 +78,7 @@ export default function Categories() {
           <ChevronLeft className="h-8 w-8 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${startIndex * (100 / itemsPerPage)}%)` }}
