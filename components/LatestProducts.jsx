@@ -1,83 +1,86 @@
-'use client'
-import React, { useRef } from 'react'
-import Title from './Title'
-import ProductCard from './ProductCard'
-import { useSelector } from 'react-redux'
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
-import Link from 'next/link'
+'use client';
+import Title from './Title';
+import ProductCard from './ProductCard';
+import { useSelector } from 'react-redux';
+import { useState, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 const LatestProducts = () => {
-  const products = useSelector(state => state.product.list)
-  const carouselRef = useRef(null)
+  const products = useSelector((state) => state.product.list);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const displayQuantity = 4; // Number of products to show in grid on desktop
 
-  const scrollLeft = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: -carouselRef.current.offsetWidth, // scroll by full width
-        behavior: 'smooth',
-      })
-    }
-  }
+  // Detect screen size
+  useEffect(() => {
+    const checkSize = () => setIsMobile(window.innerWidth < 640);
+    checkSize();
+    window.addEventListener('resize', checkSize);
+    return () => window.removeEventListener('resize', checkSize);
+  }, []);
 
-  const scrollRight = () => {
-    if (carouselRef.current) {
-      carouselRef.current.scrollBy({
-        left: carouselRef.current.offsetWidth,
-        behavior: 'smooth',
-      })
-    }
-  }
+  // Handlers for carousel
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = (max) => {
+    setCurrentIndex((prev) => Math.min(max - 1, prev + 1));
+  };
+
+  // Sort products by creation date (newest first)
+  const sortedProducts = products
+    .slice()
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 my-20 mx-auto w-full max-w-[95%] sm:max-w-[90%] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
-      <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={true} href='/category/products'/>
+    <div className="px-4 sm:px-6 my-20 max-w-6xl mx-auto">
+      <Title
+        title="Latest Products"
+        description="Explore our newest arrivals"
+        visibleButton={true}
+        href="/category/products"
+      />
 
-      {/* --- Responsive Carousel --- */}
-      <div className="relative mt-6">
-        {/* Left Arrow */}
-        <button
-          onClick={scrollLeft}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </button>
-
-        {/* Right Arrow */}
-        <button
-          onClick={scrollRight}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
-        >
-          <ChevronRight className="w-6 h-6" />
-        </button>
-
-        {/* Scrollable container */}
+      {/* Carousel for all screen sizes */}
+      <div className="relative overflow-hidden mt-6">
         <div
-          ref={carouselRef}
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide space-x-4"
+          className="flex transition-transform duration-500 ease-in-out snap-x snap-mandatory"
+          style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 25)}%)` }}
         >
-          {products
-            .slice()
-            .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-            .map((product, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 snap-start"
-              >
-                <ProductCard product={product} />
-              </div>
+          {sortedProducts.map((product, i) => (
+            <div
+              key={i}
+              className={`flex-none ${isMobile ? 'w-full' : 'w-1/4'} snap-start px-2`}
+              style={{ flexShrink: 0 }}
+            >
+              <ProductCard product={product} />
+            </div>
           ))}
         </div>
+
+        {/* Navigation Arrows */}
+        {sortedProducts.length > (isMobile ? 1 : displayQuantity) && (
+          <>
+            <button
+              onClick={handlePrev}
+              disabled={currentIndex === 0}
+              className="absolute top-1/2 left-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
+            >
+              <ChevronLeft size={24} className="text-gray-600" />
+            </button>
+            <button
+              onClick={() => handleNext(sortedProducts.length)}
+              disabled={currentIndex >= sortedProducts.length - (isMobile ? 1 : displayQuantity)}
+              className="absolute top-1/2 right-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
+            >
+              <ChevronRight size={24} className="text-gray-600" />
+            </button>
+          </>
+        )}
       </div>
-
-      {/* Optional View More */}
-      {/* <div className="mt-4 text-right px-2">
-        <Link href="/shop" className="flex items-center gap-1 text-sm text-[#c31e5aff] justify-end">
-          View more <ArrowRight size={14} />
-        </Link>
-      </div> */}
-      
     </div>
-  )
-}
+  );
+};
 
-export default LatestProducts
+export default LatestProducts;
