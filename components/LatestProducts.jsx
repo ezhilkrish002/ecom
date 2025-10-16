@@ -34,7 +34,7 @@ const LatestProducts = () => {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
   return (
-    <div className="px-4 sm:px-6 my-20 max-w-6xl mx-auto">
+    <div className="px-4 sm:px-6 my-20 max-w-7xl mx-auto">
       <Title
         title="Latest Products"
         description="Explore our newest arrivals"
@@ -43,7 +43,7 @@ const LatestProducts = () => {
       />
 
       {/* Carousel for all screen sizes */}
-      <div className="relative overflow-hidden mt-6">
+      <div className="relative overflow-hidden -mx-2 mt-6 ">
         <div
           className="flex transition-transform duration-500 ease-in-out snap-x snap-mandatory"
           style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 25)}%)` }}
@@ -65,14 +65,14 @@ const LatestProducts = () => {
             <button
               onClick={handlePrev}
               disabled={currentIndex === 0}
-              className="absolute top-1/2 left-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
+              className="absolute top-50 sm:top-45 left-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
             >
               <ChevronLeft size={24} className="text-gray-600" />
             </button>
             <button
               onClick={() => handleNext(sortedProducts.length)}
               disabled={currentIndex >= sortedProducts.length - (isMobile ? 1 : displayQuantity)}
-              className="absolute top-1/2 right-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
+              className="absolute top-50 sm:top-45 right-2 transform -translate-y-1/2 p-2 bg-white rounded-full shadow-lg hover:bg-gray-200 disabled:opacity-50 z-20"
             >
               <ChevronRight size={24} className="text-gray-600" />
             </button>

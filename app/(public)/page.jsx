@@ -10,6 +10,8 @@ import Testimonial from "@/components/Testimonial";
 import Service from "@/components/Service"
 import ProductHelpBanner from "@/components/ProductHelpBanner";
 import QuickEnquiryButton from "@/components/QuickEnquiryButton";
+import BottomBanner from "@/components/BottomBanner";
+import RecentProducts from "@/components/RecentProducts";
 
 export default function Home() {
     return (
@@ -20,6 +22,8 @@ export default function Home() {
             <Categories/>
             <LatestProducts />
             <BestSelling />
+            <RecentProducts/>
+            {/* <BottomBanner/> */}
             <ProductHelpBanner/>
             <About />
             <OurSpecs />
