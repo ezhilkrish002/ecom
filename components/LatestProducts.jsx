@@ -29,7 +29,7 @@ const LatestProducts = () => {
   }
 
   return (
-    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 my-20 mx-auto w-full max-w-[95%] sm:max-w-[90%] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
+    <div className="px-4 sm:px-4 md:px-8 lg:px-10 xl:px-12 2xl:px-16 my-20 mx-auto w-full max-w-[95%] sm:max-w-[90%] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
       <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={true} href='/category/products'/>
 
       {/* --- Responsive Carousel --- */}
@@ -37,7 +37,7 @@ const LatestProducts = () => {
         {/* Left Arrow */}
         <button
           onClick={scrollLeft}
-          className="absolute top-1/2 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
+          className="absolute top-50 sm:top-45 left-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
         >
           <ChevronLeft className="w-6 h-6" />
         </button>
@@ -45,7 +45,7 @@ const LatestProducts = () => {
         {/* Right Arrow */}
         <button
           onClick={scrollRight}
-          className="absolute top-1/2 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
+          className="absolute top-50 sm:top-45 right-2 transform -translate-y-1/2 bg-white p-2 rounded-full shadow-md z-20 hover:bg-gray-200"
         >
           <ChevronRight className="w-6 h-6" />
         </button>
