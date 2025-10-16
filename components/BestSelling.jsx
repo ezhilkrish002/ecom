@@ -47,7 +47,7 @@ const BestSelling = () => {
 
                   {/* Mobile line between single-column rows (optional) */}
                   {(i + 1) % 1 === 0 && i < total - 1 && (
-                    <div className="hidden col-span-1">
+                    <div className="block sm:hidden col-span-1">
                       <hr className="border-t border-gray-200 my-4" />
                     </div>
                   )}
