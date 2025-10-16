@@ -63,7 +63,7 @@ export default function Categories() {
   }
 
   return (
-    <div className="px-4 mt-10 sm:my-30 max-w-7xl mx-auto">
+    <div className="px-4 mt-10 sm:my-20 max-w-7xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* Mobile / Tablet */}

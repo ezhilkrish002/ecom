@@ -34,21 +34,21 @@ const BestSelling = () => {
                   {/* Desktop line after every 4 items, except the last row */}
                   {(i + 1) % 4 === 0 && !isLastRow && (
                     <div className="hidden lg:block col-span-4">
-                      <hr className="border-t border-gray-500 my-8" />
+                      <hr className="border-t border-gray-300 my-8" />
                     </div>
                   )}
 
                   {/* Tablet line after every 2 items, except the last row */}
                   {(i + 1) % 2 === 0 && i < total - 2 && (
                     <div className="hidden sm:block lg:hidden col-span-2">
-                      <hr className="border-t border-gray-500 my-6" />
+                      <hr className="border-t border-gray-300 my-6" />
                     </div>
                   )}
 
                   {/* Mobile line between single-column rows (optional) */}
                   {(i + 1) % 1 === 0 && i < total - 1 && (
                     <div className="block sm:hidden col-span-1">
-                      <hr className="border-t border-gray-500 my-4" />
+                      <hr className="border-t border-gray-300 my-4" />
                     </div>
                   )}
                 </React.Fragment>
