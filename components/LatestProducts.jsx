@@ -43,7 +43,7 @@ const LatestProducts = () => {
       />
 
       {/* Carousel for all screen sizes */}
-      <div className="relative overflow-hidden mt-6">
+      <div className="relative overflow-hidden -mx-2 mt-6 ">
         <div
           className="flex transition-transform duration-500 ease-in-out snap-x snap-mandatory"
           style={{ transform: `translateX(-${currentIndex * (isMobile ? 100 : 25)}%)` }}
