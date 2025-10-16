@@ -55,7 +55,7 @@ export default function About() {
               {inView && <CountUp end={5000} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
             </h2>
-            <p className="text-md mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide  py-2 rounded-lg">
               Total Products
             </p>
           </div>
@@ -66,7 +66,7 @@ export default function About() {
               <sup className="text-[#f48638]">+</sup>
               
             </h2>
-            <p className="text-md mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide  py-2 rounded-lg">
               Exclusive Dealers
             </p>
           </div>
@@ -77,7 +77,7 @@ export default function About() {
               <sup className="text-[#f48638]">+</sup>
 
             </h2>
-            <p className="text-lg mt-5 font-semibold text-gray-700 tracking-wide bg-gray-100 py-2 rounded-lg shadow-sm">
+            <p className="text-2xl mt-5 font-semibold text-gray-700 tracking-wide py-2 rounded-lg">
               Pumps Sold / Day
             </p>
           </div>
