@@ -6,7 +6,7 @@ import React from 'react'
 const Title = ({ title, description, visibleButton = true, href = '' }) => {
 
     return (
-        <div className='flex flex-row justify-between items-center'>
+        <div className='flex flex-row justify-between items-center mb-3'>
             <div className="flex items-center gap-3">
             {/* <div className="w-[10px] h-full bg-[#c31e5aff]"></div> */}
             <div className="w-2 h-10 rounded-full bg-gradient-to-b bg-[#c31e5aff] shadow-lg"></div>
@@ -16,7 +16,7 @@ const Title = ({ title, description, visibleButton = true, href = '' }) => {
             <div>
             <Link href={href} className='flex items-center gap-5 text-sm text-slate-600 mt-1'>
                 {/* <p className='max-w-lg text-center'>{description}</p> */}
-                {visibleButton && <button className='text-[#c31e5aff] flex items-center gap-1'>View more <ArrowRight size={14} /></button>}
+                {visibleButton && <button className='text-[#c31e5aff] text-xl flex items-center gap-1'>View more <ArrowRight size={18} /></button>}
             </Link>
             </div>
         </div>

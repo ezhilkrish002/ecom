@@ -1,4 +1,3 @@
-
 'use client'
 import React, { useRef } from 'react'
 import Title from './Title'
@@ -30,11 +29,11 @@ const LatestProducts = () => {
   }
 
   return (
-    <div className="px-2 sm:px-6 my-12 max-w-6xl mx-auto">
+    <div className="px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 2xl:px-16 my-20 mx-auto w-full max-w-[95%] sm:max-w-[90%] md:max-w-4xl lg:max-w-5xl xl:max-w-6xl 2xl:max-w-7xl">
       <Title title="Latest Products" description="Explore our newest arrivals" visibleButton={true} href='/category/products'/>
 
-      {/* --- Mobile Carousel --- */}
-      <div className="relative mt-6 md:hidden">
+      {/* --- Responsive Carousel --- */}
+      <div className="relative mt-6">
         {/* Left Arrow */}
         <button
           onClick={scrollLeft}
@@ -54,7 +53,7 @@ const LatestProducts = () => {
         {/* Scrollable container */}
         <div
           ref={carouselRef}
-          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide"
+          className="flex overflow-x-auto scroll-smooth snap-x snap-mandatory scrollbar-hide space-x-4"
         >
           {products
             .slice()
@@ -62,28 +61,16 @@ const LatestProducts = () => {
             .map((product, index) => (
               <div
                 key={index}
-                className="flex-shrink-0 w-full snap-start"
+                className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 snap-start"
               >
-                {/* Pass mobile prop to ProductCard for full-width 3:4 ratio */}
-                <ProductCard product={product} mobile />
+                <ProductCard product={product} />
               </div>
           ))}
         </div>
       </div>
 
-      {/* --- Desktop Grid --- */}
-      <div className="hidden md:grid mt-12 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-        {products
-          .slice()
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          .slice(0, 8)
-          .map((product, index) => (
-            <ProductCard key={index} product={product} />
-        ))}
-      </div>
-
       {/* Optional View More */}
-      {/* <div className="mt-4 md:hidden text-right px-2">
+      {/* <div className="mt-4 text-right px-2">
         <Link href="/shop" className="flex items-center gap-1 text-sm text-[#c31e5aff] justify-end">
           View more <ArrowRight size={14} />
         </Link>
