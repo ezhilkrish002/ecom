@@ -1,39 +1,37 @@
+
 'use client'
 import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import React from 'react'
 
-const Title = ({ title, description, visibleButton = true, href = '' }) => {
-  return (
-    <div className='flex flex-row justify-between items-center mb-5'>
-      <div className="flex items-center gap-3">
-        <div className="w-2 h-10 rounded-full bg-[#c31e5aff] shadow-lg"></div>
-        <p className='text-lg sm:text-2xl w-[150px] sm:w-full truncate font-semibold text-slate-800'>
-          {title}
-        </p>
-      </div>
+const Title = ({ title, visibleButton = true, href = '' }) => {
+    return (
+        <div className="flex items-center justify-between mb-3 w-full gap-3">
+            {/* Title + Line */}
+            <div className="flex items-center gap-3 flex-1 min-w-0">
+                {/* Vertical colored bar */}
+                <div className="w-2 h-10 rounded-full bg-gradient-to-b from-[#c31e5aff] to-[#c31e5aff] shadow-lg flex-shrink-0"></div>
 
-      <div className="flex-1 h-px bg-gradient-to-r from-[#c31e5aff] to-transparent -ml-4 sm:ml-4"></div>
+                {/* Title text */}
+                <p className="text-xl sm:text-2xl font-semibold text-slate-800 whitespace-nowrap truncate">
+                    {title}
+                </p>
 
-      <div>
-        <Link href={href} className='flex items-center gap-5 text-sm text-slate-600 mt-1'>
-          {visibleButton && (
-            <button
-              className='group text-[#c31e5aff] text-lg mb-2 sm:text-xl flex items-center gap-1 transition-all duration-300 hover:scale-105'
-            >
-              <span className='relative after:content-[""] after:absolute after:left-0 after:bottom-[-2px] after:w-0 after:h-[2px] after:bg-[#c31e5aff] after:transition-all after:duration-300 group-hover:after:w-full'>
-                View more
-              </span>
-              <ArrowRight
-                size={18}
-                className='transition-transform duration-300 group-hover:translate-x-1'
-              />
-            </button>
-          )}
-        </Link>
-      </div>
-    </div>
-  )
+                {/* Horizontal line that starts after the title text and extends */}
+                <div className="flex-1 h-px bg-gradient-to-r from-[#c31e5aff] to-transparent"></div>
+            </div>
+
+            {/* View More Button */}
+            {visibleButton && (
+                <div className="flex-shrink-0 ml-3">
+                    <Link href={href} className="flex items-center gap-1 text-xs sm:text-sm text-[#c31e5aff] whitespace-nowrap">
+                        View more <ArrowRight size={16} />
+                    </Link>
+                </div>
+            )}
+        </div>
+    )
 }
 
 export default Title
+
