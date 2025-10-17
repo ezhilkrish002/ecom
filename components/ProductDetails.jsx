@@ -81,7 +81,7 @@ Hi, I'm interested in booking an enquiry for the following product:
             <p> {currency}{product.price} </p>
             <p className="text-lg sm:text-xl text-slate-500 line-through">{currency}{product.mrp}</p>
           </div>
-          <div className="flex items-center gap-2 text-lg text-slate-500">
+          <div className="flex items-center gap-2 text-md sm:text-lg text-slate-500">
             <TagIcon size={14} />
             <p>Save {((product.mrp - product.price) / product.mrp * 100).toFixed(0)}% right now</p>
           </div>
@@ -109,7 +109,7 @@ Hi, I'm interested in booking an enquiry for the following product:
 
           <hr className="border-gray-300 my-5" />
 
-          <div className="flex flex-col gap-4 text-slate-500 text-lg">
+          <div className="flex flex-col gap-4 text-slate-500 text-md sm:text-lg">
             <p className="flex gap-3"> <EarthIcon className="text-slate-400 " /> Free shipping worldwide </p>
             <p className="flex gap-3"> <CreditCardIcon className="text-slate-400" /> 100% Secured Payment </p>
             <p className="flex gap-3"> <UserIcon className="text-slate-400" /> Trusted by top brands </p>
