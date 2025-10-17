@@ -13,10 +13,10 @@ export const metadata = {
 export default function RootLayout({ children }) {
     return (
         <html lang="en">
-            <body className={`${outfit.className} antialiased`}>
+            <body className={`${outfit.className} antialiased`} style={{ overflowX: 'hidden' }}>
                 <StoreProvider>
                     <Toaster />
-                    
+
                     {children}
                 </StoreProvider>
             </body>

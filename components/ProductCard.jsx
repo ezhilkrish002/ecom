@@ -61,11 +61,11 @@ Hi, I'm interested in booking an enquiry for the following product:
         {/* Image Container */}
         <div
           className="
-            relative w-full 
-            h-[480px] 
-            sm:h-[380px] sm:w-[348px]   /* 👈 Tablet view 348x380 */
-            md:h-[380px] md:w-[348px]   /* 👈 Consistent for md range */
-            lg:h-[400px] lg:w-[284px]   /* 👈 Desktop view */
+            relative w-[87%] 
+            h-[460px] 
+            sm:h-[340px] sm:w-[255px]   /* 👈 Tablet view 348x380 */
+            md:h-[360px] md:w-[270px]   /* 👈 Consistent for md range */
+            lg:h-[380px] lg:w-[285px]   /* 👈 Desktop view */
             rounded-lg overflow-hidden 
             hover:-translate-y-5 
             transition-transform duration-300

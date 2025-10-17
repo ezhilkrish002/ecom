@@ -279,92 +279,31 @@ Hi, I'm interested in booking an enquiry for the following product:
                         <ShoppingCart size={18} />
                         <span className="hidden md:inline">Add to Cart</span>
                       </button>
-                      <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
-                        Add to Cart
-                      </span>
+                      
                     </div>
 
-                    {/* Content Section */}
-                    <div className="sm:col-span-2 space-y-3 sm:space-y-4">
-                      <h1 className="text-lg sm:text-xl md:text-2xl font-extrabold text-gray-900 text-center sm:text-left">
-                        {product.name}
-                      </h1>
-                      <p className="text-gray-600 text-sm sm:text-base text-center sm:text-left line-clamp-3">
-                        {product.description}
-                      </p>
+                    {/* ✉️ Send Enquiry */}
+                    <div className="relative group">
+                      <button
+                        onClick={(e) => handleEnquiry(e, product)}
+                        className="flex items-center justify-center gap-2 px-4 py-2.5 sm:px-5 sm:py-3 bg-[#f48638] text-white rounded-lg hover:bg-[#e47424] transition-all"
+                      >
+                        <Send size={18} />
+                        <span className="md:inline">Send Enquiry</span>
+                      </button>
+                      
+                    </div>
 
-                      {/* Options */}
-                      <div>
-                        <h2 className="font-semibold text-gray-800 text-sm sm:text-base mb-1 sm:mb-2 text-center sm:text-left">
-                          Available Options:
-                        </h2>
-                        <div className="flex flex-wrap justify-center sm:justify-start gap-2 sm:gap-3">
-                          {product.options.map((opt, i) => (
-                            <button
-                              key={i}
-                              className="px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-400 transition text-xs sm:text-sm"
-                            >
-                              {opt}
-                            </button>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Technical Specifications */}
-                      <div>
-                        <h2 className="font-semibold text-gray-800 text-sm sm:text-base mb-2 sm:mb-3 text-center sm:text-left">
-                          Technical Specifications:
-                        </h2>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 sm:gap-x-6 gap-y-2 text-gray-700 text-xs sm:text-sm">
-                          {product.specs.map((item, i) => (
-                            <Spec key={i} label={item.label} value={item.value} />
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Buttons */}
-                      <div className="flex flex-wrap gap-2 sm:gap-3 mt-4 justify-center sm:justify-start items-center">
-                        {/* 🛒 Add to Cart */}
-                        <div className="relative group">
-                          <button
-                            onClick={() => handleAddToCart(product)}
-                            className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#c31e5a] text-white rounded-lg hover:bg-[#a81a4d] transition-all text-xs sm:text-sm"
-                          >
-                            <ShoppingCart size={16} />
-                            <span className="hidden sm:inline">Add to Cart</span>
-                          </button>
-                          <span className="absolute left-1/2 -translate-x-1/2 -bottom-6 sm:-bottom-8 text-xs text-white bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition sm:hidden">
-                            Add to Cart
-                          </span>
-                        </div>
-
-                        {/* ✉️ Send Enquiry */}
-                        <div className="relative group">
-                          <button
-                            onClick={(e) => handleEnquiry(e, product)}
-                            className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[#f48638] text-white rounded-lg hover:bg-[#e47424] transition-all text-xs sm:text-sm"
-                          >
-                            <Send size={16} />
-                            <span className="sm:inline">Send Enquiry</span>
-                          </button>
-                          <span className="absolute left-1/2 -translate-x-1/2 -bottom-6 sm:-bottom-8 text-xs text-white bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition sm:hidden">
-                            Send Enquiry
-                          </span>
-                        </div>
-
-                        {/* 🔍 View Details */}
-                        <div className="relative group">
-                          <button
-                            className="flex items-center justify-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 sm:py-3 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg hover:bg-[rgb(40,36,33)] transition-all text-xs sm:text-sm"
-                          >
-                            <ArrowRight size={16} />
-                            <span className="hidden sm:inline">View Details</span>
-                          </button>
-                          <span className="absolute left-1/2 -translate-x-1/2 -bottom-6 sm:-bottom-8 text-xs text-white bg-gray-800 px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition sm:hidden">
-                            View Details
-                          </span>
-                        </div>
-                      </div>
+                    {/* 🔍 View Details */}
+                    <div className="relative group">
+                      <button
+                        onClick={() => window.location.href = `/product/${product.id}`}
+                        className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg hover:bg-[rgb(40,36,33)] transition-all"
+                      >
+                        <ArrowRight size={18} />
+                        <span className="hidden md:inline">View Details</span>
+                      </button>
+                     
                     </div>
                   </div>
                 </div>

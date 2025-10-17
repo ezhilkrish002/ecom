@@ -9,11 +9,11 @@ import { assets } from '@/assets/assets'
 import Title from './Title'
 
 const applications = [
-  { label: 'AGRICULTURE', src: assets.agri },
-  { label: 'BUILDING SERVICES', src: assets.build },
-  { label: 'WASTE WATER SOLUTIONS', src: assets.wastewater },
-  { label: 'SOLAR PUMPS', src: assets.solar },
-  { label: 'DOMESTIC PUMPS', src: assets.home },
+  { label: 'Agriculture', src: assets.agri },
+  { label: 'Building Services', src: assets.build },
+  { label: 'Waste Water Solutions', src: assets.wastewater },
+  { label: 'Solar Pumps', src: assets.solar },
+  { label: 'Domastic Pumps', src: assets.home },
 ]
 
 const itemsPerPageMobile = 2
@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-4 mt-10 mb-10 max-w-7xl mx-auto overflow-x-hidden"
+      className="px-4 mt-10 mb-10 max-w-7xl mx-auto overflow-x-hidden scrollbar-hide"
     >
       <Title
         title={`Precision Engineering For a Better World`}
@@ -81,11 +81,11 @@ export default function PumpApplications() {
         <button
           onClick={handleMobilePrev}
           disabled={mobileIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -ml-6 ${
+          className={`absolute left-0.5 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 -ml-6 ${
             mobileIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
-          <ChevronLeft className="h-6 w-6 text-gray-700" />
+          <ChevronLeft className="h-8 w-8 text-gray-700" />
         </button>
 
         <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
@@ -100,7 +100,7 @@ export default function PumpApplications() {
                 className="group flex-shrink-0 w-1/2 px-4 flex flex-col items-center snap-start"
                 variants={itemVariants}
               >
-                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
+                {/* <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     className="scale-110 group-hover:scale-115 transition duration-300"
                     src={app.src}
@@ -108,8 +108,20 @@ export default function PumpApplications() {
                     width={144}
                     height={144}
                   />
-                </div>
-                <p className="text-center mt-5 text-sm font-medium text-slate-800">{app.label}</p>
+                </div> */}
+                <div className="bg-[#F5F5F5] h-32 w-32 sm:h-36 sm:w-36 lg:h-40 lg:w-40 rounded-full flex items-center justify-center overflow-hidden"
+
+                >
+                        <Image
+                          src={app.src}
+                          alt={app.label}
+                          width={160}
+                          height={160}
+                          className="scale-110 group-hover:scale-115 transition duration-300"
+                        />
+                      </div>
+
+                <p className="text-center mt-5 text-xl font-medium text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -118,13 +130,13 @@ export default function PumpApplications() {
         <button
           onClick={handleMobileNext}
           disabled={mobileIndex + itemsPerPageMobile >= applications.length}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -mr-6 ${
+          className={`absolute right-0.5 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 -mr-6 ${
             mobileIndex + itemsPerPageMobile >= applications.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'
           }`}
         >
-          <ChevronRight className="h-6 w-6 text-gray-700" />
+          <ChevronRight className="h-8 w-8 text-gray-700" />
         </button>
       </div>
 
@@ -133,11 +145,11 @@ export default function PumpApplications() {
         <button
           onClick={handleTabletPrev}
           disabled={tabletIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -ml-6 ${
+          className={`absolute -left-1 top-[43%] -translate-y-1/2 p-3 rounded-full z-10 ${
             tabletIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
-          <ChevronLeft className="h-6 w-6 text-gray-700" />
+          <ChevronLeft className="h-8 w-8 text-gray-700" />
         </button>
 
         <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
@@ -161,7 +173,7 @@ export default function PumpApplications() {
                     height={160}
                   />
                 </div>
-                <p className="text-center mt-6  text-md font-medium text-slate-800">{app.label}</p>
+                <p className=" text-center mt-2 font-medium text-xl sm:text-lg text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -170,19 +182,19 @@ export default function PumpApplications() {
         <button
           onClick={handleTabletNext}
           disabled={tabletIndex + itemsPerPageTablet >= applications.length}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -mr-6 ${
+          className={`absolute -right-1 top-[43%] -translate-y-1/2 p-3 rounded-full z-10 ${
             tabletIndex + itemsPerPageTablet >= applications.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'
           }`}
         >
-          <ChevronRight className="h-6 w-6 text-gray-700" />
+          <ChevronRight className="h-8 w-8 text-gray-700" />
         </button>
       </div>
 
       {/* --- Desktop Grid (lg: 1024px and above) --- */}
       <motion.div
-        className="hidden lg:grid mt-12 grid-cols-5 gap-12 justify-between max-w-7xl mx-auto"
+        className="hidden lg:grid mt-12 grid-cols-5 gap-12 justify-between max-w-7xl mx-auto scrollbar-hide"
         variants={containerVariants}
       >
         {applications.map((app, index) => (
@@ -200,7 +212,7 @@ export default function PumpApplications() {
                 height={200}
               />
             </div>
-            <p className="text-center mt-6 text-lg font-medium text-slate-800">
+            <p className="font-medium text-center mt-2 text-xl sm:text-lg text-slate-800">
               {app.label}
             </p>
           </motion.div>

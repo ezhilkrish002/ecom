@@ -22,7 +22,7 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="flex-1"
           >
-            <Image src={WVlogo} alt="Senba Pumps & Motors" width={300} height={200} />
+            <Image src={WVlogo} alt="Senba Pumps & Motors"  width={300} height={200} />
           </motion.div>
 
           <motion.div
@@ -49,35 +49,35 @@ export default function About() {
         </div>
 
         {/* ✅ Statistics Section */}
-        <div ref={ref} className="mt-15 grid grid-cols-1 sm:grid-cols-3 text-center gap-10">
+        <div ref={ref} className="mt-12 grid grid-cols-1 sm:grid-cols-3 text-center sm:gap-10 gap-7">
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={5000} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
             </h2>
-            <p className="text-lg sm:text-2xl mt-5 font-semibold text-gray-700 tracking-wide  py-2 rounded-lg">
+            <p className="text-lg sm:text-xl mt-1 sm:mt-5  text-gray-700 tracking-wide  py-2 rounded-lg">
               Total Products
             </p>
           </div>
 
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={1200} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
               
             </h2>
-            <p className="text-lg sm:text-2xl mt-5 font-semibold text-gray-700 tracking-wide  py-2 rounded-lg">
+            <p className="text-lg sm:text-xl mt-1 sm:mt-5 text-gray-700 tracking-wide  py-2 rounded-lg">
               Exclusive Dealers
             </p>
           </div>
 
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={800} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
 
             </h2>
-            <p className="text-lg sm:text-2xl mt-5 font-semibold text-gray-700 tracking-wide py-2 rounded-lg">
+            <p className="text-lg sm:text-xl mt-1 sm:mt-5  text-gray-700 tracking-wide py-2 rounded-lg">
               Pumps Sold / Day
             </p>
           </div>
@@ -86,7 +86,7 @@ export default function About() {
 
       {/* Footer slogan section */}
       <div className="w-full flex justify-center mt-0">
-        <div className="mb-5 bg-[#7C2A47] text-[#F5F5F5] m-6 py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
+        <div className="bg-[#7C2A47] text-[#F5F5F5] mb-9 mr-6 ml-6 py-2 px-4 sm:py-4 sm:px-8 text-center w-full sm:w-[1200px] rounded-lg shadow-md">
           <h2 className="text-xl sm:text-2xl font-semibold mb-2">
             Quality • Trust • Service
           </h2>
