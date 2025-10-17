@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-4 mt-10 mb-15 max-w-7xl mx-auto overflow-x-hidden"
+      className="px-4 mt-10 mb-10 max-w-7xl mx-auto overflow-x-hidden"
     >
       <Title
         title={`Precision Engineering For a Better World`}
@@ -88,7 +88,7 @@ export default function PumpApplications() {
           <ChevronLeft className="h-6 w-6 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <motion.div
             className="flex transition-transform duration-500 ease-in-out mt-5"
             style={{ transform: `translateX(-${mobileIndex * (100 / itemsPerPageMobile)}%)` }}
@@ -140,7 +140,7 @@ export default function PumpApplications() {
           <ChevronLeft className="h-6 w-6 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <motion.div
             className="flex transition-transform duration-500 ease-in-out mt-5"
             style={{ transform: `translateX(-${tabletIndex * (100 / itemsPerPageTablet)}%)` }}

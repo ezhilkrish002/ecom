@@ -63,7 +63,7 @@ export default function Categories() {
   }
 
   return (
-    <div className="px-4 mt-10 sm:my-30 max-w-7xl mx-auto">
+    <div className="px-4 mt-10 sm:my-20 max-w-7xl mx-auto">
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* Mobile / Tablet */}
@@ -71,14 +71,14 @@ export default function Categories() {
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
+          className={`absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all${
             startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
           <ChevronLeft className="h-8 w-8 text-gray-700" />
         </button>
 
-        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-x">
+        <div className="overflow-x-auto w-full px-0 snap-x snap-mandatory scrollbar-hide touch-pan-y touch-pan-x">
           <div
             className="flex transition-transform duration-500 ease-in-out"
             style={{ transform: `translateX(-${startIndex * (100 / itemsPerPage)}%)` }}
