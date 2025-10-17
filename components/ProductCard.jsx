@@ -61,7 +61,7 @@ Hi, I'm interested in booking an enquiry for the following product:
         {/* Image Container */}
         <div
           className="
-            relative w-[96%] 
+            relative w-[87%] 
             h-[460px] 
             sm:h-[340px] sm:w-[255px]   /* 👈 Tablet view 348x380 */
             md:h-[360px] md:w-[270px]   /* 👈 Consistent for md range */
