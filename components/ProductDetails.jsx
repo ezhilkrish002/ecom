@@ -89,7 +89,7 @@ const ProductDetails = ({ product }) => {
         </div>
 
         {/* Product Details */}
-        <div className="flex-1">
+        <div className="flex-1 mx-auto flex flex-col">
           <h1 className="text-xl sm:text-2xl font-semibold text-slate-800">{product.name}</h1>
           <div className='flex items-center mt-2'>
             {Array(5).fill('').map((_, index) => (
