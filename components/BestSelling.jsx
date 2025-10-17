@@ -1,15 +1,12 @@
-
 'use client';
 import Title from './Title';
 import ProductCard from './ProductCard';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-
+import React from 'react';
 const BestSelling = () => {
   const products = useSelector((state) => state.product.list);
   const categories = [...new Set(products.map((p) => p.category))];
 
-  // Group products by category
   const groupedProducts = categories.map((category) => ({
     category,
     items: products.filter((p) => p.category === category),
@@ -32,7 +29,6 @@ const BestSelling = () => {
               sm:grid-cols-2    /* Tablet: 2 per row */
               lg:grid-cols-4    /* Desktop: 4 per row */
               gap-6 xl:gap-8
-              mt-10
             "
           >
             {group.items.map((product, i) => (

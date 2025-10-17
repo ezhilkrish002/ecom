@@ -1,3 +1,4 @@
+'use client';
 import Link from "next/link";
 import WVlogo from "../assets/YUCHII LOGO.png"
 import Image from 'next/image';
