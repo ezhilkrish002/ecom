@@ -49,9 +49,9 @@ export default function About() {
         </div>
 
         {/* ✅ Statistics Section */}
-        <div ref={ref} className="mt-12 grid grid-cols-1 sm:grid-cols-3 text-center gap-10">
+        <div ref={ref} className="mt-12 grid grid-cols-1 sm:grid-cols-3 text-center sm:gap-10 gap-7">
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={5000} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
             </h2>
@@ -61,7 +61,7 @@ export default function About() {
           </div>
 
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={1200} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
               
@@ -72,7 +72,7 @@ export default function About() {
           </div>
 
           <div>
-            <h2 className="text-6xl font-bold text-[#7C2A47]">
+            <h2 className="text-4xl sm:text-6xl font-bold text-[#7C2A47]">
               {inView && <CountUp end={800} duration={3} />}
               <sup className="text-[#f48638]">+</sup>
 
