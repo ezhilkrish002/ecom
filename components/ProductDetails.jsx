@@ -1,7 +1,8 @@
+
 'use client'
 
 import { addToCart } from "@/lib/features/cart/cartSlice";
-import { StarIcon, TagIcon, EarthIcon, CreditCardIcon, UserIcon, X } from "lucide-react";
+import { StarIcon, TagIcon, EarthIcon, CreditCardIcon, UserIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import Image from "next/image";
@@ -18,7 +19,6 @@ const ProductDetails = ({ product }) => {
 
   const router = useRouter();
   const [mainImage, setMainImage] = useState(product.images[0]);
-
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const addToCartHandler = () => {
@@ -31,19 +31,17 @@ const ProductDetails = ({ product }) => {
     const quantity = cart[productId] || 1;
     const productLink = typeof window !== 'undefined' ? window.location.href : '';
 
-    let message = `
-Hi, I'm interested in booking an enquiry for the following product:
+    let message = `Hi, I'm interested in booking an enquiry for the following product:
 🛍️ *Product:* ${product.name}
 💰 *Price:* ${currency}${product.price}
 📦 *Quantity:* ${quantity}
-🖼️ *Product Link:* ${productLink}
-`;
+🖼️ *Product Link:* ${productLink}`;
 
     if (userName && userMobile) {
-      message += `🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}\n`;
+      message += `\n🙋 *Name:* ${userName}\n📱 *Mobile:* ${userMobile}`;
     }
 
-    message += `Please let me know the next steps.`;
+    message += `\nPlease let me know the next steps.`;
 
     const encodedMessage = encodeURIComponent(message);
     const phoneNumber = "9345795629";
@@ -54,26 +52,48 @@ Hi, I'm interested in booking an enquiry for the following product:
 
   return (
     <>
-      {/* Main product section */}
-      <div className="flex max-lg:flex-col gap-12">
+      <div className="flex max-md:flex-col gap-12">
+        {/* Images Section */}
         <div className="flex max-sm:flex-col-reverse gap-3">
-          <div className="flex sm:flex-col gap-3">
-            {product.images.map((image, index) => (
-              <div key={index} onClick={() => setMainImage(product.images[index])} className="bg-slate-100 flex items-center justify-center size-26 rounded-lg group cursor-pointer">
-                <Image src={image} className="group-hover:scale-103 group-active:scale-95 transition" alt="" width={45} height={45} />
-              </div>
-            ))}
-          </div>
-          <div className="flex justify-center items-center h-100 sm:size-113 bg-slate-100 rounded-lg">
-            <Image src={mainImage} alt="" width={250} height={250} />
+          {/* Thumbnails */}
+          {/* Thumbnails */}
+<div className="flex sm:flex-col gap-3">
+  {product.images.map((image, index) => (
+    <div 
+      key={index} 
+      onClick={() => setMainImage(product.images[index])} 
+      className="flex items-center justify-center rounded-lg cursor-pointer overflow-hidden border border-gray-200 transition hover:scale-105 active:scale-95 w-20 h-20" // increased size
+    >
+      <Image 
+        src={image} 
+        alt={product.name} 
+        width={56} 
+        height={56} 
+        className="object-cover w-full h-full"
+      />
+    </div>
+  ))}
+</div>
+
+
+          {/* Main Image */}
+          <div className="flex justify-center items-center w-[350px] h-[440px] sm:h-[540px] sm:w-[405px] md:h-[540px] md:w-[405px] rounded-lg overflow-hidden">
+            <Image 
+              src={mainImage} 
+              alt={product.name} 
+              width={500} 
+              height={500} 
+              className="object-cover w-full h-full"
+            />
           </div>
         </div>
 
+        {/* Product Details */}
         <div className="flex-1">
           <h1 className="text-3xl font-semibold text-slate-800">{product.name}</h1>
           <div className='flex items-center mt-2'>
             {Array(5).fill('').map((_, index) => (
-              <StarIcon key={index} size={14} className='text-transparent mt-0.5' fill={averageRating >= index + 1 ? "#00C950" : "#D1D5DB"} />
+              <StarIcon key={index} size={14} className='text-transparent mt-0.5' fill={averageRating >= index + 1 ? "#c31e5aff" : "#D1D5DB"} />
             ))}
             <p className="text-sm ml-3 text-slate-500">{product.rating.length} Reviews</p>
           </div>
@@ -85,23 +105,24 @@ Hi, I'm interested in booking an enquiry for the following product:
             <TagIcon size={14} />
             <p>Save {((product.mrp - product.price) / product.mrp * 100).toFixed(0)}% right now</p>
           </div>
-          <div className="flex items-end gap-5 mt-10">
-            {
-              cart[productId] && (
-                <div className="flex flex-col gap-3">
-                  <p className="text-lg text-slate-800 font-semibold">Quantity</p>
-                  <Counter productId={productId} />
-                </div>
-              )
-            }
 
-            <button onClick={() => !cart[productId] ? addToCartHandler() : router.push('/cart')} className="bg-slate-800 text-white px-10 py-3 text-sm font-medium rounded hover:bg-slate-900 active:scale-95 transition">
+          <div className="flex items-end gap-5 mt-10">
+            {cart[productId] && (
+              <div className="flex flex-col gap-3">
+                <p className="text-lg text-slate-800 font-semibold">Quantity</p>
+                <Counter productId={productId} />
+              </div>
+            )}
+            <button 
+              onClick={() => !cart[productId] ? addToCartHandler() : router.push('/cart')} 
+              className="bg-slate-900 text-white px-10 py-3 text-sm font-medium rounded hover:bg-slate-700 active:scale-95 transition"
+            >
               {!cart[productId] ? 'Add to Cart' : 'View Cart'}
             </button>
 
             <button
               onClick={() => setIsModalOpen(true)}
-              className="bg-green-600 text-white px-10 py-3 text-sm font-medium rounded hover:bg-green-700 active:scale-95 transition"
+            className="bg-[#c31e5aff] text-white px-10 py-3 text-sm font-medium rounded hover:bg-[#d44a70] active:scale-95 transition"
             >
               Book Enquiry
             </button>
