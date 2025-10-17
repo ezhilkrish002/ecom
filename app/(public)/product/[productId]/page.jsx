@@ -28,7 +28,7 @@ export default function Product() {
             <div className="max-w-7xl mx-auto">
 
                 {/* ✅ Breadcrumbs */}
-                    <div className="text-gray-600 text-sm mt-8 mb-5 space-x-1">
+                    <div className="text-gray-600 text-md sm:text-lg mt-8 mb-5 sm:ml-10 space-x-1">
                     <Link 
                         href="/" 
                         className="hover:text-black transition-colors duration-200"
