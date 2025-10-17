@@ -71,7 +71,7 @@ export default function Categories() {
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all -ml-6 ${
+          className={`absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
             startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
@@ -109,7 +109,7 @@ export default function Categories() {
         <button
           onClick={handleNext}
           disabled={startIndex + itemsPerPage >= categories.length}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all -mr-6 ${
+          className={`absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
             startIndex + itemsPerPage >= categories.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'

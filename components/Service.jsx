@@ -69,7 +69,7 @@ export default function PumpApplications() {
       whileInView="visible"
       viewport={{ once: false, amount: 0.3 }}
       variants={containerVariants}
-      className="px-4 mt-10 mb-15 max-w-7xl mx-auto"
+      className="px-4 mt-10 mb-15 max-w-7xl mx-auto overflow-x-hidden"
     >
       <Title
         title={`Precision Engineering For a Better World`}
@@ -133,7 +133,7 @@ export default function PumpApplications() {
         <button
           onClick={handleTabletPrev}
           disabled={tabletIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -ml-6 ${
+          className={`absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 ${
             tabletIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
@@ -170,7 +170,7 @@ export default function PumpApplications() {
         <button
           onClick={handleTabletNext}
           disabled={tabletIndex + itemsPerPageTablet >= applications.length}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 -mr-6 ${
+          className={`absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 ${
             tabletIndex + itemsPerPageTablet >= applications.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'
