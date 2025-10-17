@@ -67,11 +67,11 @@ export default function Categories() {
       <Title title="Shop by Category" description="Explore products by category" visibleButton={false} />
 
       {/* Mobile / Tablet */}
-      <div className="mt-2 lg:hidden relative flex items-center justify-between w-full">
+      <div className="mt-8 lg:hidden relative flex items-center justify-between w-full overflow-x-hidden">
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all${
+          className={`absolute -left-5 sm:left-2 md:left-0 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 transition-all${
             startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
@@ -91,12 +91,24 @@ export default function Categories() {
                   itemsPerPage === 2 ? 'w-1/2' : 'w-1/3'
                 }`}
               >
-                <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
+                {/* <div className="bg-[#F5F5F5] h-36 w-36 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     src={categoryImages[cat]}
                     alt={cat}
                     width={144}
                     height={144}
+                    className="scale-110 group-hover:scale-115 transition duration-300"
+                  />
+                </div> */}
+
+                <div className="bg-[#F5F5F5] h-32 w-32 sm:h-36 sm:w-36 lg:h-40 lg:w-40 rounded-full flex items-center justify-center overflow-hidden"
+                >
+                  <Image
+                  src={categoryImages[cat]}
+                    alt={cat}
+                    width={200}
+                    height={200}
+                    
                     className="scale-110 group-hover:scale-115 transition duration-300"
                   />
                 </div>
@@ -109,7 +121,7 @@ export default function Categories() {
         <button
           onClick={handleNext}
           disabled={startIndex + itemsPerPage >= categories.length}
-          className={`absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
+          className={`absolute -right-5 sm:right-2 md:right-0 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
             startIndex + itemsPerPage >= categories.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'
@@ -124,7 +136,7 @@ export default function Categories() {
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`absolute left-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all -ml-6 ${
+          className={`absolute left-0 top-[43%] -translate-y-1/2 p-3 rounded-full z-10 transition-all -ml-6 ${
             startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
@@ -142,12 +154,12 @@ export default function Categories() {
                 href={`/category/${cat}`}
                 className="group flex-shrink-0 w-1/5 px-4 flex flex-col items-center snap-center"
               >
-                <div className="bg-[#F5F5F5] h-40 w-40 rounded-full flex items-center justify-center overflow-hidden">
+                <div className="bg-[#F5F5F5] h-50 w-50 rounded-full flex items-center justify-center overflow-hidden">
                   <Image
                     src={categoryImages[cat]}
                     alt={cat}
-                    width={160}
-                    height={160}
+                    width={200}
+                    height={200}
                     className="scale-110 group-hover:scale-115 transition duration-300"
                   />
                 </div>
@@ -160,7 +172,7 @@ export default function Categories() {
         <button
           onClick={handleNext}
           disabled={startIndex + 5 >= categories.length}
-          className={`absolute right-0 top-1/2 -translate-y-1/2 p-3 rounded-full z-10 transition-all -mr-6 ${
+          className={`absolute right-0 top-[43%] -translate-y-1/2 p-3 rounded-full z-10 transition-all -mr-6 ${
             startIndex + 5 >= categories.length
               ? 'opacity-40 pointer-events-none'
               : 'hover:bg-gray-200'
