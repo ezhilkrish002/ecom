@@ -113,7 +113,7 @@ export default function Categories() {
                   />
                 </div>
 
-                <p className="text-center mt-3 text-base text-slate-800">{cat}</p>
+                <p className="text-center mt-3 text-base text-xl font-medium text-slate-800">{cat}</p>
               </Link>
             ))}
           </div>
