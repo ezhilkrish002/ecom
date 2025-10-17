@@ -56,13 +56,20 @@ Hi, I'm interested in booking an enquiry for the following product:
     <>
       <Link
         href={`/product/${product.id}`}
-        className="w-full max-w-[95vw] mx-auto flex flex-col items-center rounded-lg overflow-hidden sm:max-w-md"
+        className="w-full max-w-[95vw] mx-auto flex flex-col items-center rounded-lg overflow-hidden sm:max-w-[348px] md:max-w-[348px] lg:max-w-[284px]"
       >
         {/* Image Container */}
-        {/* <div
-          className={`relative w-full h-[400px] sm:h-[360px] md:h-[380px] lg:h-[400px] hover:-translate-y-5 transition-transform duration-300 rounded-lg ${
-            isHovered ? 'scale-105' : 'scale-100'
-          }`}
+        <div
+          className="
+            relative w-full 
+            h-[480px] 
+            sm:h-[380px] sm:w-[348px]   /* 👈 Tablet view 348x380 */
+            md:h-[380px] md:w-[348px]   /* 👈 Consistent for md range */
+            lg:h-[400px] lg:w-[284px]   /* 👈 Desktop view */
+            rounded-lg overflow-hidden 
+            hover:-translate-y-5 
+            transition-transform duration-300
+          "
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -70,32 +77,15 @@ Hi, I'm interested in booking an enquiry for the following product:
             src={product.images[0]}
             alt={product.name}
             fill
-            className={`object-cover w-full h-full ${
-              isHovered ? 'rounded-xl' : 'rounded-lg'
+            className={`object-cover w-full h-full transition-transform duration-300 ${
+              isHovered ? 'scale-105' : 'scale-100 translate-y-0'
             }`}
           />
-        </div> */}
-        <div
-            className="relative w-full h-[480px] sm:h-[360px] md:h-[380px] lg:h-[400px] rounded-lg overflow-hidden hover:-translate-y-5 transition-transform duration-300"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-          >
-            <Image
-              src={product.images[0]}
-              alt={product.name}
-              fill
-              className={`object-cover w-full h-full transition-transform duration-300 ${
-                isHovered ? ' scale-105' : 'scale-100 translate-y-0'
-              }`}
-            />
-                  </div>
-
-
+        </div>
 
         {/* Product Info */}
         <div className="w-full flex justify-center items-start gap-2 mt-3 text-sm text-slate-800 px-2 sm:px-0">
           <div className="flex flex-col">
-            {/* Product Name with Hover */}
             <p
               className="font-medium text-xl sm:text-lg truncate w-[200px] sm:w-[250px] text-center transition-all duration-300 hover:text-[#c31e5a] hover:scale-105 cursor-pointer"
             >
@@ -106,7 +96,6 @@ Hi, I'm interested in booking an enquiry for the following product:
 
         {/* Icon Buttons */}
         <div className="flex flex-nowrap gap-7 sm:gap-4 mt-3 justify-between items-center">
-          {/* 🛒 Add to Cart */}
           <div className="relative group">
             <button
               onClick={(e) => handleAddToCart(e, product)}
@@ -122,7 +111,6 @@ Hi, I'm interested in booking an enquiry for the following product:
             </button>
           </div>
 
-          {/* ✉️ Send Enquiry */}
           <div className="relative group">
             <button
               onClick={(e) => handleEnquiry(e, product)}
@@ -138,7 +126,6 @@ Hi, I'm interested in booking an enquiry for the following product:
             </button>
           </div>
 
-          {/* 🔍 View Details */}
           <div className="relative group">
             <button
               className="flex items-center justify-center 
@@ -156,7 +143,6 @@ Hi, I'm interested in booking an enquiry for the following product:
         </div>
       </Link>
 
-      {/* WhatsApp Modal */}
       <ModalPopup
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
