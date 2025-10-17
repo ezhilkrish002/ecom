@@ -182,9 +182,7 @@ Hi, I'm interested in booking an enquiry for the following product:
                         <ShoppingCart size={18} />
                         <span className="hidden md:inline">Add to Cart</span>
                       </button>
-                      <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
-                        Add to Cart
-                      </span>
+                      
                     </div>
 
                     {/* ✉️ Send Enquiry */}
@@ -196,22 +194,19 @@ Hi, I'm interested in booking an enquiry for the following product:
                         <Send size={18} />
                         <span className="md:inline">Send Enquiry</span>
                       </button>
-                      <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
-                        Send Enquiry
-                      </span>
+                      
                     </div>
 
                     {/* 🔍 View Details */}
                     <div className="relative group">
                       <button
+                        onClick={() => window.location.href = `/product/${product.id}`}
                         className="flex items-center justify-center gap-2 px-4 py-3 sm:px-5 sm:py-3 bg-[rgb(55,50,46)] text-white border border-gray-300 rounded-lg hover:bg-[rgb(40,36,33)] transition-all"
                       >
                         <ArrowRight size={18} />
                         <span className="hidden md:inline">View Details</span>
                       </button>
-                      <span className="absolute left-1/2 -translate-x-1/2 -bottom-8 text-xs text-white bg-gray-800 px-2 py-1.5 rounded opacity-0 group-hover:opacity-100 transition md:hidden">
-                        View Details
-                      </span>
+                     
                     </div>
                   </div>
                 </div>
