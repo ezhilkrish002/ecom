@@ -17,7 +17,7 @@ const ProductDescription = ({ product }) => {
       {/* -------- Specifications -------- */}
       {selectedTab === 'Specifications' && (
         <div className="max-w-6xl">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-8">
+          <h2 className="text-xl sm:text-2xl font-semibold text-slate-900 mb-8">
             Specifications
           </h2>
 
@@ -27,7 +27,7 @@ const ProductDescription = ({ product }) => {
               <button
                 key={subTab}
                 onClick={() => setSelectedSubTab(subTab)}
-                className={`px-4 py-2 text-sm font-medium transition-colors 
+                className={`px-4 py-2 text-lg sm:font-medium transition-colors 
                   ${
                     subTab === selectedSubTab
                       ? 'border-b-2 border-[#c31e5a] text-[#c31e5a]'
@@ -44,10 +44,10 @@ const ProductDescription = ({ product }) => {
             {/* Applications - NO BORDER */}
             {selectedSubTab === 'Applications' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">
+                <h3 className="sm:text-lg text-md  text-[#c31e5a] mb-3">
                   APPLICATIONS
                 </h3>
-                <p>
+                <p className="text-md sm:text-lg md:text-base">
                   <span className="font-semibold">Type:</span> Residential, Construction site
                 </p>
               </div>
@@ -56,10 +56,10 @@ const ProductDescription = ({ product }) => {
             {/* Materials */}
             {selectedSubTab === 'Materials' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">
+                <h3 className="sm:text-lg text-md  text-[#c31e5a] mb-3">
                   MATERIALS
                 </h3>
-                <table className="w-full border border-slate-200 text-sm md:text-base">
+                <table className="w-full border border-slate-200 text-md sm:text-lg md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
                       <td className="font-semibold p-3 w-1/3">Impeller</td>
@@ -93,10 +93,10 @@ const ProductDescription = ({ product }) => {
             {/* Operating Conditions */}
             {selectedSubTab === 'Operating Conditions' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">
+                <h3 className="sm:text-lg text-md text-[#c31e5a] mb-3">
                   OPERATING CONDITIONS
                 </h3>
-                <table className="w-full border border-slate-200 text-sm md:text-base">
+                <table className="w-full border border-slate-200 text-md sm:text-lg md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
                       <td className="font-semibold p-3 w-1/3">Suction lift</td>
@@ -122,10 +122,10 @@ const ProductDescription = ({ product }) => {
             {/* Technical Specifications */}
             {selectedSubTab === 'Technical Specifications' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">
+                <h3 className="sm:text-lg text-md text-[#c31e5a] mb-3">
                   TECHNICAL SPECIFICATIONS
                 </h3>
-                <table className="w-full border border-slate-200 text-sm md:text-base">
+                <table className="w-full border border-slate-200 text-md sm:text-lg md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
                       <td className="font-semibold p-3 w-1/3">Power Range</td>
