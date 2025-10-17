@@ -54,15 +54,15 @@ const ProductDetails = ({ product }) => {
     <>
       <div className="flex max-md:flex-col gap-12">
         {/* Images Section */}
-        <div className="flex max-sm:flex-col-reverse gap-3">
+        <div className="flex max-sm:flex-col-reverse gap-3 mx-auto">
           {/* Thumbnails */}
           {/* Thumbnails */}
-<div className="flex sm:flex-col gap-3">
+<div className="flex sm:flex-col mt-2 sm:mt-0 sm:mr-2 gap-3">
   {product.images.map((image, index) => (
     <div 
       key={index} 
       onClick={() => setMainImage(product.images[index])} 
-      className="flex items-center justify-center rounded-lg cursor-pointer overflow-hidden border border-gray-200 transition hover:scale-105 active:scale-95 w-20 h-20" // increased size
+      className="flex items-center justify-center rounded-lg cursor-pointer overflow-hidden border border-gray-200 transition hover:scale-105 active:scale-95 w-14 h-14" // increased size
     >
       <Image 
         src={image} 
