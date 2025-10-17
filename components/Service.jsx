@@ -121,7 +121,7 @@ export default function PumpApplications() {
                         />
                       </div>
 
-                <p className="text-center mt-5 text-sm font-medium text-slate-800">{app.label}</p>
+                <p className="text-center mt-5 text-xl font-medium text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
