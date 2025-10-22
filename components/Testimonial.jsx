@@ -106,7 +106,7 @@ const Testimonial = () => {
                 </div>
 
                 {/* 💬 Review */}
-                <p className="mt-4 text-gray-600 text-[16px] sm:text-lg leading-relaxed px-4 line-clamp-4">
+                <p className="mt-4 text-gray-600 text-[15px] sm:text-lg leading-relaxed px-4 line-clamp-4">
                   “{item.review}”
                 </p>
               </div>
