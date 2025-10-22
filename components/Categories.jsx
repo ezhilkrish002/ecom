@@ -71,7 +71,7 @@ export default function Categories() {
         <button
           onClick={handlePrev}
           disabled={startIndex === 0}
-          className={`absolute -left-5 sm:left-2 md:left-0 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 transition-all${
+          className={`absolute -left-5 sm:left-2 md:left-0 top-[42%] -translate-y-1/2 p-3 rounded-full z-10 transition-all ${
             startIndex === 0 ? 'opacity-40 pointer-events-none' : 'hover:bg-gray-200'
           }`}
         >
