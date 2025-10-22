@@ -87,7 +87,7 @@ Hi, I'm interested in booking an enquiry for the following product:
         <div className="w-full flex justify-center items-start gap-2 mt-3 text-sm text-slate-800 px-2 sm:px-0">
           <div className="flex flex-col">
             <p
-              className="font-medium text-xl sm:text-lg truncate w-[200px] sm:w-[250px] text-center transition-all duration-300 hover:text-[#c31e5a] hover:scale-105 cursor-pointer"
+              className="font-medium text-[18px] sm:text-lg truncate w-[200px] sm:w-[250px] text-center transition-all duration-300 hover:text-[#c31e5a] hover:scale-105 cursor-pointer"
             >
               {product.name}
             </p>
