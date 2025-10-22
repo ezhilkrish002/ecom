@@ -9,9 +9,9 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
     return (
         <div className="flex items-center justify-between mb-5 w-full gap-3">
             {/* Title + Line */}
-            <div className="flex items-center gap-3 flex-1 min-w-0">
+            <div className="flex items-center gap-2 sm:gap-3 flex-1 min-w-0">
                 {/* Vertical colored bar */}
-                <div className="w-2 h-10 rounded-full bg-gradient-to-b from-[#c31e5aff] to-[#c31e5aff] shadow-lg flex-shrink-0"></div>
+                <div className="w-2 h-8 sm:h-10 rounded-full bg-gradient-to-b from-[#c31e5aff] to-[#c31e5aff] shadow-lg flex-shrink-0"></div>
 
                 {/* Title text */}
                 <p className="text-[18px] sm:text-[20px]  font-semibold text-slate-800 whitespace-nowrap truncate">

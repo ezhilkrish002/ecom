@@ -99,7 +99,7 @@ const Hero = () => {
                             <p className='text-3xl font-medium bg-gradient-to-r from-green-700 to-green-400 bg-clip-text text-transparent max-w-40'>
                                 Best products
                             </p>
-                           <Link href="/category/products">  <p className='flex items-center gap-1 mt-4 text-green-700'>
+                           <Link href="/category/products">  <p className='text-[16px] flex items-center gap-1 mt-4 text-green-700'>
                                 View more
                                 <ArrowRightIcon className='text-green-600 group-hover:ml-2 transition-all' size={18} />
                             </p></Link>
@@ -110,7 +110,7 @@ const Hero = () => {
                     <div className='flex-1 flex items-center justify-between w-full bg-blue-200 rounded-3xl p-6 px-8 group'>
                         <div>
                             <p className='text-3xl font-medium bg-gradient-to-r from-slate-800 to-[#78B2FF] bg-clip-text text-transparent max-w-40'>20% discounts</p>
-                          <Link href="/category/products"> <p className='flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p></Link>
+                          <Link href="/category/products"> <p className='text-[16px] flex items-center gap-1 mt-4'>View more <ArrowRightIcon className='group-hover:ml-2 transition-all' size={18} /> </p></Link>
                         </div>
                         <Image className='w-40 h-40 rounded-full' src={assets.product_img6} alt="" />
                     </div>
