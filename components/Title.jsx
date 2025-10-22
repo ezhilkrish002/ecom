@@ -14,7 +14,7 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
                 <div className="w-2 h-8 sm:h-10 rounded-full bg-gradient-to-b from-[#c31e5aff] to-[#c31e5aff] shadow-lg flex-shrink-0"></div>
 
                 {/* Title text */}
-                <p className="text-[18px] sm:text-[20px]  font-semibold text-slate-800 whitespace-nowrap truncate">
+                <p className="text-[20px] sm:text-[20px]  font-semibold text-slate-800 whitespace-nowrap truncate">
                     {title}
                 </p>
 
@@ -27,7 +27,7 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
                 <div className="flex-shrink-0 ml-3">
                     <Link
                         href={href}
-                        className="flex items-center gap-1 text-xs sm:text-xl text-[#c31e5aff] whitespace-nowrap transition-all duration-300 group relative"
+                        className="flex items-center gap-1 text-[13px] sm:text-xl text-[#c31e5aff] whitespace-nowrap transition-all duration-300 group relative"
                     >
                         <span className="relative after:content-[''] after:absolute after:w-0 after:h-[1px] after:left-0 after:-bottom-1 after:bg-[#c31e5aff] after:transition-all after:duration-300 group-hover:after:w-full">
                             View more

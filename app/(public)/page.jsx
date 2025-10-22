@@ -16,6 +16,7 @@ import RecentProducts from "@/components/RecentProducts";
 export default function Home() {
     return (
         <div>
+            
             <Hero />
             <Service />
             <QuickEnquiryButton/> 

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { productDummyData } from "@/assets/assets";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "@/lib/features/cart/cartSlice";
@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast";
 import Link from "next/link";
 import { ShoppingCart, ArrowRight, Send } from "lucide-react";
 import ModalPopup from "./PopupModel";
+import ProductFilters from "./ProductFilters";
 
 export default function CategoryProducts({ categoryName, subCategoryName }) {
   const dispatch = useDispatch();
@@ -15,6 +16,16 @@ export default function CategoryProducts({ categoryName, subCategoryName }) {
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [filters, setFilters] = useState({
+    selectedPipeSizes: [],
+    selectedSpeeds: [],
+    selectedHeadRanges: [],
+    selectedFlowRanges: [],
+    selectedHPs: [],
+    selectedCategories: [],
+    inStockOnly: false,
+    sortBy: "default",
+  });
 
   const currency = process.env.NEXT_PUBLIC_CURRENCY_SYMBOL || '₹';
 
@@ -34,6 +45,92 @@ export default function CategoryProducts({ categoryName, subCategoryName }) {
       : productDummyData.filter(
           (product) => product.category.toLowerCase() === categoryName.toLowerCase()
         );
+
+  // Apply filters and sorting
+  const [filteredProducts, setFilteredProducts] = useState(products);
+
+  useEffect(() => {
+    let updatedProducts = [...products];
+
+    // Apply category filter (only if not filtering by URL category)
+    if (categoryName === "products" && filters.selectedCategories.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        filters.selectedCategories.includes(p.category)
+      );
+    }
+
+    // Apply pipe size filter
+    if (filters.selectedPipeSizes.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Pipe size" && filters.selectedPipeSizes.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply speed filter
+    if (filters.selectedSpeeds.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Speed" && filters.selectedSpeeds.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply head range filter
+    if (filters.selectedHeadRanges.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Head range" && filters.selectedHeadRanges.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply flow range filter
+    if (filters.selectedFlowRanges.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.specs.some(
+          (spec) => spec.label === "Flow range" && filters.selectedFlowRanges.includes(spec.value)
+        )
+      );
+    }
+
+    // Apply HP filter
+    if (filters.selectedHPs.length > 0) {
+      updatedProducts = updatedProducts.filter((p) =>
+        p.options.some((opt) => filters.selectedHPs.includes(opt))
+      );
+    }
+
+    // Apply inStock filter
+    if (filters.inStockOnly) {
+      updatedProducts = updatedProducts.filter((p) => p.inStock);
+    }
+
+    // Apply sorting
+    switch (filters.sortBy) {
+      case "priceLowToHigh":
+        updatedProducts.sort((a, b) => a.price - b.price);
+        break;
+      case "priceHighToLow":
+        updatedProducts.sort((a, b) => b.price - a.price);
+        break;
+      case "newest":
+        updatedProducts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        break;
+      case "rating":
+        updatedProducts.sort((a, b) => {
+          const avgA = a.rating.reduce((sum, r) => sum + r.rating, 0) / a.rating.length || 0;
+          const avgB = b.rating.reduce((sum, r) => sum + r.rating, 0) / b.rating.length || 0;
+          return avgB - avgA;
+        });
+        break;
+      default:
+        break;
+    }
+
+    setFilteredProducts(updatedProducts);
+  }, [filters, categoryName]);
 
   // 🛒 Add to Cart
   const handleAddToCart = (product) => {
@@ -75,7 +172,7 @@ Hi, I'm interested in booking an enquiry for the following product:
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-6 px-3 sm:px-6">
+    <div className="max-w-7xl mx-auto py-4 px-3 sm:px-6">
       {/* ✅ Breadcrumbs */}
       <div className="text-gray-600 text-md sm:text-lg mt-8 mb-5 sm:ml-10 space-x-1">
         <Link
@@ -246,8 +343,8 @@ Hi, I'm interested in booking an enquiry for the following product:
 function Spec({ label, value }) {
   return (
     <div className="flex justify-between border-b border-gray-100 pb-1">
-      <span className="font-medium text-gray-800">{label}</span>
-      <span className="text-gray-600">{value}</span>
+      <span className="font-medium text-gray-800 text-xs sm:text-sm">{label}</span>
+      <span className="text-gray-600 text-xs sm:text-sm">{value}</span>
     </div>
   );
 }

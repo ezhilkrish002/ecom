@@ -73,12 +73,12 @@ const RecentProducts = () => {
     <div className="px-4 my-20 mx-auto max-w-7xl">
       {/* Title Section */}
       <div className="flex flex-col items-start mb-10">
-        <h2 className="text-[24px] sm:text-3xl font-bold">
+        <h2 className="text-[22px] sm:text-3xl font-bold">
           <span className="text-[#7C2A47]">RECENT</span>{' '}
           <span className="text-gray-900">PRODUCTS</span>
         </h2>
         <div className="w-full border-t border-gray-300 mt-4 mb-6"></div>
-        <p className="text-lg text-[#E6A02A] font-semibold">
+        <p className="text-[17px] sm:text-lg text-[#E6A02A] font-semibold">
           INDUSTRY DESIGNS, INSPIRING GROWTH
         </p>
       </div>
