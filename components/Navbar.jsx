@@ -139,7 +139,7 @@ const Navbar = () => {
                       onClick={() => setShowDropdown((v) => !v)}
                     >
                       <LayoutGrid size={18} color={showDropdown ? "#7C2A47" : "#888"} className="mb-1" />
-                      <span className="flex items-center gap-1 pb-2 mt-1 text-[15px]">
+                      <span className="flex items-center gap-1 pb-2 mt-1 text-[16px]">
                         {item.label}
                         <ChevronDown size={18} color={showDropdown ? "#7C2A47" : "#888"} />
                       </span>
@@ -211,7 +211,7 @@ const Navbar = () => {
                         ${isActive(item.href, item.label) ? "text-[#7C2A47]" : "text-gray-500 group-hover:text-[#7C2A47]"}
                       `}
                     />
-                    <span className="mt-0 text-[15px]">{item.label}</span>
+                    <span className="mt-0 text-[16px]">{item.label}</span>
                   </Link>
                 )
               )}

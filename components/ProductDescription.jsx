@@ -35,7 +35,7 @@ const ProductDescription = ({ product }) => {
               <button
                 key={subTab}
                 onClick={() => setSelectedSubTab(subTab)}
-                className={`px-6 py-3 text-sm font-medium transition-colors 
+                className={`px-6 py-3 text-sm sm:text-lg  font-medium transition-colors 
                   ${
                     subTab === selectedSubTab
                       ? 'border-b-2 border-[#c31e5a] text-[#c31e5a]'

@@ -203,12 +203,12 @@ Hi, I'm interested in booking an enquiry for the following product:
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
                 {/* Image Section */}
                 <div className="flex justify-center">
-                  <Link href={`/product/${product.id}`} className="w-full h-full">
+                  <Link href={`/product/${product.id}`} className="w-[300px] h-[400px] sm:w-[330px] sm:h-[440px]">
                   <div className="p-4 rounded-xl w-full sm:w-auto flex justify-center">
                     <img
                       src={product.images?.[0]?.src || product.images?.[0]}
                       alt={product.name}
-                      className="rounded-xl w-full h-full object-contain"
+                      className="mt-4 sm:mt-0 rounded-xl w-full h-full object-contain"
                     />
                   </div>
                   </Link>
