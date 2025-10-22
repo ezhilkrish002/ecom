@@ -151,7 +151,7 @@ Hi, I'm interested in booking an enquiry for the following product:
                       {product.options.map((opt, i) => (
                         <button
                           key={i}
-                          className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-blue-50 hover:border-blue-400 transition text-sm sm:text-base"
+                          className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-[#c31e5aff] hover:text-white hover:border-[#c31e5aff] transition text-sm sm:text-base"
                         >
                           {opt}
                         </button>
