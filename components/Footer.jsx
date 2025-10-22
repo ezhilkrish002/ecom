@@ -78,7 +78,7 @@ const Footer = () => {
                                     {section.links.map((link, i) => (
                                         <li key={i} className="flex items-center gap-2">
                                             {link.icon && <link.icon />}
-                                            <Link href={link.path} className="text-lg sm:text-lg text-slate-600hover:underline transition">{link.text}</Link>
+                                            <Link href={link.path} className="text-md sm:text-lg text-slate-600hover:underline transition">{link.text}</Link>
                                         </li>
                                     ))}
                                 </ul>
