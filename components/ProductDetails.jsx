@@ -82,7 +82,7 @@ const ProductDetails = ({ product }) => {
 
 
           {/* Main Image */}
-          <div className="flex justify-center items-center w-[330px] h-[440px] sm:h-[540px] sm:w-[405px] md:h-[540px] md:w-[405px] rounded-lg overflow-hidden">
+          <div className="flex justify-center items-center w-[320px] h-[430px] sm:h-[540px] sm:w-[405px] md:h-[540px] md:w-[405px] rounded-lg overflow-hidden">
             <Image 
               src={mainImage} 
               alt={product.name} 
