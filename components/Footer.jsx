@@ -61,7 +61,7 @@ const Footer = () => {
                             {/* <span className="text-green-600">go</span>cart<span className="text-green-600 text-5xl leading-0">.</span> */}
                             <Image src={WVlogo} alt="WV logo" width={150} height={120} />
                         </Link>
-                        <p className="max-w-[410px] mt-6 text-lg text-slate-600">Welcome to Senba Pumbs & Motors , your ultimate destination for the latest Pumps and Motors. We bring you the best in innovation — all in one place.</p>
+                        <p className="max-w-[410px] mt-6 sm:text-lg text-[16px] text-slate-600">Welcome to Senba Pumbs & Motors , your ultimate destination for the latest Pumps and Motors. We bring you the best in innovation — all in one place.</p>
                         <div className="flex items-center gap-3 mt-5">
                             {socialIcons.map((item, i) => (
                                 <Link href={item.link} key={i} className="flex items-center justify-center w-10 h-10 bg-slate-100 hover:scale-105 hover:border border-slate-300 transition rounded-full">
@@ -73,12 +73,12 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between w-full md:w-[45%] gap-5 text-sm ">
                         {linkSections.map((section, index) => (
                             <div key={index}>
-                                <h3 className="text-slate-800 text-[16px] sm:text-xl font-semibold md:mb-5 mb-3">{section.title}</h3>
+                                <h3 className="text-slate-800 text-[14px] sm:text-xl font-semibold md:mb-5 mb-3">{section.title}</h3>
                                 <ul className="space-y-2.5">
                                     {section.links.map((link, i) => (
                                         <li key={i} className="flex items-center gap-2">
                                             {link.icon && <link.icon />}
-                                            <Link href={link.path} className="text-[16px] sm:text-lg text-slate-600 hover:underline transition">{link.text}</Link>
+                                            <Link href={link.path} className="text-[14px] sm:text-lg text-slate-600 hover:underline transition">{link.text}</Link>
                                         </li>
                                     ))}
                                 </ul>
@@ -86,7 +86,7 @@ const Footer = () => {
                         ))}
                     </div>
                 </div>
-                <p className="py-4 text-sm text-slate-500">
+                <p className="py-4 text-[12px] text-slate-500">
                     Copyright 2025 © Worley Ventures All Right Reserved.
                 </p>
             </div>
