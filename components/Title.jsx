@@ -14,7 +14,7 @@ const Title = ({ title, visibleButton = true, href = '' }) => {
                 <div className="w-2 h-10 rounded-full bg-gradient-to-b from-[#c31e5aff] to-[#c31e5aff] shadow-lg flex-shrink-0"></div>
 
                 {/* Title text */}
-                <p className="text-xl sm:text-2xl font-semibold text-slate-800 whitespace-nowrap truncate">
+                <p className="text-xl sm:text-[22px]  font-semibold text-slate-800 whitespace-nowrap truncate">
                     {title}
                 </p>
 
