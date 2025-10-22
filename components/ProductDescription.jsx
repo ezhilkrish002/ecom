@@ -21,21 +21,21 @@ const ProductDescription = ({ product }) => {
   ]
 
   return (
-    <div className="my-16 text-sm text-slate-700 px-4 md:px-0">
+    <div className="my-12 text-sm text-slate-700 w-full overflow-x-hidden max-w-7xl mx-auto px-4">
       {/* -------- Specifications -------- */}
       {selectedTab === 'Specifications' && (
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl font-semibold text-slate-900 mb-8 text-center md:text-left">
+        <div className="w-full">
+          <h2 className="text-2xl font-semibold text-slate-900 mb-8 text-left">
             Specifications
           </h2>
 
           {/* --- Desktop Tabs --- */}
-          <div className="hidden md:flex flex-wrap border-b border-slate-300 mb-6">
+          <div className="hidden md:flex flex-wrap border-b border-slate-300 mb-6 w-full">
             {subTabs.map((subTab) => (
               <button
                 key={subTab}
                 onClick={() => setSelectedSubTab(subTab)}
-                className={`px-4 py-2 text-sm font-medium transition-colors 
+                className={`px-6 py-3 text-sm font-medium transition-colors 
                   ${
                     subTab === selectedSubTab
                       ? 'border-b-2 border-[#c31e5a] text-[#c31e5a]'
@@ -48,42 +48,42 @@ const ProductDescription = ({ product }) => {
           </div>
 
           {/* --- Desktop Content --- */}
-          <div className="hidden md:block mt-6">
+          <div className="hidden md:block mt-6 w-full">
             {selectedSubTab === 'Applications' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">APPLICATIONS</h3>
+                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3 uppercase">Applications</h3>
                 <p><span className="font-semibold">Type:</span> Residential, Construction site</p>
               </div>
             )}
 
             {selectedSubTab === 'Materials' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">MATERIALS</h3>
+                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3 uppercase">Materials</h3>
                 <table className="w-full border border-slate-200 text-sm md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3 w-1/3">Impeller</td>
-                      <td className="p-3">Forged brass</td>
+                      <td className="font-semibold p-2 w-1/3">Impeller</td>
+                      <td className="p-2">Forged brass</td>
                     </tr>
                     <tr className="border-b border-slate-200">
-                      <td className="font-semibold p-3">Pump casing & flanges</td>
-                      <td className="p-3">Cast iron – IS 210 grade FG 200</td>
+                      <td className="font-semibold p-2">Pump casing & flanges</td>
+                      <td className="p-2">Cast iron – IS 210 grade FG 200</td>
                     </tr>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3">Motor body</td>
-                      <td className="p-3">Aluminium / Cast iron</td>
+                      <td className="font-semibold p-2">Motor body</td>
+                      <td className="p-2">Aluminium / Cast iron</td>
                     </tr>
                     <tr className="border-b border-slate-200">
-                      <td className="font-semibold p-3">Shaft</td>
-                      <td className="p-3">SS 410 / EN–8</td>
+                      <td className="font-semibold p-2">Shaft</td>
+                      <td className="p-2">SS 410 / EN–8</td>
                     </tr>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3">Mechanical seal</td>
-                      <td className="p-3">Carbon ceramic</td>
+                      <td className="font-semibold p-2">Mechanical seal</td>
+                      <td className="p-2">Carbon ceramic</td>
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3">Bearing</td>
-                      <td className="p-3">Double shielded ball bearing</td>
+                      <td className="font-semibold p-2">Bearing</td>
+                      <td className="p-2">Double shielded ball bearing</td>
                     </tr>
                   </tbody>
                 </table>
@@ -92,24 +92,24 @@ const ProductDescription = ({ product }) => {
 
             {selectedSubTab === 'Operating Conditions' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">OPERATING CONDITIONS</h3>
+                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3 uppercase">Operating Conditions</h3>
                 <table className="w-full border border-slate-200 text-sm md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3 w-1/3">Suction lift</td>
-                      <td className="p-3">Up to 8 metres</td>
+                      <td className="font-semibold p-2 w-1/3">Suction lift</td>
+                      <td className="p-2">Up to 8 metres</td>
                     </tr>
                     <tr className="border-b border-slate-200">
-                      <td className="font-semibold p-3">Max liquid temperature</td>
-                      <td className="p-3">50°C</td>
+                      <td className="font-semibold p-2">Max liquid temperature</td>
+                      <td className="p-2">50°C</td>
                     </tr>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3">Max ambient temperature</td>
-                      <td className="p-3">40°C</td>
+                      <td className="font-semibold p-2">Max ambient temperature</td>
+                      <td className="p-2">40°C</td>
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3">Max operating pressure</td>
-                      <td className="p-3">8 bar</td>
+                      <td className="font-semibold p-2">Max operating pressure</td>
+                      <td className="p-2">8 bar</td>
                     </tr>
                   </tbody>
                 </table>
@@ -118,34 +118,34 @@ const ProductDescription = ({ product }) => {
 
             {selectedSubTab === 'Technical Specifications' && (
               <div>
-                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3">
-                  TECHNICAL SPECIFICATIONS
+                <h3 className="text-lg font-semibold text-[#c31e5a] mb-3 uppercase">
+                  Technical Specifications
                 </h3>
                 <table className="w-full border border-slate-200 text-sm md:text-base">
                   <tbody>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3 w-1/3">Power Range</td>
-                      <td className="p-3">0.75 kW – 1.5 kW (1HP–2HP)</td>
+                      <td className="font-semibold p-2 w-1/3">Power Range</td>
+                      <td className="p-2">0.75 kW – 1.5 kW (1HP–2HP)</td>
                     </tr>
                     <tr className="border-b border-slate-200">
-                      <td className="font-semibold p-3">Version</td>
-                      <td className="p-3">Single-phase, 220V, 50Hz, AC supply</td>
+                      <td className="font-semibold p-2">Version</td>
+                      <td className="p-2">Single-phase, 220V, 50Hz, AC supply</td>
                     </tr>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3">Maximum Total Head</td>
-                      <td className="p-3">214 Metre</td>
+                      <td className="font-semibold p-2">Maximum Total Head</td>
+                      <td className="p-2">214 Metre</td>
                     </tr>
                     <tr className="border-b border-slate-200">
-                      <td className="font-semibold p-3">Maximum Flow Rate</td>
-                      <td className="p-3">0.9 lps (3.4 m³/h)</td>
+                      <td className="font-semibold p-2">Maximum Flow Rate</td>
+                      <td className="p-2">0.9 lps (3.4 m³/h)</td>
                     </tr>
                     <tr className="border-b border-slate-200 bg-gray-50">
-                      <td className="font-semibold p-3">Speed</td>
-                      <td className="p-3">2900 RPM</td>
+                      <td className="font-semibold p-2">Speed</td>
+                      <td className="p-2">2900 RPM</td>
                     </tr>
                     <tr>
-                      <td className="font-semibold p-3">Insulation</td>
-                      <td className="p-3">Class B/F</td>
+                      <td className="font-semibold p-2">Insulation</td>
+                      <td className="p-2">Class B/F</td>
                     </tr>
                   </tbody>
                 </table>
@@ -154,12 +154,13 @@ const ProductDescription = ({ product }) => {
           </div>
 
           {/* --- Mobile Collapsible Sections --- */}
-          <div className="block md:hidden space-y-4">
+          <div className="block md:hidden space-y-6 w-full">
             {subTabs.map((subTab) => (
               <div key={subTab} className="border border-slate-300 rounded-lg overflow-hidden">
                 <button
                   onClick={() => toggleSection(subTab)}
-                  className="flex justify-between items-center w-full px-4 py-3 text-left font-medium text-slate-800 bg-gray-50 hover:bg-gray-100"
+                  className="flex justify-between items-center w-full px-4 py-3 
+                             text-left font-medium text-slate-800 bg-gray-50 hover:bg-gray-100"
                 >
                   {subTab}
                   {openSection === subTab ? (
@@ -168,13 +169,11 @@ const ProductDescription = ({ product }) => {
                     <ChevronDown className="text-[#c31e5a]" />
                   )}
                 </button>
-
-                {openSection === subTab && (
-                  <div className="p-4 border-t border-slate-200 bg-white overflow-x-auto">
-                    {/* same content as desktop */}
-                    {selectedSubTab === 'Applications' || subTab === 'Applications' ? (
-                      <p className="mb-3"><span className="font-semibold">Type:</span> Residential, Construction site</p>
-                    ) : null}
+{openSection === subTab && (
+                  <div className="p-6 border-t border-slate-200 bg-white overflow-x-auto">
+                    {subTab === 'Applications' && (
+                      <p><span className="font-semibold">Type:</span> Residential, Construction site</p>
+                    )}
 
                     {subTab === 'Materials' && (
                       <table className="w-full border border-slate-200 text-sm">
@@ -268,7 +267,7 @@ const ProductDescription = ({ product }) => {
         </div>
       )}
 
-    
+     
     </div>
   )
 }

@@ -11,7 +11,7 @@ export default function QuickEnquiryButton() {
     
   >
     <MessageCircle size={20} />
-    <span className="mt-2 text-xs sm:text-lg font-semibold tracking-wider [writing-mode:vertical-rl] rotate-180">
+    <span className="mt-2 text-xs sm:text-sm font-semibold tracking-wider [writing-mode:vertical-rl] rotate-180">
       QUICK ENQUIRY
     </span>
   </button>

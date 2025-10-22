@@ -19,7 +19,7 @@ export default function Home() {
             
             <Hero />
             <Service />
-            <QuickEnquiryButton/>
+            <QuickEnquiryButton/> 
             <Categories/>
             <LatestProducts />
             <BestSelling />
