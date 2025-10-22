@@ -134,7 +134,7 @@ const ProductDetails = ({ product }) => {
             <p>Save {((product.mrp - product.price) / product.mrp * 100).toFixed(0)}% right now</p>
           </div>
 
-         <div className="flex items-end gap-5 mt-10">
+         {/* <div className="flex flex-wrap items-end gap-5 mt-10">
             {cart[productId] && (
               <div className="flex flex-col gap-3">
                 <p className="text-lg text-slate-800 font-semibold">Quantity</p>
@@ -154,7 +154,34 @@ const ProductDetails = ({ product }) => {
             >
               Book Enquiry
             </button>
-          </div>
+          </div> */}
+          <div className="flex flex-wrap items-end gap-5 mt-10">
+  {cart[productId] && (
+    <div className="flex flex-col gap-3 min-w-[150px] sm:min-w-[180px]">
+      <p className="text-lg text-slate-800 font-semibold">Quantity</p>
+      <Counter productId={productId} />
+    </div>
+  )}
+
+  <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+    <button
+      onClick={() =>
+        !cart[productId] ? addToCartHandler() : router.push('/cart')
+      }
+      className="flex-1 sm:flex-none bg-slate-900 text-white px-10 py-3 text-sm font-medium rounded hover:bg-slate-700 active:scale-95 transition w-full sm:w-44"
+    >
+      {!cart[productId] ? 'Add to Cart' : 'View Cart'}
+    </button>
+
+    <button
+      onClick={() => setIsModalOpen(true)}
+      className="flex-1 sm:flex-none bg-[#c31e5a] text-white px-10 py-3 text-sm font-medium rounded hover:bg-[#d44a70] active:scale-95 transition w-full sm:w-44"
+    >
+      Book Enquiry
+    </button>
+  </div>
+</div>
+
 
           <hr className="border-gray-300 my-5" />
 
