@@ -78,11 +78,11 @@ export default function Banner() {
                 <div className="flex items-center gap-4">
                     <div className="flex items-center gap-2">
                         <MailIcon />
-                        <span className="text-white/90 text-xs sm:text-sm">contact@example.com</span>
+                        <span className="text-white/90 text-xs sm:text-[16px]">contact@example.com</span>
                     </div>
                     <div className="flex items-center gap-2">
                         <PhoneIcon />
-                        <span className="text-white/90 text-xs sm:text-sm">+1-212-456-7890</span>
+                        <span className="text-white/90 text-xs sm:text-[16px]">+1-212-456-7890</span>
                     </div>
                 </div>
 
