@@ -73,12 +73,12 @@ const Footer = () => {
                     <div className="flex flex-wrap justify-between w-full md:w-[45%] gap-5 text-sm ">
                         {linkSections.map((section, index) => (
                             <div key={index}>
-                                <h3 className="text-slate-800 text-lg sm:text-xl font-semibold md:mb-5 mb-3">{section.title}</h3>
+                                <h3 className="text-slate-800 text-[16px] sm:text-xl font-semibold md:mb-5 mb-3">{section.title}</h3>
                                 <ul className="space-y-2.5">
                                     {section.links.map((link, i) => (
                                         <li key={i} className="flex items-center gap-2">
                                             {link.icon && <link.icon />}
-                                            <Link href={link.path} className="text-lg sm:text-lg text-slate-600hover:underline transition">{link.text}</Link>
+                                            <Link href={link.path} className="text-[16px] sm:text-lg text-slate-600 hover:underline transition">{link.text}</Link>
                                         </li>
                                     ))}
                                 </ul>

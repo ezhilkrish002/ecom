@@ -14,7 +14,7 @@ const BestSelling = () => {
 
   return (
     <div className="px-4 sm:px-6 my-20 max-w-7xl mx-auto">
-      <h2 className="text-3xl font-bold text-gray-800 mb-10">Best Selling Products</h2>
+      <h2 className="text-[24px] font-bold text-gray-800 mb-5 sm:text-2xl sm:mb-10">Best Selling Products</h2>
 
       {groupedProducts.map((group, index) => (
         <div key={index} className="mb-16">

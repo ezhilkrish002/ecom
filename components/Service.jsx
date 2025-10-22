@@ -121,7 +121,7 @@ export default function PumpApplications() {
                         />
                       </div>
 
-                <p className="text-center mt-5 text-xl font-medium text-slate-800">{app.label}</p>
+                <p className="text-center mt-5 text-[16px] font-medium text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -173,7 +173,7 @@ export default function PumpApplications() {
                     height={160}
                   />
                 </div>
-                <p className=" text-center mt-2 font-medium text-xl sm:text-lg text-slate-800">{app.label}</p>
+                <p className=" text-center mt-2 font-medium text-lg text-slate-800">{app.label}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -212,7 +212,7 @@ export default function PumpApplications() {
                 height={200}
               />
             </div>
-            <p className="font-medium text-center mt-2 text-xl sm:text-lg text-slate-800">
+            <p className="font-medium text-center mt-2 text-lg text-slate-800">
               {app.label}
             </p>
           </motion.div>
