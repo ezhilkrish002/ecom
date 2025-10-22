@@ -20,10 +20,10 @@ export default function ProductHelpBanner() {
 
         {/* Text Content */}
         <div>
-          <h2 className="text-xl sm:text-2xl font-semibold leading-snug">
+          <h2 className="text-[18px] sm:text-2xl font-semibold leading-snug">
             Need help deciding on the right products?
           </h2>
-          <p className="text-md sm:text-lg text-[#7C2A47] mt-1">
+          <p className="text-[15px] sm:text-lg text-[#7C2A47] mt-1">
             Try our product selection guide to help you in your decision making
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function ProductHelpBanner() {
       {/* Right Button */}
       <Link
         href="/contact"
-        className="bg-white text-[#7C2A47] font-semibold rounded-full px-6 py-3 sm:px-8 sm:py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
+        className="bg-white text-[#7C2A47] text-[15px] font-semibold rounded-full px-6 py-3 sm:px-8 sm:py-4 flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
       >
         Start Now
         <svg
