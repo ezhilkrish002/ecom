@@ -1,3 +1,4 @@
+
 'use client'
 import { ArrowRight, ChevronDown, ChevronUp } from "lucide-react"
 import Image from "next/image"
@@ -35,11 +36,10 @@ const ProductDescription = ({ product }) => {
               <button
                 key={subTab}
                 onClick={() => setSelectedSubTab(subTab)}
-                className={`px-6 py-3 text-sm sm:text-lg  font-medium transition-colors 
-                  ${
-                    subTab === selectedSubTab
-                      ? 'border-b-2 border-[#c31e5a] text-[#c31e5a]'
-                      : 'text-slate-500 hover:text-[#c31e5a]'
+                className={`px-6 py-3 text-sm font-medium transition-colors 
+                  ${subTab === selectedSubTab
+                    ? 'border-b-2 border-[#c31e5a] text-[#c31e5a]'
+                    : 'text-slate-500 hover:text-[#c31e5a]'
                   }`}
               >
                 {subTab}
@@ -169,12 +169,26 @@ const ProductDescription = ({ product }) => {
                     <ChevronDown className="text-[#c31e5a]" />
                   )}
                 </button>
-{openSection === subTab && (
-                  <div className="p-6 border-t border-slate-200 bg-white overflow-x-auto">
+                {openSection === subTab && (
+                  <div className="border-t border-slate-200 bg-white overflow-x-auto">
                     {subTab === 'Applications' && (
-                      <p><span className="font-semibold">Type:</span> Residential, Construction site</p>
+                      <table className="w-full border border-slate-200 text-sm">
+                        <tbody>
+                          <tr className="border-b bg-gray-50">
+                            <td className="font-semibold p-2 w-1/3">Type</td>
+                            <td className="p-2">Residential, Construction site</td>
+                          </tr>
+                          <tr className="border-b">
+                            <td className="font-semibold p-2">Usage</td>
+                            <td className="p-2">Suitable for continuous water supply and transfer applications</td>
+                          </tr>
+                          <tr className="border-b bg-gray-50">
+                            <td className="font-semibold p-2">Typical Areas</td>
+                            <td className="p-2">Homes, Apartments, Building complexes, Small commercial units</td>
+                          </tr>
+                        </tbody>
+                      </table>
                     )}
-
                     {subTab === 'Materials' && (
                       <table className="w-full border border-slate-200 text-sm">
                         <tbody>
@@ -267,7 +281,7 @@ const ProductDescription = ({ product }) => {
         </div>
       )}
 
-     
+
     </div>
   )
 }
